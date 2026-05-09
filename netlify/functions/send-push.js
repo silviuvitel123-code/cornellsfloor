@@ -18,7 +18,7 @@ exports.handler = async (event) => {
 
   const resp = await fetch(`${FIREBASE_URL}/push_subscriptions.json`);
   const subs = await resp.json();
-  if (!subs) return { statusCode: 200, body: JSON.stringify({ sent: 0 }) };
+  if (!subs) return { statusCode: 200, body: JSON.stringify({ sent: 0, subs: 0 }) };
 
   const entries = Object.entries(subs).filter(([, s]) => s && s.endpoint);
 
@@ -47,7 +47,11 @@ exports.handler = async (event) => {
     body: JSON.stringify({
       sent: results.filter(r => r.status === "fulfilled").length,
       failed: results.filter(r => r.status === "rejected").length,
-      errors: results.filter(r => r.status === "rejected").map(r => r.reason?.message || String(r.reason))
+      errors: results.filter(r => r.status === "rejected").map(r => ({
+        msg: r.reason?.message,
+        code: r.reason?.statusCode,
+        body: r.reason?.body
+      }))
     })
   };
 };
