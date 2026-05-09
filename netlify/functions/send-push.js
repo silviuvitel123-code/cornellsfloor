@@ -10,7 +10,7 @@ exports.handler = async (event) => {
   if (!VAPID_PUBLIC || !VAPID_PRIVATE)
     return { statusCode: 500, body: "VAPID keys not configured" };
 
-  webpush.setVapidDetails("mailto:admin@cornells-floor.ro", VAPID_PUBLIC, VAPID_PRIVATE);
+  webpush.setVapidDetails("https://cornells-floor.netlify.app", VAPID_PUBLIC, VAPID_PRIVATE);
 
   let payload;
   try { payload = JSON.parse(event.body); }
