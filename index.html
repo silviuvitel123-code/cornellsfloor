@@ -999,13 +999,19 @@ async function initFCM(){
   try{
     const reg = await navigator.serviceWorker.ready;
     let sub = await reg.pushManager.getSubscription();
+    const storedKey = localStorage.getItem('cf_vapid_key');
+    if(sub && storedKey !== vapidPublicKey){
+      await sub.unsubscribe();
+      sub = null;
+    }
     if(!sub){
-      const perm = await Notification.requestPermission();
+      const perm = Notification.permission==='granted'?'granted':await Notification.requestPermission();
       if(perm !== 'granted') return;
       sub = await reg.pushManager.subscribe({
         userVisibleOnly: true,
         applicationServerKey: urlBase64ToUint8Array(vapidPublicKey)
       });
+      localStorage.setItem('cf_vapid_key', vapidPublicKey);
     }
     const j = sub.toJSON();
     await write('/push_subscriptions/' + S.user.uid, {
