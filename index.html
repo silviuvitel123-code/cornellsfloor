@@ -1,0 +1,2229 @@
+<html lang="ro"><head>
+<meta charset="UTF-8">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<!-- ═══════════ PWA SUPPORT ═══════════ -->
+<link rel="manifest" href="data:application/manifest+json;base64,ewogICJuYW1lIjogIkNvcm5lbGwncyBGbG9vciIsCiAgInNob3J0X25hbWUiOiAiQ0YgRmxvb3IiLAogICJkZXNjcmlwdGlvbiI6ICJTaXN0ZW0gVXJtxINyaXJlIE1hdGVyaWFsZSDCtyDImGFudGllciIsCiAgInN0YXJ0X3VybCI6ICIuLyIsCiAgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsCiAgImJhY2tncm91bmRfY29sb3IiOiAiIzBhMGQxMiIsCiAgInRoZW1lX2NvbG9yIjogIiNmYmJmMjQiLAogICJvcmllbnRhdGlvbiI6ICJwb3J0cmFpdC1wcmltYXJ5IiwKICAiaWNvbnMiOiBbCiAgICB7InNyYyI6ICJkYXRhOmltYWdlL3N2Zyt4bWw7YmFzZTY0LFBITjJaeUI0Yld4dWN6MGlhSFIwY0RvdkwzZDNkeTUzTXk1dmNtY3ZNakF3TUM5emRtY2lJSGRwWkhSb1BTSTNNaUlnYUdWcFoyaDBQU0kzTWlJZ2RtbGxkMEp2ZUQwaU1DQXdJRGN5SURjeUlqNEtJQ0E4Y21WamRDQjNhV1IwYUQwaU56SWlJR2hsYVdkb2REMGlOeklpSUhKNFBTSTVJaUJtYVd4c1BTSWpabUppWmpJMElpOCtDaUFnUEhCaGRIUmxjbTRnYVdROUltZ2lJSGc5SWpBaUlIazlJakFpSUhkcFpIUm9QU0l4TkNJZ2FHVnBaMmgwUFNJeE5DSWdjR0YwZEdWeWJsVnVhWFJ6UFNKMWMyVnlVM0JoWTJWUGJsVnpaU0lnY0dGMGRHVnlibFJ5WVc1elptOXliVDBpY205MFlYUmxLRFExS1NJK0NpQWdJQ0E4Y21WamRDQjNhV1IwYUQwaU55SWdhR1ZwWjJoMFBTSXhOQ0lnWm1sc2JEMGljbWRpWVNnd0xEQXNNQ3d3TGpFeUtTSXZQZ29nSUR3dmNHRjBkR1Z5Ymo0S0lDQThjbVZqZENCM2FXUjBhRDBpTnpJaUlHaGxhV2RvZEQwaU56SWlJSEo0UFNJNUlpQm1hV3hzUFNKMWNtd29JMmdwSWk4K0NpQWdQSFJsZUhRZ2VEMGlOVEFsSWlCNVBTSTFOQ1VpSUdadmJuUXRabUZ0YVd4NVBTSkJjbWxoYkNCQ2JHRmpheXhCY21saGJDeHpZVzV6TFhObGNtbG1JaUJtYjI1MExYZGxhV2RvZEQwaU9UQXdJaUJtYjI1MExYTnBlbVU5SWpJMElpQUtJQ0FnSUdacGJHdzlJaU13WVRCa01USWlJSFJsZUhRdFlXNWphRzl5UFNKdGFXUmtiR1VpSUdSdmJXbHVZVzUwTFdKaGMyVnNhVzVsUFNKdGFXUmtiR1VpSUd4bGRIUmxjaTF6Y0dGamFXNW5QU0l4SWo1RFJqd3ZkR1Y0ZEQ0S1BDOXpkbWMrIiwgInNpemVzIjogIjcyeDcyIiwgInR5cGUiOiAiaW1hZ2Uvc3ZnK3htbCJ9LAogICAgeyJzcmMiOiAiZGF0YTppbWFnZS9zdmcreG1sO2Jhc2U2NCxQSE4yWnlCNGJXeHVjejBpYUhSMGNEb3ZMM2QzZHk1M015NXZjbWN2TWpBd01DOXpkbWNpSUhkcFpIUm9QU0k1TmlJZ2FHVnBaMmgwUFNJNU5pSWdkbWxsZDBKdmVEMGlNQ0F3SURrMklEazJJajRLSUNBOGNtVmpkQ0IzYVdSMGFEMGlPVFlpSUdobGFXZG9kRDBpT1RZaUlISjRQU0l4TWlJZ1ptbHNiRDBpSTJaaVltWXlOQ0l2UGdvZ0lEeHdZWFIwWlhKdUlHbGtQU0pvSWlCNFBTSXdJaUI1UFNJd0lpQjNhV1IwYUQwaU1UUWlJR2hsYVdkb2REMGlNVFFpSUhCaGRIUmxjbTVWYm1sMGN6MGlkWE5sY2xOd1lXTmxUMjVWYzJVaUlIQmhkSFJsY201VWNtRnVjMlp2Y20wOUluSnZkR0YwWlNnME5Ta2lQZ29nSUNBZ1BISmxZM1FnZDJsa2RHZzlJamNpSUdobGFXZG9kRDBpTVRRaUlHWnBiR3c5SW5KblltRW9NQ3d3TERBc01DNHhNaWtpTHo0S0lDQThMM0JoZEhSbGNtNCtDaUFnUEhKbFkzUWdkMmxrZEdnOUlqazJJaUJvWldsbmFIUTlJamsySWlCeWVEMGlNVElpSUdacGJHdzlJblZ5YkNnamFDa2lMejRLSUNBOGRHVjRkQ0I0UFNJMU1DVWlJSGs5SWpVMEpTSWdabTl1ZEMxbVlXMXBiSGs5SWtGeWFXRnNJRUpzWVdOckxFRnlhV0ZzTEhOaGJuTXRjMlZ5YVdZaUlHWnZiblF0ZDJWcFoyaDBQU0k1TURBaUlHWnZiblF0YzJsNlpUMGlNeklpSUFvZ0lDQWdabWxzYkQwaUl6QmhNR1F4TWlJZ2RHVjRkQzFoYm1Ob2IzSTlJbTFwWkdSc1pTSWdaRzl0YVc1aGJuUXRZbUZ6Wld4cGJtVTlJbTFwWkdSc1pTSWdiR1YwZEdWeUxYTndZV05wYm1jOUlqRWlQa05HUEM5MFpYaDBQZ284TDNOMlp6ND0iLCAic2l6ZXMiOiAiOTZ4OTYiLCAidHlwZSI6ICJpbWFnZS9zdmcreG1sIn0sCiAgICB7InNyYyI6ICJkYXRhOmltYWdlL3N2Zyt4bWw7YmFzZTY0LFBITjJaeUI0Yld4dWN6MGlhSFIwY0RvdkwzZDNkeTUzTXk1dmNtY3ZNakF3TUM5emRtY2lJSGRwWkhSb1BTSXhORFFpSUdobGFXZG9kRDBpTVRRMElpQjJhV1YzUW05NFBTSXdJREFnTVRRMElERTBOQ0krQ2lBZ1BISmxZM1FnZDJsa2RHZzlJakUwTkNJZ2FHVnBaMmgwUFNJeE5EUWlJSEo0UFNJeE9DSWdabWxzYkQwaUkyWmlZbVl5TkNJdlBnb2dJRHh3WVhSMFpYSnVJR2xrUFNKb0lpQjRQU0l3SWlCNVBTSXdJaUIzYVdSMGFEMGlNVFFpSUdobGFXZG9kRDBpTVRRaUlIQmhkSFJsY201VmJtbDBjejBpZFhObGNsTndZV05sVDI1VmMyVWlJSEJoZEhSbGNtNVVjbUZ1YzJadmNtMDlJbkp2ZEdGMFpTZzBOU2tpUGdvZ0lDQWdQSEpsWTNRZ2QybGtkR2c5SWpjaUlHaGxhV2RvZEQwaU1UUWlJR1pwYkd3OUluSm5ZbUVvTUN3d0xEQXNNQzR4TWlraUx6NEtJQ0E4TDNCaGRIUmxjbTQrQ2lBZ1BISmxZM1FnZDJsa2RHZzlJakUwTkNJZ2FHVnBaMmgwUFNJeE5EUWlJSEo0UFNJeE9DSWdabWxzYkQwaWRYSnNLQ05vS1NJdlBnb2dJRHgwWlhoMElIZzlJalV3SlNJZ2VUMGlOVFFsSWlCbWIyNTBMV1poYldsc2VUMGlRWEpwWVd3Z1FteGhZMnNzUVhKcFlXd3NjMkZ1Y3kxelpYSnBaaUlnWm05dWRDMTNaV2xuYUhROUlqa3dNQ0lnWm05dWRDMXphWHBsUFNJME9DSWdDaUFnSUNCbWFXeHNQU0lqTUdFd1pERXlJaUIwWlhoMExXRnVZMmh2Y2owaWJXbGtaR3hsSWlCa2IyMXBibUZ1ZEMxaVlYTmxiR2x1WlQwaWJXbGtaR3hsSWlCc1pYUjBaWEl0YzNCaFkybHVaejBpTVNJK1EwWThMM1JsZUhRK0Nqd3ZjM1puUGc9PSIsICJzaXplcyI6ICIxNDR4MTQ0IiwgInR5cGUiOiAiaW1hZ2Uvc3ZnK3htbCJ9LAogICAgeyJzcmMiOiAiZGF0YTppbWFnZS9zdmcreG1sO2Jhc2U2NCxQSE4yWnlCNGJXeHVjejBpYUhSMGNEb3ZMM2QzZHk1M015NXZjbWN2TWpBd01DOXpkbWNpSUhkcFpIUm9QU0l4T1RJaUlHaGxhV2RvZEQwaU1Ua3lJaUIyYVdWM1FtOTRQU0l3SURBZ01Ua3lJREU1TWlJK0NpQWdQSEpsWTNRZ2QybGtkR2c5SWpFNU1pSWdhR1ZwWjJoMFBTSXhPVElpSUhKNFBTSXlOQ0lnWm1sc2JEMGlJMlppWW1ZeU5DSXZQZ29nSUR4d1lYUjBaWEp1SUdsa1BTSm9JaUI0UFNJd0lpQjVQU0l3SWlCM2FXUjBhRDBpTVRRaUlHaGxhV2RvZEQwaU1UUWlJSEJoZEhSbGNtNVZibWwwY3owaWRYTmxjbE53WVdObFQyNVZjMlVpSUhCaGRIUmxjbTVVY21GdWMyWnZjbTA5SW5KdmRHRjBaU2cwTlNraVBnb2dJQ0FnUEhKbFkzUWdkMmxrZEdnOUlqY2lJR2hsYVdkb2REMGlNVFFpSUdacGJHdzlJbkpuWW1Fb01Dd3dMREFzTUM0eE1pa2lMejRLSUNBOEwzQmhkSFJsY200K0NpQWdQSEpsWTNRZ2QybGtkR2c5SWpFNU1pSWdhR1ZwWjJoMFBTSXhPVElpSUhKNFBTSXlOQ0lnWm1sc2JEMGlkWEpzS0NOb0tTSXZQZ29nSUR4MFpYaDBJSGc5SWpVd0pTSWdlVDBpTlRRbElpQm1iMjUwTFdaaGJXbHNlVDBpUVhKcFlXd2dRbXhoWTJzc1FYSnBZV3dzYzJGdWN5MXpaWEpwWmlJZ1ptOXVkQzEzWldsbmFIUTlJamt3TUNJZ1ptOXVkQzF6YVhwbFBTSTJOQ0lnQ2lBZ0lDQm1hV3hzUFNJak1HRXdaREV5SWlCMFpYaDBMV0Z1WTJodmNqMGliV2xrWkd4bElpQmtiMjFwYm1GdWRDMWlZWE5sYkdsdVpUMGliV2xrWkd4bElpQnNaWFIwWlhJdGMzQmhZMmx1WnowaU1TSStRMFk4TDNSbGVIUStDand2YzNablBnPT0iLCAic2l6ZXMiOiAiMTkyeDE5MiIsICJ0eXBlIjogImltYWdlL3N2Zyt4bWwiLCAicHVycG9zZSI6ICJhbnkgbWFza2FibGUifSwKICAgIHsic3JjIjogImRhdGE6aW1hZ2Uvc3ZnK3htbDtiYXNlNjQsUEhOMlp5QjRiV3h1Y3owaWFIUjBjRG92TDNkM2R5NTNNeTV2Y21jdk1qQXdNQzl6ZG1jaUlIZHBaSFJvUFNJMU1USWlJR2hsYVdkb2REMGlOVEV5SWlCMmFXVjNRbTk0UFNJd0lEQWdOVEV5SURVeE1pSStDaUFnUEhKbFkzUWdkMmxrZEdnOUlqVXhNaUlnYUdWcFoyaDBQU0kxTVRJaUlISjRQU0kyTkNJZ1ptbHNiRDBpSTJaaVltWXlOQ0l2UGdvZ0lEeHdZWFIwWlhKdUlHbGtQU0pvSWlCNFBTSXdJaUI1UFNJd0lpQjNhV1IwYUQwaU1UUWlJR2hsYVdkb2REMGlNVFFpSUhCaGRIUmxjbTVWYm1sMGN6MGlkWE5sY2xOd1lXTmxUMjVWYzJVaUlIQmhkSFJsY201VWNtRnVjMlp2Y20wOUluSnZkR0YwWlNnME5Ta2lQZ29nSUNBZ1BISmxZM1FnZDJsa2RHZzlJamNpSUdobGFXZG9kRDBpTVRRaUlHWnBiR3c5SW5KblltRW9NQ3d3TERBc01DNHhNaWtpTHo0S0lDQThMM0JoZEhSbGNtNCtDaUFnUEhKbFkzUWdkMmxrZEdnOUlqVXhNaUlnYUdWcFoyaDBQU0kxTVRJaUlISjRQU0kyTkNJZ1ptbHNiRDBpZFhKc0tDTm9LU0l2UGdvZ0lEeDBaWGgwSUhnOUlqVXdKU0lnZVQwaU5UUWxJaUJtYjI1MExXWmhiV2xzZVQwaVFYSnBZV3dnUW14aFkyc3NRWEpwWVd3c2MyRnVjeTF6WlhKcFppSWdabTl1ZEMxM1pXbG5hSFE5SWprd01DSWdabTl1ZEMxemFYcGxQU0l4TnpBaUlBb2dJQ0FnWm1sc2JEMGlJekJoTUdReE1pSWdkR1Y0ZEMxaGJtTm9iM0k5SW0xcFpHUnNaU0lnWkc5dGFXNWhiblF0WW1GelpXeHBibVU5SW0xcFpHUnNaU0lnYkdWMGRHVnlMWE53WVdOcGJtYzlJakVpUGtOR1BDOTBaWGgwUGdvOEwzTjJaejQ9IiwgInNpemVzIjogIjUxMng1MTIiLCAidHlwZSI6ICJpbWFnZS9zdmcreG1sIiwgInB1cnBvc2UiOiAiYW55IG1hc2thYmxlIn0KICBdLAogICJjYXRlZ29yaWVzIjogWyJidXNpbmVzcyIsICJwcm9kdWN0aXZpdHkiXSwKICAibGFuZyI6ICJybyIKfQ==">
+<meta name="theme-color" content="#fbbf24">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="CF Floor">
+<meta name="application-name" content="CF Floor">
+<meta name="msapplication-TileColor" content="#fbbf24">
+<meta name="msapplication-TileImage" content="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNDQiIGhlaWdodD0iMTQ0IiB2aWV3Qm94PSIwIDAgMTQ0IDE0NCI+CiAgPHJlY3Qgd2lkdGg9IjE0NCIgaGVpZ2h0PSIxNDQiIHJ4PSIxOCIgZmlsbD0iI2ZiYmYyNCIvPgogIDxwYXR0ZXJuIGlkPSJoIiB4PSIwIiB5PSIwIiB3aWR0aD0iMTQiIGhlaWdodD0iMTQiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPgogICAgPHJlY3Qgd2lkdGg9IjciIGhlaWdodD0iMTQiIGZpbGw9InJnYmEoMCwwLDAsMC4xMikiLz4KICA8L3BhdHRlcm4+CiAgPHJlY3Qgd2lkdGg9IjE0NCIgaGVpZ2h0PSIxNDQiIHJ4PSIxOCIgZmlsbD0idXJsKCNoKSIvPgogIDx0ZXh0IHg9IjUwJSIgeT0iNTQlIiBmb250LWZhbWlseT0iQXJpYWwgQmxhY2ssQXJpYWwsc2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9IjkwMCIgZm9udC1zaXplPSI0OCIgCiAgICBmaWxsPSIjMGEwZDEyIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiBsZXR0ZXItc3BhY2luZz0iMSI+Q0Y8L3RleHQ+Cjwvc3ZnPg==">
+<!-- Apple touch icons (inline) -->
+<link rel="apple-touch-icon" sizes="152x152" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNTIiIGhlaWdodD0iMTUyIiB2aWV3Qm94PSIwIDAgMTUyIDE1MiI+CiAgPHJlY3Qgd2lkdGg9IjE1MiIgaGVpZ2h0PSIxNTIiIHJ4PSIxOSIgZmlsbD0iI2ZiYmYyNCIvPgogIDxwYXR0ZXJuIGlkPSJoIiB4PSIwIiB5PSIwIiB3aWR0aD0iMTQiIGhlaWdodD0iMTQiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPgogICAgPHJlY3Qgd2lkdGg9IjciIGhlaWdodD0iMTQiIGZpbGw9InJnYmEoMCwwLDAsMC4xMikiLz4KICA8L3BhdHRlcm4+CiAgPHJlY3Qgd2lkdGg9IjE1MiIgaGVpZ2h0PSIxNTIiIHJ4PSIxOSIgZmlsbD0idXJsKCNoKSIvPgogIDx0ZXh0IHg9IjUwJSIgeT0iNTQlIiBmb250LWZhbWlseT0iQXJpYWwgQmxhY2ssQXJpYWwsc2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9IjkwMCIgZm9udC1zaXplPSI1MCIgCiAgICBmaWxsPSIjMGEwZDEyIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiBsZXR0ZXItc3BhY2luZz0iMSI+Q0Y8L3RleHQ+Cjwvc3ZnPg==">
+<link rel="apple-touch-icon" sizes="180x180" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxODAiIGhlaWdodD0iMTgwIiB2aWV3Qm94PSIwIDAgMTgwIDE4MCI+CiAgPHJlY3Qgd2lkdGg9IjE4MCIgaGVpZ2h0PSIxODAiIHJ4PSIyMiIgZmlsbD0iI2ZiYmYyNCIvPgogIDxwYXR0ZXJuIGlkPSJoIiB4PSIwIiB5PSIwIiB3aWR0aD0iMTQiIGhlaWdodD0iMTQiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPgogICAgPHJlY3Qgd2lkdGg9IjciIGhlaWdodD0iMTQiIGZpbGw9InJnYmEoMCwwLDAsMC4xMikiLz4KICA8L3BhdHRlcm4+CiAgPHJlY3Qgd2lkdGg9IjE4MCIgaGVpZ2h0PSIxODAiIHJ4PSIyMiIgZmlsbD0idXJsKCNoKSIvPgogIDx0ZXh0IHg9IjUwJSIgeT0iNTQlIiBmb250LWZhbWlseT0iQXJpYWwgQmxhY2ssQXJpYWwsc2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9IjkwMCIgZm9udC1zaXplPSI2MCIgCiAgICBmaWxsPSIjMGEwZDEyIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiBsZXR0ZXItc3BhY2luZz0iMSI+Q0Y8L3RleHQ+Cjwvc3ZnPg==">
+<link rel="apple-touch-icon" sizes="144x144" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNDQiIGhlaWdodD0iMTQ0IiB2aWV3Qm94PSIwIDAgMTQ0IDE0NCI+CiAgPHJlY3Qgd2lkdGg9IjE0NCIgaGVpZ2h0PSIxNDQiIHJ4PSIxOCIgZmlsbD0iI2ZiYmYyNCIvPgogIDxwYXR0ZXJuIGlkPSJoIiB4PSIwIiB5PSIwIiB3aWR0aD0iMTQiIGhlaWdodD0iMTQiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPgogICAgPHJlY3Qgd2lkdGg9IjciIGhlaWdodD0iMTQiIGZpbGw9InJnYmEoMCwwLDAsMC4xMikiLz4KICA8L3BhdHRlcm4+CiAgPHJlY3Qgd2lkdGg9IjE0NCIgaGVpZ2h0PSIxNDQiIHJ4PSIxOCIgZmlsbD0idXJsKCNoKSIvPgogIDx0ZXh0IHg9IjUwJSIgeT0iNTQlIiBmb250LWZhbWlseT0iQXJpYWwgQmxhY2ssQXJpYWwsc2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9IjkwMCIgZm9udC1zaXplPSI0OCIgCiAgICBmaWxsPSIjMGEwZDEyIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiBsZXR0ZXItc3BhY2luZz0iMSI+Q0Y8L3RleHQ+Cjwvc3ZnPg==">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5NiIgaGVpZ2h0PSI5NiIgdmlld0JveD0iMCAwIDk2IDk2Ij4KICA8cmVjdCB3aWR0aD0iOTYiIGhlaWdodD0iOTYiIHJ4PSIxMiIgZmlsbD0iI2ZiYmYyNCIvPgogIDxwYXR0ZXJuIGlkPSJoIiB4PSIwIiB5PSIwIiB3aWR0aD0iMTQiIGhlaWdodD0iMTQiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPgogICAgPHJlY3Qgd2lkdGg9IjciIGhlaWdodD0iMTQiIGZpbGw9InJnYmEoMCwwLDAsMC4xMikiLz4KICA8L3BhdHRlcm4+CiAgPHJlY3Qgd2lkdGg9Ijk2IiBoZWlnaHQ9Ijk2IiByeD0iMTIiIGZpbGw9InVybCgjaCkiLz4KICA8dGV4dCB4PSI1MCUiIHk9IjU0JSIgZm9udC1mYW1pbHk9IkFyaWFsIEJsYWNrLEFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtd2VpZ2h0PSI5MDAiIGZvbnQtc2l6ZT0iMzIiIAogICAgZmlsbD0iIzBhMGQxMiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgbGV0dGVyLXNwYWNpbmc9IjEiPkNGPC90ZXh0Pgo8L3N2Zz4=">
+<!-- Apple splash screens -->
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<!-- ════════════════════════════════════ -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cornell's Floor — Sistem Urmărire Materiale</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&amp;family=Barlow+Condensed:wght@500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0d12;--bg2:#0f141d;--bg3:#161d28;--bg4:#1c2531;
+  --border:#1f2937;--border2:#2d3a4a;--border3:#3d4a5c;
+  --text:#e8edf4;--text2:#9ba9bd;--text3:#647084;
+  --accent:#fbbf24;--accent2:#f97316;
+  --blue:#3b82f6;--green:#22c55e;--red:#ef4444;--purple:#a855f7;--cyan:#06b6d4;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+  --display:'Barlow Condensed',sans-serif;
+  --sans:'Inter',system-ui,sans-serif;
+  --r:10px;--r-sm:7px;--tr:0.18s ease;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14px;min-height:100vh;-webkit-font-smoothing:antialiased}
+input,select,textarea,button{font-family:inherit}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:linear-gradient(rgba(59,130,246,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(59,130,246,.035) 1px,transparent 1px);
+  background-size:48px 48px;mask-image:radial-gradient(ellipse at top,#000 30%,transparent 80%);}
+#app,#login-screen,#loading{position:relative;z-index:1}
+.hazard{height:4px;background:repeating-linear-gradient(45deg,var(--accent) 0 14px,#0a0d12 14px 28px);}
+#topbar{background:rgba(15,20,29,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:0 16px;min-height:60px;
+  display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200;flex-wrap:wrap;gap:6px}
+.brand{display:flex;align-items:center;gap:12px}
+.brand-mark{width:34px;height:34px;border-radius:8px;background:var(--accent);display:flex;align-items:center;justify-content:center;
+  color:#0a0d12;font-weight:800;font-family:var(--display);font-size:18px;letter-spacing:1px;
+  box-shadow:0 0 0 1px rgba(255,255,255,.08),0 4px 14px rgba(251,191,36,.18);position:relative;overflow:hidden;}
+.brand-mark::after{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent 0 6px,rgba(0,0,0,.12) 6px 8px)}
+.t-logo{font-family:var(--display);font-weight:800;color:var(--text);letter-spacing:2px;font-size:18px;text-transform:uppercase}
+.t-logo .apos{color:var(--accent)}
+.t-sep{color:var(--border3);margin:0 10px;font-family:var(--mono)}
+.t-site{color:var(--text2);font-size:12px;font-family:var(--mono);max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-transform:uppercase;letter-spacing:1px}
+.t-right{display:flex;align-items:center;gap:6px;flex-wrap:nowrap}
+.alert-badge{background:#3a0d0d;color:#fca5a5;border:1px solid #7f1d1d;border-radius:20px;
+  padding:4px 12px;font-size:11px;font-weight:700;font-family:var(--mono);display:none;align-items:center;gap:6px}
+.user-chip{color:var(--text2);font-size:12px;font-family:var(--mono);display:flex;align-items:center;gap:8px}
+.user-chip b{color:var(--accent);font-weight:700}
+.btn-out{background:transparent;border:1px solid var(--border2);color:var(--text3);cursor:pointer;
+  font-size:11px;font-family:var(--mono);padding:6px 12px;border-radius:var(--r-sm);transition:var(--tr);text-transform:uppercase;letter-spacing:1px}
+.btn-out:hover{color:#fca5a5;border-color:#7f1d1d;background:#3a0d0d}
+.badge{border-radius:5px;padding:3px 8px;font-size:10px;font-weight:800;font-family:var(--mono);
+  white-space:nowrap;display:inline-flex;align-items:center;gap:4px;letter-spacing:1px;text-transform:uppercase;border:1px solid transparent}
+.b-gray{background:var(--bg3);color:var(--text2);border-color:var(--border2)}
+.b-blue{background:#0c2547;color:#60a5fa;border-color:#1d4ed8}
+.b-purple{background:#1e0a4a;color:#c4b5fd;border-color:#6d28d9}
+.b-cyan{background:#062a3a;color:#22d3ee;border-color:#155e75}
+.b-green{background:#0d3a20;color:#4ade80;border-color:#166534}
+.b-red{background:#3a0d0d;color:#fca5a5;border-color:#7f1d1d}
+.b-orange{background:#3a1a07;color:#fdba74;border-color:#c2410c}
+.b-yellow{background:#3a2a07;color:#fcd34d;border-color:#a16207}
+.fld{margin-bottom:14px}
+.fld label{display:block;margin-bottom:5px;color:var(--text2);font-size:10px;font-weight:700;font-family:var(--mono);letter-spacing:1.5px;text-transform:uppercase}
+.inp{width:100%;background:var(--bg);border:1px solid var(--border2);border-radius:var(--r-sm);
+  padding:9px 12px;color:var(--text);font-size:13px;outline:none;transition:border-color var(--tr),box-shadow var(--tr)}
+.inp:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(251,191,36,.12)}
+.inp:disabled{opacity:.5;cursor:not-allowed}
+select.inp{cursor:pointer}
+.ir{display:flex;gap:10px}
+.ir .fld{flex:1}
+#toast-c{position:fixed;bottom:24px;right:24px;z-index:9999;display:flex;flex-direction:column;gap:8px;pointer-events:none}
+.toast{background:var(--bg3);border:1px solid var(--border2);border-radius:var(--r);padding:13px 18px;
+  font-size:13px;display:flex;align-items:center;gap:11px;animation:tIn .25s ease;
+  max-width:340px;pointer-events:auto;box-shadow:0 10px 40px rgba(0,0,0,.6);font-weight:500}
+.toast.success{border-color:#166534;background:linear-gradient(135deg,#0d2818,var(--bg3))}
+.toast.error{border-color:#7f1d1d;background:linear-gradient(135deg,#2a0a0a,var(--bg3))}
+.toast.info{border-color:#1d4ed8;background:linear-gradient(135deg,#0d1a35,var(--bg3))}
+@keyframes tIn{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:translateX(0)}}
+.mo{position:fixed;inset:0;background:rgba(2,4,8,.85);display:flex;align-items:center;justify-content:center;
+  z-index:1000;padding:16px;backdrop-filter:blur(6px);animation:fIn .15s ease}
+@keyframes fIn{from{opacity:0}to{opacity:1}}
+.modal{background:var(--bg2);border:1px solid var(--border2);border-radius:14px;width:100%;
+  max-width:700px;max-height:90vh;overflow-y:auto;box-shadow:0 32px 80px rgba(0,0,0,.7);animation:mIn .22s cubic-bezier(.2,.9,.3,1.1)}
+@keyframes mIn{from{opacity:0;transform:translateY(20px) scale(.96)}to{opacity:1;transform:translateY(0) scale(1)}}
+.mh{padding:16px 22px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;
+  align-items:center;position:sticky;top:0;background:var(--bg2);z-index:1}
+.mh h3{font-size:16px;font-weight:700;font-family:var(--display);text-transform:uppercase;letter-spacing:1px}
+.mh h3::before{content:'▎';color:var(--accent);margin-right:6px}
+.mb{padding:20px}
+.btn-x{background:transparent;border:1px solid var(--border2);color:var(--text3);cursor:pointer;font-size:14px;line-height:1;
+  padding:6px 9px;border-radius:6px;transition:var(--tr)}
+.btn-x:hover{color:var(--text);background:var(--bg3);border-color:var(--border3)}
+.cdlg{background:linear-gradient(135deg,#1a1306,#13100a);border:1px solid #78350f;border-radius:var(--r);padding:14px;margin-top:10px}
+.cdlg p{color:#fcd34d;font-size:13px;margin-bottom:11px;font-weight:500}
+.cdlg p::before{content:'⚠ ';font-weight:800}
+.cdlg .br{display:flex;gap:8px}
+.pw{margin-top:10px}
+.pl{display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:5px;font-family:var(--mono);flex-wrap:wrap;gap:6px}
+.pl b{color:var(--text)}
+.pt2{height:6px;background:var(--bg);border-radius:5px;overflow:hidden;position:relative;border:1px solid var(--border)}
+.pc{position:absolute;left:0;top:0;height:100%;background:repeating-linear-gradient(45deg,#1e3a5f 0 6px,#1d4ed8 6px 10px);border-radius:4px;transition:width .5s}
+.pv{position:absolute;left:0;top:0;height:100%;border-radius:4px;transition:width .5s}
+.po{font-size:10px;color:#fca5a5;margin-top:4px;font-family:var(--mono);font-weight:600}
+.steps{display:flex;align-items:center;gap:0;flex-wrap:wrap;margin-top:8px}
+.step{display:flex;align-items:center;gap:4px;padding:3px 8px;border-radius:5px;font-family:var(--mono);
+  font-size:9px;letter-spacing:1px;text-transform:uppercase;border:1px solid var(--border);background:var(--bg3);color:var(--text3);font-weight:700}
+.step.done{background:#0d3a20;color:#4ade80;border-color:#166534}
+.step.cur{background:var(--accent);color:#0a0d12;border-color:var(--accent)}
+.step-arr{color:var(--text3);font-family:var(--mono);font-size:12px;padding:0 2px}
+.ts{font-family:var(--mono);font-size:10px;color:var(--text3);display:flex;align-items:center;gap:5px;line-height:1.5}
+.ts b{color:var(--text2)}
+.tsd{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.tl{margin-top:8px;display:flex;flex-direction:column;gap:3px;padding:6px 0 2px 10px;margin-left:2px;border-left:1px dashed var(--border2)}
+.empty{text-align:center;padding:48px 24px;color:var(--text3);border:1px dashed var(--border2);border-radius:var(--r);background:var(--bg2)}
+.empty-icon{font-size:40px;margin-bottom:12px;opacity:.6}
+.empty-title{font-size:16px;color:var(--text2);margin-bottom:6px;font-family:var(--display);text-transform:uppercase;letter-spacing:1px;font-weight:600}
+.empty p{font-size:11px;font-family:var(--mono);text-transform:uppercase;letter-spacing:1px}
+#login-screen{min-height:100vh;display:flex;align-items:center;justify-content:center;background:var(--bg);padding:20px;position:relative;overflow:hidden}
+#login-screen::before{content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at 20% 30%,rgba(251,191,36,.10),transparent 50%),radial-gradient(circle at 80% 70%,rgba(59,130,246,.08),transparent 50%);z-index:0;}
+.lbox{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:36px 32px;width:380px;
+  box-shadow:0 32px 80px rgba(0,0,0,.7);position:relative;z-index:1}
+.lbox::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:repeating-linear-gradient(90deg,var(--accent) 0 14px,#0a0d12 14px 28px);border-radius:14px 14px 0 0}
+.l-logo{text-align:center;margin-bottom:28px;padding-top:6px}
+.l-icon-wrap{width:60px;height:60px;border-radius:14px;background:linear-gradient(135deg,var(--accent),var(--accent2));margin:0 auto 12px;
+  display:flex;align-items:center;justify-content:center;color:#0a0d12;font-family:var(--display);font-weight:800;font-size:28px;
+  box-shadow:0 12px 30px rgba(251,191,36,.25);position:relative;overflow:hidden}
+.l-icon-wrap::after{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent 0 8px,rgba(0,0,0,.10) 8px 11px)}
+.l-title{font-family:var(--display);font-weight:800;color:var(--text);letter-spacing:3px;font-size:22px;text-transform:uppercase}
+.l-title .apos{color:var(--accent)}
+.l-sub{color:var(--text3);font-size:11px;margin-top:5px;font-family:var(--mono);text-transform:uppercase;letter-spacing:2px}
+.pw-wrap{position:relative}
+.pw-wrap .inp{padding-right:40px}
+.pw-eye{position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--text3);cursor:pointer;font-size:16px;padding:2px}
+.l-foot{margin-top:16px;text-align:center;font-size:10px;color:var(--text3);font-family:var(--mono);letter-spacing:1.5px;text-transform:uppercase}
+.admin-table{width:100%;border-collapse:collapse}
+.admin-table th{text-align:left;font-size:10px;color:var(--text3);font-weight:700;font-family:var(--mono);
+  padding:10px 12px;border-bottom:1px solid var(--border);text-transform:uppercase;letter-spacing:1.5px;background:var(--bg3)}
+.admin-table td{padding:10px 12px;border-bottom:1px solid var(--border);font-size:13px;vertical-align:middle}
+.admin-table tr:last-child td{border-bottom:none}
+.admin-table tr:hover td{background:rgba(251,191,36,.02)}
+.ib{background:linear-gradient(135deg,var(--bg3),var(--bg4));border:1px solid var(--border2);border-radius:var(--r-sm);
+  padding:10px 12px;margin-bottom:14px;font-size:12px;color:var(--text2);font-family:var(--mono);line-height:1.7}
+.ib b{color:var(--text)}
+.ab{background:linear-gradient(135deg,#0c2547,var(--bg3));border:1px solid #1d4ed8;border-radius:var(--r);
+  padding:12px 18px;margin-bottom:16px;display:flex;align-items:center;gap:12px;color:#93c5fd;font-size:13px;font-weight:600}
+.ftabs{display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap}
+.ftab{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r-sm);padding:6px 13px;
+  cursor:pointer;font-size:11px;font-weight:700;color:var(--text3);font-family:var(--mono);transition:var(--tr);text-transform:uppercase;letter-spacing:1px}
+.ftab.active{background:var(--accent);color:#0a0d12;border-color:var(--accent)}
+.ftab:hover:not(.active){border-color:var(--border3);color:var(--text2)}
+.g2{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+.divider{border:none;border-top:1px solid var(--border);margin:12px 0}
+/* SIDEBAR */
+#shell{display:flex;min-height:calc(100vh - 64px);position:relative}
+#sidebar{width:260px;flex-shrink:0;background:linear-gradient(180deg,var(--bg2),var(--bg));
+  border-right:1px solid var(--border);padding:16px 0;overflow-y:auto;position:sticky;top:64px;height:calc(100vh - 64px);}
+#sidebar::-webkit-scrollbar{width:4px}
+#sidebar::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
+.sb-section{padding:0 14px;margin-bottom:20px}
+.sb-section-title{font-family:var(--mono);font-size:10px;font-weight:700;color:var(--text3);
+  letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between;padding:0 4px;}
+.sb-section-title .count{background:var(--bg3);color:var(--text2);border:1px solid var(--border);padding:1px 6px;border-radius:10px;font-size:9px;font-weight:700;}
+.sb-item{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:7px;
+  cursor:pointer;color:var(--text2);font-size:12px;font-weight:500;transition:var(--tr);border:1px solid transparent;margin-bottom:2px;position:relative;}
+.sb-item:hover{background:var(--bg3);color:var(--text)}
+.sb-item.active{background:linear-gradient(90deg,rgba(251,191,36,.14),rgba(251,191,36,.04));color:var(--accent);border-color:#78350f;box-shadow:inset 3px 0 0 var(--accent);}
+.sb-item .ico{font-family:var(--mono);font-size:12px;width:14px;text-align:center;flex-shrink:0}
+.sb-item .lbl{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-family:var(--display);text-transform:uppercase;letter-spacing:.5px;font-weight:600}
+.sb-item .badge-dot{background:var(--accent2);color:#1a0a00;border-radius:10px;padding:1px 6px;font-family:var(--mono);font-size:9px;font-weight:800;flex-shrink:0;}
+.sb-item .badge-alert{background:#7f1d1d;color:#fca5a5;border-radius:10px;padding:1px 5px;font-family:var(--mono);font-size:9px;font-weight:800;flex-shrink:0;}
+.sb-categ{padding-left:16px;margin-top:4px;border-left:1px dashed var(--border2);margin-left:12px}
+.sb-categ .sb-item{padding:6px 9px;font-size:11px}
+.sb-empty{color:var(--text3);font-size:11px;font-family:var(--mono);padding:6px 10px;text-align:center;font-style:italic}
+.sb-toggle{display:none;background:var(--bg3);border:1px solid var(--border2);border-radius:6px;color:var(--text2);padding:6px 11px;font-size:11px;font-family:var(--mono);cursor:pointer;letter-spacing:1px;font-weight:700;}
+#main-content{flex:1;min-width:0;padding:24px 24px;max-width:1400px}
+@keyframes newPulse{0%,100%{box-shadow:0 0 0 0 rgba(59,130,246,.5)}50%{box-shadow:0 0 0 8px rgba(59,130,246,0)}}
+.sb-item.has-new{animation:newPulse 1.6s ease-in-out infinite}
+/* Achizitor grouped */
+.ach-group{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:14px;overflow:hidden;}
+.ach-group-head{background:linear-gradient(90deg,var(--bg3),var(--bg2));padding:12px 16px;border-bottom:1px solid var(--border);
+  display:flex;justify-content:space-between;align-items:center;cursor:pointer;transition:var(--tr);}
+.ach-group-head:hover{background:var(--bg4)}
+.ach-group-title{font-family:var(--display);font-weight:700;font-size:15px;text-transform:uppercase;letter-spacing:1px;color:var(--text);}
+.ach-group-title::before{content:'▎';color:var(--accent);margin-right:6px}
+.ach-group-stats{display:flex;gap:6px;flex-wrap:wrap}
+.ach-group-body{padding:12px 16px;display:flex;flex-direction:column;gap:10px}
+.ach-group.collapsed .ach-group-body{display:none}
+.ach-collapse-icon{font-family:var(--mono);color:var(--text3);transition:transform var(--tr)}
+.ach-group.collapsed .ach-collapse-icon{transform:rotate(-90deg)}
+/* Rapoarte */
+.rep-stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin-bottom:16px}
+.rep-stat{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r-sm);padding:12px;}
+.rep-stat-label{font-family:var(--mono);font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:1.5px;font-weight:700}
+.rep-stat-value{font-family:var(--display);font-size:22px;font-weight:800;color:var(--accent);margin-top:3px}
+.rep-stat-sub{font-family:var(--mono);font-size:10px;color:var(--text3);margin-top:2px}
+@media print{body{background:#fff!important;color:#000!important}body::before{display:none}
+  #topbar,#sidebar,.no-print,.btn{display:none!important}#main-content{padding:0;max-width:100%}
+  .card,.ach-group{break-inside:avoid;border-color:#999!important;background:#fff!important;color:#000!important}}
+@media(max-width:900px){
+  #sidebar{position:fixed;left:-100%;top:64px;z-index:150;width:260px;transition:left .3s ease;box-shadow:8px 0 32px rgba(0,0,0,.5);}
+  #sidebar.open{left:0}
+  #main-content{padding:14px 12px;max-width:100%}
+  .sb-toggle{display:inline-flex;align-items:center;gap:6px}
+  #sb-overlay{display:none;position:fixed;inset:64px 0 0 0;background:rgba(0,0,0,.6);z-index:140}
+  #sb-overlay.visible{display:block}}
+@media(max-width:600px){#main-content{padding:12px 10px}.t-site,.user-chip,#notif-btn,#pwa-install-btn{display:none!important}.ph{flex-direction:column;align-items:flex-start}
+  .modal{max-height:95vh}.lbox{width:100%;padding:28px 18px}.step{font-size:9px;padding:3px 6px}}
+#loading{min-height:100vh;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:14px;
+  color:var(--accent);font-family:var(--mono);text-transform:uppercase;letter-spacing:2px;font-size:11px}
+.spin{width:36px;height:36px;border:3px solid var(--border2);border-top-color:var(--accent);border-radius:50%;animation:sp .8s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+/* Card comanda compacta */
+.com-card{display:flex;flex-direction:column;gap:6px}
+.com-head{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px}
+.com-info{flex:1;min-width:200px}
+.com-title{font-size:14px;font-weight:700;font-family:var(--display);text-transform:uppercase;letter-spacing:.5px;line-height:1.2;margin-bottom:2px}
+.com-qty{color:var(--accent);font-family:var(--mono);font-size:12px;font-weight:700}
+.com-actions{display:flex;gap:6px;flex-wrap:wrap;align-items:flex-start}
+/* Tabel materiale compact */
+.mat-table{width:100%;border-collapse:collapse;font-size:12px}
+.mat-table th{text-align:left;font-size:10px;color:var(--text3);font-weight:700;font-family:var(--mono);
+  padding:8px 10px;border-bottom:1px solid var(--border);text-transform:uppercase;letter-spacing:1.2px;background:var(--bg3)}
+.mat-table td{padding:8px 10px;border-bottom:1px solid var(--border);vertical-align:middle}
+.mat-table tr:last-child td{border-bottom:none}
+.mat-table tr:hover td{background:rgba(251,191,36,.02)}
+/* Tabel comenzi compact */
+.cmd-table{width:100%;border-collapse:collapse;font-size:12px}
+.cmd-table th{text-align:left;font-size:10px;color:var(--text3);font-weight:700;font-family:var(--mono);
+  padding:7px 10px;border-bottom:1px solid var(--border);text-transform:uppercase;letter-spacing:1.2px;background:var(--bg3)}
+.cmd-table td{padding:7px 10px;border-bottom:1px solid var(--border);vertical-align:middle}
+.cmd-table tr:last-child td{border-bottom:none}
+
+/* ── Collapsible sections ── */
+.collapse-header{cursor:pointer;user-select:none;transition:background var(--tr)}
+.collapse-header:hover{background:var(--bg4)!important}
+.collapse-arrow{display:inline-block;transition:transform .22s ease;font-style:normal;font-size:12px;margin-right:6px;color:var(--text3)}
+.collapse-arrow.open{transform:rotate(90deg)}
+.collapse-body{overflow:hidden;transition:max-height .28s ease,opacity .22s ease}
+.collapse-body.collapsed{max-height:0!important;opacity:0;pointer-events:none}
+.collapse-body.expanded{opacity:1}
+
+.cmd-table tr:hover td{background:rgba(251,191,36,.02)}
+/* Card comanda grupata */
+.order-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:10px;overflow:hidden}
+.order-card.new-order{border-color:#1d4ed8}
+.order-head{padding:10px 14px;background:var(--bg3);border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+.order-num{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--accent);letter-spacing:1px}
+.order-body{padding:0}
+/* Page header */
+.ph{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:20px;flex-wrap:wrap;gap:12px;padding-bottom:16px;border-bottom:1px solid var(--border)}
+.pt{font-size:24px;font-weight:700;font-family:var(--display);text-transform:uppercase;letter-spacing:1px;line-height:1}
+.pt::before{content:'▎';color:var(--accent);margin-right:4px}
+.ps{font-size:11px;color:var(--text3);margin-top:5px;font-family:var(--mono);text-transform:uppercase;letter-spacing:1.5px}
+.btn{border:none;border-radius:var(--r-sm);padding:9px 16px;cursor:pointer;font-weight:700;font-family:var(--mono);font-size:11px;display:inline-flex;align-items:center;gap:6px;transition:var(--tr);text-transform:uppercase;letter-spacing:1px;white-space:nowrap}
+.btn:active{transform:scale(.97)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.btn-primary{background:var(--accent);color:#0a0d12;box-shadow:0 4px 14px rgba(251,191,36,.25)}.btn-primary:hover{background:#fcd34d}
+.btn-blue{background:#1e3a5f;color:#93c5fd;border:1px solid #1d4ed8}.btn-blue:hover{background:#1d4ed8;color:#fff}
+.btn-green{background:#14532d;color:#4ade80;border:1px solid #166534}.btn-green:hover{background:#166534;color:#fff}
+.btn-red{background:#3a0d0d;color:#fca5a5;border:1px solid #7f1d1d}.btn-red:hover{background:#7f1d1d;color:#fff}
+.btn-purple{background:#2e1065;color:#c4b5fd;border:1px solid #6d28d9}.btn-purple:hover{background:#6d28d9;color:#fff}
+.btn-cyan{background:#083344;color:#22d3ee;border:1px solid #155e75}.btn-cyan:hover{background:#155e75;color:#fff}
+.btn-orange{background:#3a1a07;color:#fdba74;border:1px solid #9a3412}.btn-orange:hover{background:#9a3412;color:#fff}
+.btn-ghost{background:transparent;border:1px solid var(--border2);color:var(--text2)}.btn-ghost:hover{background:var(--bg3);color:var(--text)}
+.btn-sm{padding:5px 10px;font-size:10px;border-radius:6px}
+.card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:14px;transition:border-color var(--tr);position:relative;overflow:hidden}
+.card:hover{border-color:var(--border3)}
+.card.ac{border-color:#7f1d1d;background:linear-gradient(180deg,rgba(127,29,29,.08),transparent 60%),var(--bg2)}
+.card.nc{border-color:#1d4ed8;background:linear-gradient(180deg,rgba(29,78,216,.08),transparent 60%),var(--bg2)}
+.santier-card{cursor:pointer;display:flex;flex-direction:column;gap:8px}
+.santier-card .label{font-family:var(--mono);font-size:9px;color:var(--accent);letter-spacing:2px;font-weight:700}
+.santier-card h3{font-size:17px;font-weight:700;font-family:var(--display);text-transform:uppercase;letter-spacing:.5px;line-height:1.1}
+.santier-card .meta{color:var(--text3);font-size:12px;display:flex;flex-wrap:wrap;gap:8px}
+.santier-card .stats{display:flex;gap:5px;flex-wrap:wrap;margin-top:auto}
+.stat-pill{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:5px 9px;font-family:var(--mono);font-size:11px;display:flex;align-items:center;gap:5px;color:var(--text2)}
+.stat-pill b{color:var(--text)}.stat-pill.ok b{color:#4ade80}.stat-pill.warn b{color:var(--accent)}.stat-pill.alert{border-color:#7f1d1d;color:#fca5a5;background:#1f0707}
+/* Add row for tabel input */
+.add-row input,.add-row select{background:var(--bg);border:1px solid var(--border2);border-radius:5px;color:var(--text);padding:6px 8px;font-size:12px;outline:none;width:100%}
+.add-row input:focus,.add-row select:focus{border-color:var(--accent)}
+
+<style>
+/* ── PWA / iOS Touch Optimizări ── */
+* { -webkit-tap-highlight-color: transparent; }
+input, select, textarea, button { -webkit-appearance: none; }
+body { -webkit-overflow-scrolling: touch; overscroll-behavior: none; }
+.btn, .sb-item, .card, .santier-card, .ftab, .btn-out, .btn-x, .collapse-header, .ach-group-head {
+  touch-action: manipulation;
+  -webkit-user-select: none;
+  user-select: none;
+}
+input, select, textarea { -webkit-user-select: text; user-select: text; }
+/* Safe area insets for iPhone notch/home bar */
+#topbar { padding-top: max(0px, env(safe-area-inset-top)); padding-left: max(12px, env(safe-area-inset-left)); padding-right: max(12px, env(safe-area-inset-right)); }
+#sidebar { padding-bottom: env(safe-area-inset-bottom); }
+#main-content { padding-bottom: max(24px, env(safe-area-inset-bottom)); }
+#toast-c { bottom: max(24px, calc(env(safe-area-inset-bottom) + 10px)); right: max(24px, env(safe-area-inset-right)); }
+/* PWA install button */
+#pwa-install-btn {
+  display: none;
+  background: linear-gradient(135deg, #0d3a20, #0a2a18);
+  border: 1px solid #166534;
+  color: #4ade80;
+  cursor: pointer;
+  font-size: 11px;
+  font-family: var(--mono);
+  padding: 6px 12px;
+  border-radius: var(--r-sm);
+  transition: var(--tr);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  align-items: center;
+  gap: 6px;
+}
+#pwa-install-btn:hover { background: #166534; color: #fff; }
+/* Larger touch targets on mobile */
+@media (max-width: 600px) {
+  .btn { min-height: 40px; }
+  .sb-item { min-height: 40px; }
+  .inp { min-height: 42px; font-size: 16px; } /* prevent iOS zoom */
+  select.inp { font-size: 16px; }
+}
+/* Viewport height fix for iOS Safari */
+#login-screen { min-height: 100dvh; }
+#loading { min-height: 100dvh; }
+</style>
+</style>
+</head>
+<body>
+<div id="loading" style="display: none;"><div class="spin"></div><div>Conectare la sistem...</div></div>
+
+<div id="login-screen" style="display: none;">
+  <div class="lbox">
+    <div class="l-logo">
+      <div class="l-icon-wrap">CF</div>
+      <div class="l-title">CORNELL<span class="apos">'</span>S FLOOR</div>
+      <div class="l-sub">Sistem · Materiale · Șantier</div>
+    </div>
+    <div class="fld"><label>Utilizator</label><input class="inp" id="l-user" placeholder="ex: inginer1" autocomplete="username" autocapitalize="none"></div>
+    <div class="fld"><label>Parolă</label>
+      <div class="pw-wrap">
+        <input class="inp" id="l-pass" type="password" placeholder="••••••••" autocomplete="current-password">
+        <button class="pw-eye" onclick="togglePw()">👁</button>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;margin:10px 0 4px;padding:10px 12px;background:var(--bg3);border:1px solid var(--border2);border-radius:var(--r-sm);cursor:pointer" onclick="toggleRemember()">
+      <div id="l-remember-box" style="width:18px;height:18px;border:2px solid var(--border3);border-radius:4px;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .15s;background:var(--bg)">
+        <span id="l-remember-check" style="display:none;color:#0a0d12;font-size:12px;font-weight:900;line-height:1">✓</span>
+      </div>
+      <input type="checkbox" id="l-remember" style="display:none">
+      <span style="color:var(--text2);font-size:12px;font-family:var(--mono);letter-spacing:1px;text-transform:uppercase;-webkit-user-select:none;user-select:none">Ține-mă minte</span>
+    </div>
+    <button class="btn btn-primary" id="l-btn" style="width:100%;justify-content:center;padding:13px;font-size:13px;margin-top:6px;letter-spacing:2px" onclick="doLogin()">INTRĂ ÎN SISTEM →</button>
+    <div id="l-err" style="color:#fca5a5;font-size:12px;text-align:center;margin-top:10px;display:none;font-family:var(--mono)"></div>
+    <div class="l-foot">v4.0 · Cornell's Floor Construction Management</div>
+
+  </div>
+</div>
+
+<div id="app" style="display: block;">
+  <div class="hazard"></div>
+  <div id="topbar">
+    <div class="brand">
+      <button class="sb-toggle" onclick="toggleSidebar()">☰ MENIU</button>
+      <div class="brand-mark">CF</div>
+      <span class="t-logo">CORNELL<span class="apos">'</span>S FLOOR</span>
+      <span class="t-sep">//</span>
+      <span class="t-site" id="t-site">CENTRU BATRANI CONCESTI</span>
+      <!-- Mobile: Toate Șantierele shortcut -->
+      <button class="mob-nav-btn" onclick="navTo('santiere')">▣ Șantiere</button>
+    </div>
+    <div class="t-right">
+      <button id="pwa-install-btn" onclick="pwaInstall()">⬇ Instalează App</button>
+      <div class="alert-badge" id="alert-badge" style="display: none;">⚠ <span id="alert-count">0</span> alerte</div>
+      <button class="btn-out" id="notif-btn" onclick="requestNotifPermission()" style="display: inline-flex; border-color: rgb(29, 78, 216); color: rgb(96, 165, 250); background: rgb(12, 37, 71);">🔔 Notificări</button>
+      <div class="user-chip" id="user-chip"><span style="color:var(--text3)">ADMIN</span> · <b>Administrator</b></div>
+      <button class="btn-out" onclick="doLogout()">Ieșire</button>
+    </div>
+  </div>
+  <div id="shell">
+    <div id="sb-overlay" onclick="toggleSidebar(false)"></div>
+    <aside id="sidebar"><div class="sb-section">
+    <div class="sb-section-title"><span>◉ Navigație</span></div><div class="sb-item " onclick="navTo('santiere')">
+      <span class="ico">▣</span><span class="lbl">Toate Șantierele</span>
+      <span style="background:var(--bg3);color:var(--text2);border:1px solid var(--border);padding:1px 6px;border-radius:10px;font-family:var(--mono);font-size:9px">3</span>
+    </div><div class="sb-item " onclick="navTo('rapoarte')">
+      <span class="ico">▤</span><span class="lbl">Rapoarte</span>
+    </div>
+    <div class="sb-item " onclick="navTo('admin')">
+      <span class="ico">▧</span><span class="lbl">Admin</span></div>
+  </div><div class="sb-section"><div class="sb-section-title"><span>▎ Șantiere</span><span class="count">3</span></div><div class="sb-item " onclick="sidebarOpenSantier('moipiwenhalo')">
+          <span class="ico">🏗</span><span class="lbl" title="Straja Apa-Canal">Straja Apa-Canal</span>
+          
+          
+        </div><div class="sb-item " onclick="sidebarOpenSantier('moipy1tjxsjs')">
+          <span class="ico">🏗</span><span class="lbl" title="Darabani Canalizare">Darabani Canalizare</span>
+          
+          
+        </div><div class="sb-item active" onclick="sidebarOpenSantier('mojze12jcwpz')">
+          <span class="ico">🏗</span><span class="lbl" title="Centru Batrani Concesti">Centru Batrani Concesti</span>
+          
+          
+        </div><div class="sb-categ">
+            <div class="sb-item active" onclick="event.stopPropagation();navTo('materiale')">
+              <span class="ico">▤</span><span class="lbl">Materiale</span>
+              <span style="background:var(--bg);color:var(--text3);border:1px solid var(--border);padding:1px 5px;border-radius:10px;font-family:var(--mono);font-size:9px">0</span>
+            </div>
+            <div class="sb-item " onclick="event.stopPropagation();navTo('comenzi')">
+              <span class="ico">▥</span><span class="lbl">Comenzi</span>
+              <span style="background:var(--bg);color:var(--text3);border:1px solid var(--border);padding:1px 5px;border-radius:10px;font-family:var(--mono);font-size:9px">0</span>
+            </div>
+          </div></div><div class="sb-section"><div class="sb-section-title"><span>📊 Statistici</span></div>
+    <div style="background:var(--bg3);border:1px solid var(--border);border-radius:7px;padding:9px 11px;font-family:var(--mono);font-size:11px;color:var(--text2);line-height:1.8">
+      <div>Șantiere: <b style="color:var(--text);float:right">3</b></div>
+      <div>Total comenzi: <b style="color:var(--accent);float:right">0</b></div>
+      <div>Finalizate: <b style="color:#4ade80;float:right">0</b></div>
+      <div>În proces: <b style="color:#60a5fa;float:right">0</b></div>
+    </div>
+  </div></aside>
+    <main id="main-content">
+      <div id="view-santiere" style="display: none;"><div class="ph">
+    <div><div class="pt">Toate Șantierele</div><div class="ps">3 șantiere înregistrate</div></div>
+    <button class="btn btn-primary" onclick="modalAddSantier()">+ Șantier Nou</button>
+  </div><div class="g2"><div class="card santier-card" onclick="openSantier('moipiwenhalo')">
+        <div class="label">▎ ȘANTIER</div>
+        <h3>Straja Apa-Canal</h3>
+        <div class="meta">
+          <span>📍 Suceava</span>
+          <span>📅 2025-10-02</span>
+        </div>
+        
+        <div class="stats">
+          <div class="stat-pill"><span>Materiale</span><b>4</b></div>
+          <div class="stat-pill warn"><span>Comenzi</span><b>0</b></div>
+          
+          
+        </div>
+        <div style="margin-top:5px;font-size:10px;color:var(--text3);font-family:var(--mono);text-transform:uppercase;letter-spacing:1px;border-top:1px dashed var(--border);padding-top:6px">
+          ◷ Silviu Vitel · 28.04.2026 17:14
+          <button class="btn btn-red btn-sm" style="float:right;margin-top:-2px" onclick="event.stopPropagation();confirmDeleteSantier('moipiwenhalo')">🗑</button>
+        </div>
+      </div><div class="card santier-card" onclick="openSantier('moipy1tjxsjs')">
+        <div class="label">▎ ȘANTIER</div>
+        <h3>Darabani Canalizare</h3>
+        <div class="meta">
+          <span>📍 Darabani</span>
+          <span>📅 2024-09-19</span>
+        </div>
+        
+        <div class="stats">
+          <div class="stat-pill"><span>Materiale</span><b>2</b></div>
+          <div class="stat-pill warn"><span>Comenzi</span><b>0</b></div>
+          
+          
+        </div>
+        <div style="margin-top:5px;font-size:10px;color:var(--text3);font-family:var(--mono);text-transform:uppercase;letter-spacing:1px;border-top:1px dashed var(--border);padding-top:6px">
+          ◷ Silviu Vitel · 28.04.2026 17:25
+          <button class="btn btn-red btn-sm" style="float:right;margin-top:-2px" onclick="event.stopPropagation();confirmDeleteSantier('moipy1tjxsjs')">🗑</button>
+        </div>
+      </div><div class="card santier-card" onclick="openSantier('mojze12jcwpz')">
+        <div class="label">▎ ȘANTIER</div>
+        <h3>Centru Batrani Concesti</h3>
+        <div class="meta">
+          <span>📍 Concesti, Botosani</span>
+          <span>📅 2025-03-05</span>
+        </div>
+        
+        <div class="stats">
+          <div class="stat-pill"><span>Materiale</span><b>2</b></div>
+          <div class="stat-pill warn"><span>Comenzi</span><b>0</b></div>
+          
+          
+        </div>
+        <div style="margin-top:5px;font-size:10px;color:var(--text3);font-family:var(--mono);text-transform:uppercase;letter-spacing:1px;border-top:1px dashed var(--border);padding-top:6px">
+          ◷ Silviu Vitel · 29.04.2026 14:38
+          <button class="btn btn-red btn-sm" style="float:right;margin-top:-2px" onclick="event.stopPropagation();confirmDeleteSantier('mojze12jcwpz')">🗑</button>
+        </div>
+      </div></div></div>
+      <div id="view-materiale" style="display: block;"><div class="ph">
+    <div><div class="pt">Necesar Materiale</div><div class="ps">Centru Batrani Concesti · 0 materiale</div></div>
+    <div style="display:flex;gap:8px">
+      <button class="btn btn-primary btn-sm" onclick="navTo('comenzi')">▥ Comenzi Șantier</button>
+    </div>
+  </div><div class="empty" style="margin-bottom:16px"><div class="empty-icon">📦</div><div class="empty-title">Niciun material adăugat</div><p>Adaugă materialele necesare mai jos</p></div><div class="card">
+      <div style="font-family:var(--mono);font-size:11px;font-weight:700;color:var(--accent);letter-spacing:1px;text-transform:uppercase;margin-bottom:12px">▎ Adaugă Materiale (batch)</div>
+      <div style="overflow-x:auto">
+      <table style="width:100%;border-collapse:collapse;font-size:12px" id="batch-table">
+        <thead><tr>
+          <th style="text-align:left;font-size:10px;color:var(--text3);font-weight:700;font-family:var(--mono);padding:6px 8px;border-bottom:1px solid var(--border);text-transform:uppercase;letter-spacing:1px;background:var(--bg3)">Denumire Material *</th>
+          <th style="text-align:left;font-size:10px;color:var(--text3);font-weight:700;font-family:var(--mono);padding:6px 8px;border-bottom:1px solid var(--border);text-transform:uppercase;letter-spacing:1px;background:var(--bg3)">Cantitate *</th>
+          <th style="text-align:left;font-size:10px;color:var(--text3);font-weight:700;font-family:var(--mono);padding:6px 8px;border-bottom:1px solid var(--border);text-transform:uppercase;letter-spacing:1px;background:var(--bg3)">UM</th>
+          <th style="text-align:left;font-size:10px;color:var(--text3);font-weight:700;font-family:var(--mono);padding:6px 8px;border-bottom:1px solid var(--border);text-transform:uppercase;letter-spacing:1px;background:var(--bg3)">Observații</th>
+          <th style="background:var(--bg3);border-bottom:1px solid var(--border);padding:6px 8px"></th>
+        </tr></thead>
+        <tbody id="batch-rows"><tr id="brow-0" class="add-row" style="border-bottom:1px solid var(--border)">
+    <td style="padding:5px 6px"><input type="text" placeholder="ex: Beton C20/25" value="" oninput="updateBatch(0,'name',this.value)" style="width:180px"></td>
+    <td style="padding:5px 6px"><input type="number" min="0" step="any" placeholder="0" value="" oninput="updateBatch(0,'cant',this.value)" style="width:80px"></td>
+    <td style="padding:5px 6px"><select onchange="updateBatch(0,'unit',this.value)" style="width:70px"><option selected="">buc</option><option>m</option><option>m²</option><option>m³</option><option>kg</option><option>t</option><option>l</option><option>saci</option><option>role</option><option>paleti</option><option>ml</option><option>cm</option><option>pungi</option><option>mp</option></select></td>
+    <td style="padding:5px 6px"><input type="text" placeholder="opțional" value="" oninput="updateBatch(0,'obs',this.value)" style="width:130px"></td>
+    <td style="padding:5px 6px"><button class="btn btn-red btn-sm" onclick="removeBatchRow(0)">✕</button></td>
+  </tr></tbody></table></div>
+      <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
+        <button class="btn btn-ghost btn-sm" onclick="addBatchRow()">+ Rând Nou</button>
+        <button class="btn btn-primary" onclick="confirmBatch()">✓ Confirmă și Adaugă în Sistem</button>
+      </div>
+      <div style="font-family:var(--mono);font-size:10px;color:var(--text3);margin-top:8px">
+        ℹ Completează toate materialele, apoi apasă "Confirmă și Adaugă în Sistem" — toate vor fi salvate simultan.
+      </div>
+    </div></div>
+      <div id="view-comenzi" style="display: none;"><div class="ph">
+    <div><div class="pt">Comenzi Șantier</div><div class="ps">Centru Batrani Concesti · 0 comenzi</div></div>
+    <button class="btn btn-ghost btn-sm" onclick="navTo('materiale')">◀ Materiale</button>
+  </div><div class="card" style="margin-bottom:16px;padding:0;overflow:hidden">
+      <div class="collapse-header order-head" onclick="toggleSection('noua',this)" style="padding:11px 14px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:10px">
+        <div style="display:flex;align-items:center;gap:8px">
+          <i class="collapse-arrow" id="ca-noua">▶</i>
+          <span style="font-family:var(--mono);font-size:11px;font-weight:700;color:var(--accent);letter-spacing:1px;text-transform:uppercase">Comandă Nouă</span>
+        </div>
+        <span style="font-family:var(--mono);font-size:10px;color:var(--text3)">2 materiale disponibile · click pentru a restrânge</span>
+      </div>
+      <div class="collapse-body collapsed" id="cb-sec-noua" style="max-height: 0px;">
+      <div style="padding:14px;overflow-x:auto">
+      <table style="width:100%;border-collapse:collapse;font-size:12px">
+        <thead><tr>
+          <th style="text-align:left;font-size:10px;color:var(--text3);font-weight:700;font-family:var(--mono);padding:7px 8px;border-bottom:1px solid var(--border);text-transform:uppercase;background:var(--bg3)">Material</th>
+          <th style="text-align:left;font-size:10px;color:var(--text3);font-weight:700;font-family:var(--mono);padding:7px 8px;border-bottom:1px solid var(--border);text-transform:uppercase;background:var(--bg3)">Necesar Rămas</th>
+          <th style="text-align:center;font-size:10px;color:var(--text3);font-weight:700;font-family:var(--mono);padding:7px 8px;border-bottom:1px solid var(--border);text-transform:uppercase;background:var(--bg3)">Comandă ✓</th>
+          <th style="text-align:left;font-size:10px;color:var(--text3);font-weight:700;font-family:var(--mono);padding:7px 8px;border-bottom:1px solid var(--border);text-transform:uppercase;background:var(--bg3)">Cantitate</th>
+          <th style="text-align:left;font-size:10px;color:var(--text3);font-weight:700;font-family:var(--mono);padding:7px 8px;border-bottom:1px solid var(--border);text-transform:uppercase;background:var(--bg3)">Observații</th>
+        </tr></thead><tbody><tr style="border-bottom:1px solid var(--border)" class="add-row">
+        <td style="padding:6px 8px"><b style="font-size:12px">Borduri mari</b></td>
+        <td style="padding:6px 8px;font-family:var(--mono);color:var(--accent)">500.00 ml</td>
+        <td style="padding:6px 8px;text-align:center">
+          <input type="checkbox" id="cb-mojzf2z2izkb" onchange="toggleCmdItem('mojzf2z2izkb',this.checked)" style="width:16px;height:16px;cursor:pointer;accent-color:var(--accent)">
+        </td>
+        <td style="padding:6px 8px">
+          <div style="display:flex;align-items:center;gap:5px">
+            <input type="number" id="cq-mojzf2z2izkb" min="0" step="any" placeholder="0" value="" disabled="" oninput="setCmdCant('mojzf2z2izkb',this.value)" style="width:80px;background:var(--bg);border:1px solid var(--border2);border-radius:5px;color:var(--text);padding:5px 7px;font-size:12px;outline:none">
+            <span style="font-family:var(--mono);color:var(--text3);font-size:11px">ml</span>
+          </div>
+        </td>
+        <td style="padding:6px 8px">
+          <input type="text" id="co-mojzf2z2izkb" placeholder="opțional" value="" disabled="" oninput="setCmdObs('mojzf2z2izkb',this.value)" style="width:150px;background:var(--bg);border:1px solid var(--border2);border-radius:5px;color:var(--text);padding:5px 7px;font-size:12px;outline:none">
+        </td>
+      </tr><tr style="border-bottom:1px solid var(--border)" class="add-row">
+        <td style="padding:6px 8px"><b style="font-size:12px">Beton (sac)</b></td>
+        <td style="padding:6px 8px;font-family:var(--mono);color:var(--accent)">50.00 buc</td>
+        <td style="padding:6px 8px;text-align:center">
+          <input type="checkbox" id="cb-mojzx60joy31" onchange="toggleCmdItem('mojzx60joy31',this.checked)" style="width:16px;height:16px;cursor:pointer;accent-color:var(--accent)">
+        </td>
+        <td style="padding:6px 8px">
+          <div style="display:flex;align-items:center;gap:5px">
+            <input type="number" id="cq-mojzx60joy31" min="0" step="any" placeholder="0" value="" disabled="" oninput="setCmdCant('mojzx60joy31',this.value)" style="width:80px;background:var(--bg);border:1px solid var(--border2);border-radius:5px;color:var(--text);padding:5px 7px;font-size:12px;outline:none">
+            <span style="font-family:var(--mono);color:var(--text3);font-size:11px">buc</span>
+          </div>
+        </td>
+        <td style="padding:6px 8px">
+          <input type="text" id="co-mojzx60joy31" placeholder="opțional" value="" disabled="" oninput="setCmdObs('mojzx60joy31',this.value)" style="width:150px;background:var(--bg);border:1px solid var(--border2);border-radius:5px;color:var(--text);padding:5px 7px;font-size:12px;outline:none">
+        </td>
+      </tr></tbody></table></div>
+      <div style="display:flex;gap:10px;margin-top:12px;align-items:center;flex-wrap:wrap;padding:0 14px 14px">
+        <button class="btn btn-primary" onclick="trimiteComanda()">→ Trimite Comanda la Achiziții</button>
+        <span style="font-family:var(--mono);font-size:10px;color:var(--text3)">Bifează materialele dorite, completează cantitățile, apoi trimite</span>
+      </div>
+      </div>
+    </div><div class="empty"><div class="empty-icon">▥</div><div class="empty-title">Nicio comandă</div><p>Folosiți formularul de mai sus pentru a crea prima comandă</p></div></div>
+      <div id="view-rapoarte" style="display: none;"><div class="ph">
+    <div><div class="pt">Rapoarte</div><div class="ps">MAI 2026 · 0 comenzi</div></div>
+    <div style="display:flex;gap:8px" class="no-print">
+      <button class="btn btn-cyan btn-sm" onclick="window.print()">🖨 Tipărește</button>
+      <button class="btn btn-orange btn-sm" onclick="exportRaportCSV()">⬇ CSV</button>
+    </div>
+  </div>
+  <div class="card no-print" style="margin-bottom:14px">
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <div class="fld" style="margin:0;flex:1;min-width:120px"><label>Lună</label>
+        <input class="inp" type="month" value="2026-05" onchange="repFilter.month=this.value;renderRapoarte()" style="color-scheme:dark">
+      </div>
+      <div class="fld" style="margin:0;flex:1;min-width:120px"><label>Șantier</label>
+        <select class="inp" onchange="repFilter.santierId=this.value;renderRapoarte()">
+          <option value="">Toate șantierele</option>
+          <option value="moipiwenhalo">Straja Apa-Canal</option><option value="moipy1tjxsjs">Darabani Canalizare</option><option value="mojze12jcwpz">Centru Batrani Concesti</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="rep-stat-grid">
+    <div class="rep-stat"><div class="rep-stat-label">Total comenzi</div><div class="rep-stat-value">0</div></div>
+    <div class="rep-stat"><div class="rep-stat-label">Finalizate</div><div class="rep-stat-value" style="color:#4ade80">0</div><div class="rep-stat-sub">0%</div></div>
+    <div class="rep-stat"><div class="rep-stat-label">În procesare</div><div class="rep-stat-value" style="color:#60a5fa">0</div></div>
+    <div class="rep-stat"><div class="rep-stat-label">Nepreluat</div><div class="rep-stat-value" style="color:#fca5a5">0</div></div>
+  </div><div class="empty"><div class="empty-icon">📊</div><div class="empty-title">Nicio comandă în luna selectată</div></div></div>
+      <div id="view-admin" style="display: none;"><div class="ph">
+    <div><div class="pt">Panou Admin</div><div class="ps">3 utilizatori · 3 șantiere</div></div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button class="btn btn-primary" onclick="modalAddUser()">+ Utilizator Nou</button>
+      <button class="btn btn-red" onclick="clearAllDataStep1()">🗑 Curăță Toate Datele</button>
+    </div>
+  </div><div class="card" style="padding:0;overflow:hidden;margin-bottom:16px">
+    <div style="padding:10px 14px;background:var(--bg3);border-bottom:1px solid var(--border);font-family:var(--mono);font-size:11px;font-weight:700;color:var(--text2);letter-spacing:1px;text-transform:uppercase">UTILIZATORI</div>
+    <table class="admin-table"><thead><tr><th>Utilizator</th><th>Nume</th><th>Rol</th><th>Status</th><th>Creat</th><th></th></tr></thead><tbody><tr>
+      <td style="font-family:var(--mono);color:var(--cyan)">silviu vitel</td>
+      <td>Silviu Vitel</td>
+      <td><span class="badge b-blue">INGINER</span></td>
+      <td><span class="badge b-green">ACTIV</span></td>
+      <td style="font-size:11px;color:var(--text3);font-family:var(--mono)">28.04.2026 17:06</td>
+      <td><div style="display:flex;gap:5px">
+        <button class="btn btn-ghost btn-sm" onclick="modalEditUser('moip8ybq6su5')">Edit</button>
+        <button class="btn btn-red btn-sm" onclick="confirmAction('Ștergi utilizatorul silviu vitel?',()=&gt;write('/users/moip8ybq6su5',null),'cu-moip8ybq6su5')">✕</button>
+      </div><div id="cu-moip8ybq6su5"></div></td>
+    </tr><tr>
+      <td style="font-family:var(--mono);color:var(--cyan)">beni birsan</td>
+      <td>Beni Birsan</td>
+      <td><span class="badge b-purple">ACHIZITOR</span></td>
+      <td><span class="badge b-green">ACTIV</span></td>
+      <td style="font-size:11px;color:var(--text3);font-family:var(--mono)">28.04.2026 17:20</td>
+      <td><div style="display:flex;gap:5px">
+        <button class="btn btn-ghost btn-sm" onclick="modalEditUser('moipqz3slmzs')">Edit</button>
+        <button class="btn btn-red btn-sm" onclick="confirmAction('Ștergi utilizatorul beni birsan?',()=&gt;write('/users/moipqz3slmzs',null),'cu-moipqz3slmzs')">✕</button>
+      </div><div id="cu-moipqz3slmzs"></div></td>
+    </tr><tr>
+      <td style="font-family:var(--mono);color:var(--cyan)">admin</td>
+      <td>Administrator</td>
+      <td><span class="badge b-orange">ADMIN</span></td>
+      <td><span class="badge b-green">ACTIV</span></td>
+      <td style="font-size:11px;color:var(--text3);font-family:var(--mono)">28.04.2026 17:05</td>
+      <td><div style="display:flex;gap:5px">
+        <button class="btn btn-ghost btn-sm" onclick="modalEditUser('user_admin')">Edit</button>
+        
+      </div><div id="cu-user_admin"></div></td>
+    </tr></tbody></table></div><div class="card" style="padding:0;overflow:hidden;margin-bottom:16px">
+    <div style="padding:10px 14px;background:var(--bg3);border-bottom:1px solid var(--border);font-family:var(--mono);font-size:11px;font-weight:700;color:var(--text2);letter-spacing:1px;text-transform:uppercase">ȘANTIERE — ȘTERGERE INDIVIDUALĂ</div>
+    <table class="admin-table"><thead><tr><th>Șantier</th><th>Locație</th><th>Materiale</th><th>Comenzi</th><th></th></tr></thead><tbody><tr>
+      <td><b>Straja Apa-Canal</b></td>
+      <td style="color:var(--text3);font-size:11px">Suceava</td>
+      <td style="font-family:var(--mono)">4</td>
+      <td style="font-family:var(--mono)">0</td>
+      <td><button class="btn btn-red btn-sm" onclick="confirmDeleteSantier('moipiwenhalo')">🗑 Șterge</button>
+      <div id="cds-moipiwenhalo"></div></td>
+    </tr><tr>
+      <td><b>Darabani Canalizare</b></td>
+      <td style="color:var(--text3);font-size:11px">Darabani</td>
+      <td style="font-family:var(--mono)">2</td>
+      <td style="font-family:var(--mono)">0</td>
+      <td><button class="btn btn-red btn-sm" onclick="confirmDeleteSantier('moipy1tjxsjs')">🗑 Șterge</button>
+      <div id="cds-moipy1tjxsjs"></div></td>
+    </tr><tr>
+      <td><b>Centru Batrani Concesti</b></td>
+      <td style="color:var(--text3);font-size:11px">Concesti, Botosani</td>
+      <td style="font-family:var(--mono)">2</td>
+      <td style="font-family:var(--mono)">0</td>
+      <td><button class="btn btn-red btn-sm" onclick="confirmDeleteSantier('mojze12jcwpz')">🗑 Șterge</button>
+      <div id="cds-mojze12jcwpz"></div></td>
+    </tr></tbody></table></div><div style="padding:12px 14px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);font-size:12px;color:var(--text3);font-family:var(--mono);line-height:1.7">
+    💡 Conturi: <b style="color:var(--accent)">admin/admin1234</b> · <b style="color:var(--blue)">inginer1/ing1234</b> · <b style="color:var(--purple)">achizitor1/ach1234</b>
+  </div></div>
+    </main>
+  </div>
+</div>
+
+<div id="modal-c"></div>
+<div id="toast-c"></div>
+
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+<script>
+const FB_CFG = {
+  apiKey:"AIzaSyCVt3p9ZrbrQ9WtVlMycbapzzwFA1MQvK8",
+  authDomain:"matts-35306.firebaseapp.com",
+  databaseURL:"https://matts-35306-default-rtdb.firebaseio.com",
+  projectId:"matts-35306",
+  storageBucket:"matts-35306.firebasestorage.app",
+  messagingSenderId:"970187049930",
+  appId:"1:970187049930:web:e2acad224a5c873f97dd33"
+};
+
+// ═══ NTFY.SH — topic implicit (poate fi schimbat din Admin) ═══
+const NTFY_TOPIC_DEFAULT = 'cornellifloor-matts35306';
+
+let db = null;
+const S = {
+  user:null, activeSantier:null, currentView:'santiere',
+  data:{santiere:{},materiale:{},comenzi:{},users:{}},
+  lastComenziSeen:0
+};
+
+/* ── WAKE LOCK ── */
+let wakeLock=null;
+async function requestWakeLock(){
+  if(!('wakeLock' in navigator))return;
+  try{wakeLock=await navigator.wakeLock.request('screen');wakeLock.addEventListener('release',()=>{wakeLock=null;});}catch(e){}
+}
+document.addEventListener('visibilitychange',async()=>{if(document.visibilityState==='visible'&&!wakeLock)await requestWakeLock();});
+
+/* ── SHA-256 ── */
+async function sha256(str){
+  const buf=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(str));
+  return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
+}
+
+/* ── TOAST ── */
+function toast(msg,type='info',dur=3200){
+  const icons={success:'✓',error:'✕',info:'ℹ'};
+  const el=document.createElement('div');
+  el.className=`toast ${type}`;
+  el.innerHTML=`<span style="font-size:16px">${icons[type]}</span><span>${msg}</span>`;
+  document.getElementById('toast-c').appendChild(el);
+  setTimeout(()=>{el.style.animation='tIn .25s ease reverse';setTimeout(()=>el.remove(),250);},dur);
+}
+
+/* ── FIREBASE INIT ── */
+function initApp(){
+  S._fbTimeout=setTimeout(()=>{
+    if(document.getElementById('loading').style.display==='none')return;
+    document.getElementById('loading').innerHTML=`<div style="color:var(--accent);text-align:center;padding:20px;max-width:480px">
+      <div style="font-size:32px;margin-bottom:12px">⚠</div>
+      <div style="font-family:var(--mono);margin-bottom:10px;font-size:13px">FIREBASE INDISPONIBIL ÎN PREVIEW</div>
+      <div style="color:var(--text2);font-size:13px;line-height:1.6;margin-bottom:18px">Descarcă fișierul HTML și deschide-l local sau hostuiește-l (Netlify, Vercel).</div>
+      <button onclick="downloadSelf()" style="padding:12px 24px;background:var(--accent);color:#0a0d12;border:none;border-radius:7px;font-family:var(--mono);font-weight:800;letter-spacing:1.5px;font-size:12px;cursor:pointer">⬇ DESCARCĂ Cornell's Floor.html</button>
+    </div>`;
+  },8000);
+  try{firebase.initializeApp(FB_CFG);db=firebase.database();setupSync();}
+  catch(e){clearTimeout(S._fbTimeout);document.getElementById('loading').innerHTML=`<div style="color:var(--red);text-align:center;padding:20px"><div style="font-size:32px;margin-bottom:12px">⚠</div><div>${e.message}</div></div>`;}
+}
+
+function setupSync(){
+  let firstLoad=true;
+  db.ref('/').on('value',snap=>{
+    clearTimeout(S._fbTimeout);
+    const v=snap.val()||{};
+    S.data={santiere:v.santiere||{},materiale:v.materiale||{},comenzi:v.comenzi||{},users:v.users||{},config:v.config||{}};
+    document.getElementById('loading').style.display='none';
+    if(Object.keys(S.data.users).length===0)seedUsers();
+    if(firstLoad){
+      firstLoad=false;
+      checkSession();
+    } else if(S.user){
+      // Nu resetam pagina - doar re-renderam view-ul curent pe loc
+      renderView(S.currentView);
+      renderSidebar();
+      updateAlerts();
+      detectNewComenzi();
+    }
+  },err=>{
+    clearTimeout(S._fbTimeout);
+    document.getElementById('loading').innerHTML=`<div style="color:var(--red);text-align:center;padding:20px"><div style="font-size:32px;margin-bottom:12px">🔌</div><div>${err.message}</div></div>`;
+  });
+}
+
+async function seedUsers(){
+  const users=[
+    {id:'user_admin',username:'admin',pass:'admin1234',role:'admin',name:'Administrator'},
+    {id:'user_ing1',username:'inginer1',pass:'ing1234',role:'inginer',name:'Inginer Șantier'},
+    {id:'user_ach1',username:'achizitor1',pass:'ach1234',role:'achizitor',name:'Achizitor'},
+  ];
+  for(const u of users){
+    const hash=await sha256(u.pass);
+    db.ref('/users/'+u.id).set({username:u.username,passwordHash:hash,role:u.role,name:u.name,active:true,createdAt:nowISO()});
+  }
+}
+
+function write(path,data){return db.ref(path).set(data);}
+function push(path,data){
+  const id=Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+  return write(path+'/'+id,data).then(()=>id);
+}
+
+/* ── AUTH ── */
+function checkSession(){
+  try{
+    const s=localStorage.getItem('cf_user_remember')||sessionStorage.getItem('cf_user');
+    if(s){S.user=JSON.parse(s);showApp();}else showLogin();
+  }catch(e){showLogin();}
+}
+function togglePw(){const i=document.getElementById('l-pass');i.type=i.type==='password'?'text':'password';}
+function toggleRemember(){
+  const cb=document.getElementById('l-remember');
+  cb.checked=!cb.checked;
+  const box=document.getElementById('l-remember-box');
+  const chk=document.getElementById('l-remember-check');
+  box.style.background=cb.checked?'var(--accent)':'var(--bg)';
+  box.style.borderColor=cb.checked?'var(--accent)':'var(--border3)';
+  chk.style.display=cb.checked?'block':'none';
+}
+async function doLogin(){
+  const username=document.getElementById('l-user').value.trim().toLowerCase();
+  const password=document.getElementById('l-pass').value;
+  if(!username||!password){showLErr('Completați utilizatorul și parola!');return;}
+  const btn=document.getElementById('l-btn');btn.disabled=true;btn.textContent='Se verifică...';
+  const hash=await sha256(password);
+  const users=S.data.users||{};
+  const entry=Object.entries(users).find(([,u])=>u.username===username&&u.passwordHash===hash&&u.active);
+  btn.disabled=false;btn.textContent='INTRĂ ÎN SISTEM →';
+  if(!entry){showLErr('Utilizator sau parolă incorectă!');return;}
+  const[uid,u]=entry;
+  S.user={uid,username:u.username,name:u.name,role:u.role};
+  const remember=document.getElementById('l-remember')?.checked;
+  if(remember){localStorage.setItem('cf_user_remember',JSON.stringify(S.user));}
+  else{sessionStorage.setItem('cf_user',JSON.stringify(S.user));}
+  showApp();requestWakeLock();
+}
+function showLErr(msg){const el=document.getElementById('l-err');el.textContent=msg;el.style.display='block';setTimeout(()=>el.style.display='none',3500);}
+function doLogout(){if(wakeLock){wakeLock.release();wakeLock=null;}localStorage.removeItem('cf_user_remember');sessionStorage.removeItem('cf_user');S.user=null;S.activeSantier=null;document.getElementById('app').style.display='none';document.getElementById('l-user').value='';document.getElementById('l-pass').value='';showLogin();}
+function showLogin(){document.getElementById('login-screen').style.display='flex';document.getElementById('app').style.display='none';}
+function showApp(){
+  document.getElementById('login-screen').style.display='none';
+  document.getElementById('app').style.display='block';
+  const rl={admin:'ADMIN',inginer:'INGINER',achizitor:'ACHIZIȚII'}[S.user.role]||S.user.role.toUpperCase();
+  document.getElementById('user-chip').innerHTML=`<span style="color:var(--text3)">${rl}</span> · <b>${esc(S.user.name)}</b>`;
+  S.lastComenziSeen=Object.keys(S.data.comenzi||{}).length;
+  const nb=document.getElementById('notif-btn');
+  if(nb&&canAch()&&'Notification' in window&&Notification.permission!=='granted')nb.style.display='inline-flex';
+  if(canAch()) setTimeout(()=>initFCM(),1500);
+  showView('santiere');
+}
+
+/* ── SIDEBAR TOGGLE ── */
+function toggleSidebar(force){
+  const sb=document.getElementById('sidebar'),ov=document.getElementById('sb-overlay');
+  const open=force===undefined?!sb.classList.contains('open'):force;
+  sb.classList.toggle('open',open);ov.classList.toggle('visible',open);
+}
+
+/* ── SIDEBAR RENDER ── */
+function renderSidebar(){
+  const sb=document.getElementById('sidebar');if(!sb)return;
+  const santiere=Object.entries(S.data.santiere||{});
+  const noiCount=Object.values(S.data.comenzi||{}).filter(c=>comandaPhase(c)===0).length;
+  const totalCom=Object.keys(S.data.comenzi||{}).length;
+  const finalizate=Object.values(S.data.comenzi||{}).filter(c=>c.livrareTs).length;
+  // Persist sidebar santiere expand state across re-renders
+  if(typeof S._sbSantiereOpen === 'undefined') S._sbSantiereOpen = false;
+  const sbSantiereOpen = S._sbSantiereOpen;
+
+  let html=`<div class="sb-section">
+    <div class="sb-section-title"><span>◉ Navigație</span></div>`;
+
+  if(canAch()&&!isAdmin()){
+    // Achizitor: "Toate Santierele" is expandable to show list
+    html+=`<div class="sb-item ${S.currentView==='santiere'?'active':''}"
+        onclick="toggleSbSantiere()"
+        style="flex-wrap:wrap;gap:4px">
+      <span class="ico">▣</span>
+      <span class="lbl">Toate Șantierele</span>
+      <span style="background:var(--bg3);color:var(--text2);border:1px solid var(--border);padding:1px 6px;border-radius:10px;font-family:var(--mono);font-size:9px">${santiere.length}</span>
+      ${noiCount>0?`<span class="badge-dot">${noiCount}</span>`:''}
+      <span style="font-family:var(--mono);font-size:10px;color:var(--text3);margin-left:auto;transition:transform .2s;display:inline-block;transform:rotate(${sbSantiereOpen?'90':'0'}deg)">▶</span>
+    </div>`;
+    // Expandable list — only names, no sub-categories
+    if(sbSantiereOpen && santiere.length){
+      html+=`<div class="sb-categ" id="sb-santiere-list">`;
+      santiere.forEach(([id,s])=>{
+        const isActiveSant = S.activeSantier===id && S.currentView==='comenzi';
+        const cNoi = Object.values(S.data.comenzi||{}).filter(c=>c.santierId===id&&comandaPhase(c)===0).length;
+        const alerte = Object.entries(S.data.materiale?.[id]||{}).filter(([mid,m])=>calcProgress(id,mid,m.cantitateNecesara).over).length;
+        html+=`<div class="sb-item ${isActiveSant?'active':''}" onclick="sidebarOpenSantier('${id}')">
+          <span class="ico">🏗</span>
+          <span class="lbl" title="${esc(s.name)}">${esc(s.name)}</span>
+          ${alerte>0?`<span class="badge-alert">⚠${alerte}</span>`:''}
+          ${cNoi>0?`<span class="badge-dot">${cNoi}</span>`:''}
+        </div>`;
+      });
+      html+=`</div>`;
+    } else if(sbSantiereOpen && !santiere.length){
+      html+=`<div class="sb-empty" style="padding-left:24px">Niciun șantier</div>`;
+    }
+  } else {
+    // Inginer/Admin: click navigates to santiere view
+    html+=`<div class="sb-item ${S.currentView==='santiere'?'active':''}" onclick="navTo('santiere')">
+      <span class="ico">▣</span><span class="lbl">Toate Șantierele</span>
+      <span style="background:var(--bg3);color:var(--text2);border:1px solid var(--border);padding:1px 6px;border-radius:10px;font-family:var(--mono);font-size:9px">${santiere.length}</span>
+    </div>`;
+  }
+
+  html+=`<div class="sb-item ${S.currentView==='rapoarte'?'active':''}" onclick="navTo('rapoarte')">
+      <span class="ico">▤</span><span class="lbl">Rapoarte</span>
+    </div>
+    ${isAdmin()?`<div class="sb-item ${S.currentView==='admin'?'active':''}" onclick="navTo('admin')">
+      <span class="ico">▧</span><span class="lbl">Admin</span></div>`:''}
+  </div>`;
+  /* Șantiere active — DOAR pentru inginer/admin în sidebar */
+  if(!canAch()||isAdmin()){
+    html+=`<div class="sb-section"><div class="sb-section-title"><span>▎ Șantiere</span><span class="count">${santiere.length}</span></div>`;
+    if(!santiere.length){html+=`<div class="sb-empty">Niciun șantier</div>`;}
+    else{
+      santiere.forEach(([id,s])=>{
+        const isActive=S.activeSantier===id&&['materiale','comenzi'].includes(S.currentView);
+        const mats=Object.entries(S.data.materiale?.[id]||{});
+        const alerte=mats.filter(([mid,m])=>calcProgress(id,mid,m.cantitateNecesara).over).length;
+        const comenzi=Object.values(S.data.comenzi||{}).filter(c=>c.santierId===id);
+        const cNoi=comenzi.filter(c=>comandaPhase(c)===0).length;
+        html+=`<div class="sb-item ${isActive?'active':''}" onclick="sidebarOpenSantier('${id}')">
+          <span class="ico">🏗</span><span class="lbl" title="${esc(s.name)}">${esc(s.name)}</span>
+          ${alerte>0?`<span class="badge-alert">⚠${alerte}</span>`:''}
+          ${cNoi>0?`<span class="badge-dot">${cNoi}</span>`:''}
+        </div>`;
+        if(isActive){
+          html+=`<div class="sb-categ">
+            <div class="sb-item ${S.currentView==='materiale'?'active':''}" onclick="event.stopPropagation();navTo('materiale')">
+              <span class="ico">▤</span><span class="lbl">Materiale</span>
+              <span style="background:var(--bg);color:var(--text3);border:1px solid var(--border);padding:1px 5px;border-radius:10px;font-family:var(--mono);font-size:9px">${mats.length}</span>
+            </div>
+            <div class="sb-item ${S.currentView==='comenzi'?'active':''}" onclick="event.stopPropagation();navTo('comenzi')">
+              <span class="ico">▥</span><span class="lbl">Comenzi</span>
+              <span style="background:var(--bg);color:var(--text3);border:1px solid var(--border);padding:1px 5px;border-radius:10px;font-family:var(--mono);font-size:9px">${comenzi.length}</span>
+            </div>
+          </div>`;
+        }
+      });
+    }
+    html+=`</div>`;
+  }
+  html+=`<div class="sb-section"><div class="sb-section-title"><span>📊 Statistici</span></div>
+    <div style="background:var(--bg3);border:1px solid var(--border);border-radius:7px;padding:9px 11px;font-family:var(--mono);font-size:11px;color:var(--text2);line-height:1.8">
+      <div>Șantiere: <b style="color:var(--text);float:right">${santiere.length}</b></div>
+      <div>Total comenzi: <b style="color:var(--accent);float:right">${totalCom}</b></div>
+      <div>Finalizate: <b style="color:#4ade80;float:right">${finalizate}</b></div>
+      <div>În proces: <b style="color:#60a5fa;float:right">${totalCom-finalizate}</b></div>
+    </div>
+  </div>`;
+  sb.innerHTML=html;
+}
+
+function navTo(view){if(window.innerWidth<=900)toggleSidebar(false);showView(view);}
+function toggleSbSantiere(){
+  S._sbSantiereOpen = !S._sbSantiereOpen;
+  renderSidebar();
+}
+function sidebarOpenSantier(id){if(window.innerWidth<=900)toggleSidebar(false);openSantier(id);}
+
+/* ── NAV ── */
+function showView(view){
+  S.currentView=view;
+  ['santiere','materiale','comenzi','rapoarte','admin'].forEach(v=>{
+    const el=document.getElementById('view-'+v);if(el)el.style.display='none';
+  });
+  const target=document.getElementById('view-'+view);if(target)target.style.display='block';
+  renderView(view);renderSidebar();
+}
+function refreshView(){renderView(S.currentView);renderSidebar();updateAlerts();}
+function renderView(v){
+  if(v==='santiere')renderSantiere();
+  else if(v==='materiale'&&S.activeSantier)renderMateriale();
+  else if(v==='comenzi'&&S.activeSantier)renderComenzi();
+  else if(v==='rapoarte')renderRapoarte();
+  else if(v==='admin')renderAdmin();
+}
+function openSantier(id){
+  S.activeSantier=id;
+  document.getElementById('t-site').textContent=(S.data.santiere[id]?.name||'').toUpperCase();
+  // Pentru achizitor → redirecționează la comenzi, pentru inginer/admin → materiale
+  if(canAch()&&!isAdmin())showView('comenzi');
+  else showView('materiale');
+}
+
+/* ── NOTIFICĂRI PUSH ── */
+async function requestNotifPermission(){
+  if(!('Notification' in window)){toast('Browserul nu suportă notificări!','error');return;}
+  const perm=await Notification.requestPermission();
+  if(perm==='granted'){
+    toast('✓ Notificările activate! Vei primi alerte la comenzi noi.','success',5000);
+    document.getElementById('notif-btn').style.display='none';
+    setTimeout(()=>{try{new Notification("Cornell's Floor — Notificări active",{body:'Vei fi anunțat imediat la comenzi noi.'});}catch(e){}},500);
+  }else toast('Notificările refuzate. Activează manual din setările browserului.','error',5000);
+}
+function sendPushNotification(title,body){
+  if(!canAch())return;
+  // Send via Netlify Function (FCM) for real push to all devices
+  sendFCMNotification(title, body);
+  // Also show local notification if app is open
+  if('Notification' in window && Notification.permission==='granted'){
+    try{
+      const n=new Notification(title,{body,tag:'cf-comanda',requireInteraction:true,icon:'/icon-192.png'});
+      n.onclick=()=>{window.focus();navTo('santiere');n.close();};
+    }catch(e){}
+  }
+}
+
+async function initFCM(){
+  const vapidPublicKey = S.data.config?.vapidPublicKey;
+  if(!vapidPublicKey) return;
+  if(!('serviceWorker' in navigator) || !('PushManager' in window)) return;
+  if(!S.user || !canAch()) return;
+  try{
+    const reg = await navigator.serviceWorker.ready;
+    let sub = await reg.pushManager.getSubscription();
+    if(!sub){
+      const perm = await Notification.requestPermission();
+      if(perm !== 'granted') return;
+      sub = await reg.pushManager.subscribe({
+        userVisibleOnly: true,
+        applicationServerKey: urlBase64ToUint8Array(vapidPublicKey)
+      });
+    }
+    const j = sub.toJSON();
+    await write('/push_subscriptions/' + S.user.uid, {
+      endpoint: j.endpoint, keys: j.keys,
+      userId: S.user.uid, userName: S.user.name, role: S.user.role,
+      updatedAt: nowISO()
+    });
+    const nb = document.getElementById('notif-btn');
+    if(nb) nb.style.display = 'none';
+    console.log('[CF] Web Push subscription saved');
+  }catch(e){
+    console.warn('[CF] initFCM failed:', e.message);
+  }
+}
+
+async function sendFCMNotification(title, body){
+  try{
+    // Get all FCM tokens from Firebase
+    const snap = await get(ref(db,'fcm_tokens'));
+    if(!snap.exists()) return;
+    
+    const tokens = Object.values(snap.val())
+      .map(t => t.token)
+      .filter(Boolean);
+    
+    if(tokens.length === 0) return;
+    
+    await fetch('/.netlify/functions/send-notification', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({ tokens, title, body })
+    });
+  }catch(e){
+    console.warn('[CF] FCM send failed:', e.message);
+  }
+}
+
+/* ── WEB PUSH (notificări native în CF Floor) ── */
+async function sendWebPush(title, body){
+  try{
+    await fetch('/.netlify/functions/send-push',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({title,body})
+    });
+  }catch(e){console.warn('[CF] sendWebPush failed:',e.message);}
+}
+
+async function generateVapidKeys(){
+  const kp = await crypto.subtle.generateKey({name:'ECDH',namedCurve:'P-256'},true,['deriveKey','deriveBits']);
+  const [pub,priv] = await Promise.all([
+    crypto.subtle.exportKey('raw',kp.publicKey),
+    crypto.subtle.exportKey('pkcs8',kp.privateKey)
+  ]);
+  const b64u = buf => btoa(String.fromCharCode(...new Uint8Array(buf))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=/g,'');
+  const publicKey = b64u(pub);
+  const privateKey = b64u(priv);
+  await write('/config/vapidPublicKey', publicKey);
+  const out = document.getElementById('vapid-output');
+  if(out){
+    out.style.display='block';
+    out.innerHTML=`<div style="color:#4ade80;font-weight:700;margin-bottom:8px">Chei generate si salvate!</div>
+    <div style="color:var(--text2);font-size:10px;margin-bottom:3px">CHEIE PUBLICA (salvata automat in Firebase)</div>
+    <div style="color:var(--cyan);word-break:break-all;margin-bottom:10px;font-size:10px">${esc(publicKey)}</div>
+    <div style="color:var(--text2);font-size:10px;margin-bottom:3px">CHEIE PRIVATA — copiaz-o in Netlify > Environment Variables > VAPID_PRIVATE_KEY</div>
+    <div style="color:var(--accent);word-break:break-all;background:var(--bg3);padding:8px;border-radius:5px;cursor:pointer;font-size:10px" onclick="navigator.clipboard.writeText('${privateKey}').then(()=>toast('Copiat!','success'))">${esc(privateKey)}</div>
+    <div style="color:var(--text3);margin-top:6px;font-size:10px">Click pe cheia privata pentru a o copia.</div>`;
+  }
+  toast('Chei VAPID generate! Copiaza cheia privata in Netlify.','success',6000);
+}
+
+/* ── NTFY.SH PUSH (funcționează și cu app-ul închis) ── */
+async function sendNtfyNotification(title, body){
+  const topic = (S.data.config?.ntfyTopic || NTFY_TOPIC_DEFAULT).trim();
+  if(!topic) return;
+  try{
+    const resp = await fetch('https://ntfy.sh/', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({topic, title, message: body, priority: 4, tags: ['bell']})
+    });
+    if(!resp.ok) console.warn('[CF] ntfy response:', resp.status);
+  }catch(e){
+    console.warn('[CF] ntfy notification failed:', e.message);
+  }
+}
+
+function urlBase64ToUint8Array(base64String){
+  const padding = '='.repeat((4-base64String.length%4)%4);
+  const base64 = (base64String+padding).replace(/-/g,'+').replace(/_/g,'/');
+  const rawData = window.atob(base64);
+  const outputArray = new Uint8Array(rawData.length);
+  for(let i=0;i<rawData.length;++i) outputArray[i]=rawData.charCodeAt(i);
+  return outputArray;
+}
+function detectNewComenzi(){
+  if(!canAch())return;
+  const ids=Object.keys(S.data.comenzi||{});
+  const prev=S.lastComenziSeen||0;
+  if(ids.length>prev&&prev>0){
+    const diff=ids.length-prev;
+    playAlertSound();
+    toast('📬 '+diff+' comand'+(diff>1?'e noi':'a noua')+' - preluare necesara!','info',6000);
+    sendPushNotification('📬 Cornells Floor - '+diff+' Comand'+(diff>1?'e Noi':'a Noua'),'Inginerul a plasat '+diff+' comand'+(diff>1?'e noi':'a noua')+' care necesita preluare!');
+    const ab=document.getElementById('alert-badge');
+    if(ab){ab.style.animation='newPulse 1.5s ease-in-out 3';setTimeout(()=>{ab.style.animation='';},4500);}
+  }
+  S.lastComenziSeen=ids.length;
+}
+function playAlertSound(){
+  try{
+    const ctx=new(window.AudioContext||window.webkitAudioContext)();
+    const o=ctx.createOscillator(),g=ctx.createGain();
+    o.connect(g);g.connect(ctx.destination);o.type='sine';o.frequency.value=880;
+    g.gain.setValueAtTime(0.0001,ctx.currentTime);g.gain.exponentialRampToValueAtTime(0.18,ctx.currentTime+0.04);g.gain.exponentialRampToValueAtTime(0.0001,ctx.currentTime+0.45);
+    o.start();o.stop(ctx.currentTime+0.5);
+    setTimeout(()=>{const o2=ctx.createOscillator(),g2=ctx.createGain();o2.connect(g2);g2.connect(ctx.destination);o2.type='sine';o2.frequency.value=1175;g2.gain.setValueAtTime(0.0001,ctx.currentTime);g2.gain.exponentialRampToValueAtTime(0.18,ctx.currentTime+0.04);g2.gain.exponentialRampToValueAtTime(0.0001,ctx.currentTime+0.45);o2.start();o2.stop(ctx.currentTime+0.5);},180);
+  }catch(e){}
+}
+
+/* ── HELPERS ── */
+const esc=s=>!s?'':String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const nowISO=()=>new Date().toISOString();
+const fmtDT=iso=>{if(!iso)return'—';const d=new Date(iso);return d.toLocaleDateString('ro-RO')+' '+d.toLocaleTimeString('ro-RO',{hour:'2-digit',minute:'2-digit'});};
+const UNITATI=['buc','m','m²','m³','kg','t','l','saci','role','paleti','ml','cm','pungi','mp'];
+function getComenziSantier(sid){return Object.values(S.data.comenzi||{}).filter(c=>c.santierId===sid);}
+function calcProgress(sid,mid,nec){
+  const cs=Object.values(S.data.comenzi||{}).filter(c=>c.santierId===sid);
+  const items=cs.flatMap(c=>(c.items||[]).filter(it=>it.materialId===mid));
+  const cmd=items.reduce((s,it)=>s+(it.cantitate||0),0);
+  const liv=items.filter(it=>it.livrareTs).reduce((s,it)=>s+(it.cantitate||0),0);
+  return{comandat:cmd,livrat:liv,over:liv>nec&&nec>0};
+}
+function comandaPhase(c){
+  // Phase la nivel de comanda (pentru compatibilitate): folosim items
+  if(!c.items||c.items.length===0){if(c.livrareTs)return 4;if(c.inTranzitTs)return 3;if(c.plasatTs)return 2;if(c.achizitorTs)return 1;return 0;}
+  const phases=c.items.map(it=>{if(it.livrareTs)return 4;if(it.inTranzitTs)return 3;if(it.plasatTs)return 2;if(c.achizitorTs)return 1;return 0;});
+  return Math.min(...phases);
+}
+function itemPhase(item,comanda){
+  if(item.livrareTs)return 4;
+  if(item.inTranzitTs)return 3;
+  if(item.plasatTs)return 2;
+  if(comanda.achizitorTs)return 1;
+  return 0;
+}
+function statusBadge(phase){
+  if(phase===4)return'<span class="badge b-green">● FINALIZAT</span>';
+  if(phase===3)return'<span class="badge b-cyan">▶ TRANZIT</span>';
+  if(phase===2)return'<span class="badge b-orange">◆ PLASAT</span>';
+  if(phase===1)return'<span class="badge b-purple">◐ PRELUAT</span>';
+  return'<span class="badge b-blue">○ NOU</span>';
+}
+function stepsHTML(phase){
+  const labels=['CMD','PRELUAT','PLASAT','TRANZIT','FINAL'];
+  let h='<div class="steps">';
+  for(let i=0;i<5;i++){const cls=i<phase?'done':(i===phase?'cur':'');h+=`<div class="step ${cls}">${labels[i]}</div>`;if(i<4)h+='<span class="step-arr">›</span>';}
+  return h+'</div>';
+}
+function updateAlerts(){
+  let n=0;
+  Object.entries(S.data.santiere||{}).forEach(([sid])=>{
+    Object.entries(S.data.materiale?.[sid]||{}).forEach(([mid,m])=>{if(calcProgress(sid,mid,m.cantitateNecesara).over)n++;});
+  });
+  const b=document.getElementById('alert-badge'),c=document.getElementById('alert-count');
+  if(b&&c){c.textContent=n;b.style.display=n>0?'inline-flex':'none';}
+}
+const isInginer=()=>S.user?.role==='inginer';
+const isAdmin=()=>S.user?.role==='admin';
+const canEdit=()=>['inginer','admin'].includes(S.user?.role);
+const canAch=()=>['achizitor','admin'].includes(S.user?.role);
+const canLivra=()=>['inginer','admin'].includes(S.user?.role);
+
+/* ── MODAL ── */
+function openModal(title,body){
+  document.getElementById('modal-c').innerHTML=`<div class="mo" id="mo-ov">
+    <div class="modal"><div class="mh"><h3>${title}</h3><button class="btn-x" onclick="closeModal()">✕</button></div>
+    <div class="mb">${body}</div></div></div>`;
+  document.getElementById('mo-ov').addEventListener('click',e=>{if(e.target.id==='mo-ov')closeModal();});
+}
+function closeModal(){document.getElementById('modal-c').innerHTML='';}
+window.__cfmFns={};
+function confirmAction(msg,fn,cid){
+  const el=document.getElementById(cid);if(!el)return;
+  window.__cfmFns[cid]=fn;
+  el.innerHTML=`<div class="cdlg"><p>${msg}</p><div class="br">
+    <button class="btn btn-red btn-sm" onclick="(window.__cfmFns['${cid}']||function(){})();document.getElementById('${cid}').innerHTML='';delete window.__cfmFns['${cid}']">Confirmă</button>
+    <button class="btn btn-ghost btn-sm" onclick="document.getElementById('${cid}').innerHTML='';delete window.__cfmFns['${cid}']">Anulează</button>
+  </div></div>`;
+}
+
+/* ══════════════════════════════════════════
+   ADMIN
+══════════════════════════════════════════ */
+function renderAdmin(){
+  if(!isAdmin()){document.getElementById('view-admin').innerHTML='<div class="empty"><div class="empty-icon">🔒</div><div class="empty-title">Acces restricționat</div></div>';return;}
+  const users=Object.entries(S.data.users||{});
+  const santiere=Object.entries(S.data.santiere||{});
+  let html=`<div class="ph">
+    <div><div class="pt">Panou Admin</div><div class="ps">${users.length} utilizatori · ${santiere.length} șantiere</div></div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button class="btn btn-primary" onclick="modalAddUser()">+ Utilizator Nou</button>
+      <button class="btn btn-red" onclick="clearAllDataStep1()">🗑 Curăță Toate Datele</button>
+    </div>
+  </div>`;
+  /* Users */
+  html+=`<div class="card" style="padding:0;overflow:hidden;margin-bottom:16px">
+    <div style="padding:10px 14px;background:var(--bg3);border-bottom:1px solid var(--border);font-family:var(--mono);font-size:11px;font-weight:700;color:var(--text2);letter-spacing:1px;text-transform:uppercase">UTILIZATORI</div>
+    <table class="admin-table"><thead><tr><th>Utilizator</th><th>Nume</th><th>Rol</th><th>Status</th><th>Creat</th><th></th></tr></thead><tbody>`;
+  users.forEach(([uid,u])=>{
+    const rc={admin:'b-orange',inginer:'b-blue',achizitor:'b-purple'};
+    html+=`<tr>
+      <td style="font-family:var(--mono);color:var(--cyan)">${esc(u.username)}</td>
+      <td>${esc(u.name)}</td>
+      <td><span class="badge ${rc[u.role]||'b-gray'}">${(u.role||'').toUpperCase()}</span></td>
+      <td><span class="badge ${u.active?'b-green':'b-red'}">${u.active?'ACTIV':'INACTIV'}</span></td>
+      <td style="font-size:11px;color:var(--text3);font-family:var(--mono)">${fmtDT(u.createdAt)}</td>
+      <td><div style="display:flex;gap:5px">
+        <button class="btn btn-ghost btn-sm" onclick="modalEditUser('${uid}')">Edit</button>
+        ${uid!=='user_admin'?`<button class="btn btn-red btn-sm" onclick="confirmAction('Ștergi utilizatorul ${esc(u.username)}?',()=>write('/users/${uid}',null),'cu-${uid}')">✕</button>`:''}
+      </div><div id="cu-${uid}"></div></td>
+    </tr>`;
+  });
+  html+=`</tbody></table></div>`;
+  /* Șantiere cu delete individual */
+  html+=`<div class="card" style="padding:0;overflow:hidden;margin-bottom:16px">
+    <div style="padding:10px 14px;background:var(--bg3);border-bottom:1px solid var(--border);font-family:var(--mono);font-size:11px;font-weight:700;color:var(--text2);letter-spacing:1px;text-transform:uppercase">ȘANTIERE — ȘTERGERE INDIVIDUALĂ</div>
+    <table class="admin-table"><thead><tr><th>Șantier</th><th>Locație</th><th>Materiale</th><th>Comenzi</th><th></th></tr></thead><tbody>`;
+  if(!santiere.length){html+=`<tr><td colspan="5" style="text-align:center;color:var(--text3);font-family:var(--mono);font-size:11px;padding:20px">Niciun șantier</td></tr>`;}
+  santiere.forEach(([sid,s])=>{
+    const mats=Object.keys(S.data.materiale?.[sid]||{}).length;
+    const cmds=Object.values(S.data.comenzi||{}).filter(c=>c.santierId===sid).length;
+    html+=`<tr>
+      <td><b>${esc(s.name)}</b></td>
+      <td style="color:var(--text3);font-size:11px">${esc(s.locatie||'—')}</td>
+      <td style="font-family:var(--mono)">${mats}</td>
+      <td style="font-family:var(--mono)">${cmds}</td>
+      <td><button class="btn btn-red btn-sm" onclick="confirmDeleteSantier('${sid}')">🗑 Șterge</button>
+      <div id="cds-${sid}"></div></td>
+    </tr>`;
+  });
+  html+=`</tbody></table></div>`;
+  /* Configurare Web Push VAPID */
+  const vapidOk = !!(S.data.config?.vapidPublicKey);
+  html+=`<div class="card" style="margin-bottom:16px">
+    <div style="font-family:var(--mono);font-size:11px;font-weight:700;color:var(--accent);letter-spacing:1px;text-transform:uppercase;margin-bottom:12px">🔑 Web Push — Notificări Native CF Floor</div>
+    <div class="ib" style="margin-bottom:12px">
+      Notificări direct în app-ul CF Floor, fără aplicație separată.<br>
+      <b>Pas 1:</b> Generează cheile de mai jos. <b>Pas 2:</b> Copiază cheia privată în Netlify. <b>Pas 3:</b> Deploy din GitHub.
+    </div>
+    ${vapidOk?'<div style="color:#4ade80;font-family:var(--mono);font-size:11px;margin-bottom:10px">✓ Cheie publică configurată</div>':''}
+    <button class="btn btn-primary" onclick="generateVapidKeys()">⚡ Generează Chei VAPID</button>
+    <div id="vapid-output" style="display:none;margin-top:12px;background:var(--bg);border:1px solid var(--border2);border-radius:var(--r-sm);padding:12px;font-family:var(--mono);line-height:1.8"></div>
+  </div>`;
+  /* Configurare Notificări Push (ntfy.sh) */
+  const currentTopic = S.data.config?.ntfyTopic || NTFY_TOPIC_DEFAULT;
+  html+=`<div class="card" style="margin-bottom:16px">
+    <div style="font-family:var(--mono);font-size:11px;font-weight:700;color:var(--accent);letter-spacing:1px;text-transform:uppercase;margin-bottom:12px">🔔 Notificări Push (ntfy.sh)</div>
+    <div class="ib" style="margin-bottom:12px">
+      Achizitorul trebuie să instaleze app-ul <b>ntfy</b> (gratuit, Android/iOS) și să se aboneze la topic-ul de mai jos.<br>
+      Când inginerul trimite o comandă, achizitorul va primi notificare chiar dacă app-ul e <b>complet închis</b>.
+    </div>
+    <div class="fld">
+      <label>Topic Notificări (unic per echipă)</label>
+      <div style="display:flex;gap:8px">
+        <input class="inp" id="ntfy-topic-inp" value="${esc(currentTopic)}" placeholder="ex: cornellifloor-echipa-mea" style="flex:1">
+        <button class="btn btn-primary" onclick="saveNtfyTopic()">Salvează</button>
+        <button class="btn btn-cyan" onclick="testNtfy()">▶ Test</button>
+      </div>
+    </div>
+    <div style="font-family:var(--mono);font-size:11px;color:var(--text3);line-height:1.8;margin-top:6px">
+      📱 <b style="color:var(--text2)">Instrucțiuni achizitor:</b><br>
+      1. Instalează app-ul <b>ntfy</b> din Play Store / App Store<br>
+      2. Deschide app-ul → apasă <b>+</b> → introdu topic-ul de mai sus<br>
+      3. Gata — vei primi notificări la fiecare comandă nouă!
+    </div>
+  </div>`;
+  /* Info */
+  html+=`<div style="padding:12px 14px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);font-size:12px;color:var(--text3);font-family:var(--mono);line-height:1.7">
+    💡 Conturi: <b style="color:var(--accent)">admin/admin1234</b> · <b style="color:var(--blue)">inginer1/ing1234</b> · <b style="color:var(--purple)">achizitor1/ach1234</b>
+  </div>`;
+  document.getElementById('view-admin').innerHTML=html;
+}
+
+function saveNtfyTopic(){
+  const topic = document.getElementById('ntfy-topic-inp')?.value.trim();
+  if(!topic){toast('Introduceți un topic valid!','error');return;}
+  write('/config/ntfyTopic', topic).then(()=>toast('✓ Topic salvat! Achizitorul poate acum să se aboneze.','success'));
+}
+function testNtfy(){
+  const topic = (document.getElementById('ntfy-topic-inp')?.value.trim()) || (S.data.config?.ntfyTopic) || NTFY_TOPIC_DEFAULT;
+  sendNtfyNotification('🔔 Test Cornell\'s Floor','Notificările funcționează! Dacă ai primit asta pe telefon, totul e configurat corect.');
+  toast('✓ Notificare test trimisă la topic: '+topic,'success',4000);
+}
+
+function confirmDeleteSantier(sid){
+  const s=S.data.santiere?.[sid];
+  if(!s){toast('Santierul nu a fost gasit!','error');return;}
+  openModal('Sterge Santier',`
+    <div style="background:#3a0d0d;border:1px solid #7f1d1d;border-radius:8px;padding:14px;margin-bottom:16px;color:#fca5a5;font-size:13px;line-height:1.7">
+      ⚠ Stergi santierul <b>${esc(s.name)}</b>?<br>
+      Vor fi sterse toate materialele si comenzile asociate.<br>
+      <b>Actiunea este ireversibila!</b>
+    </div>
+    <div style="display:flex;gap:10px">
+      <button class="btn btn-ghost" style="flex:1;justify-content:center" onclick="closeModal()">Anuleaza</button>
+      <button class="btn btn-red" style="flex:1;justify-content:center" onclick="doDeleteSantier('${sid}')">🗑 Sterge</button>
+    </div>
+  `);
+}
+function doDeleteSantier(sid){
+  closeModal();
+  const comenziDeSters=Object.entries(S.data.comenzi||{}).filter(([,c])=>c.santierId===sid).map(([cid])=>cid);
+  Promise.all([
+    write('/santiere/'+sid,null),
+    write('/materiale/'+sid,null),
+    ...comenziDeSters.map(cid=>write('/comenzi/'+cid,null))
+  ]).then(()=>toast('Santier sters!','info'));
+}
+
+/* Clear all — 2 confirmations */
+let clearStep=0;
+function clearAllDataStep1(){
+  clearStep=0;
+  openModal('Ștergere Totală Date',`
+    <div style="background:#3a0d0d;border:1px solid #7f1d1d;border-radius:8px;padding:14px;margin-bottom:16px;color:#fca5a5;font-size:13px;line-height:1.7">
+      ⚠ <b>ATENȚIE!</b> Această acțiune va șterge TOATE șantierele, materialele și comenzile!<br>
+      Utilizatorii și parolele rămân intacte.<br>
+      <b>Acțiunea este IREVERSIBILĂ.</b>
+    </div>
+    <p style="color:var(--text2);font-size:13px;margin-bottom:16px">Ești sigur că vrei să continui? Va urma o a doua confirmare.</p>
+    <button class="btn btn-red" style="width:100%;justify-content:center" onclick="clearAllDataStep2()">⚠ Da, continuă cu ștergerea →</button>
+  `);
+}
+function clearAllDataStep2(){
+  closeModal();
+  openModal('CONFIRMARE FINALĂ — Ștergere Totală',`
+    <div style="background:#3a0d0d;border:2px solid #ef4444;border-radius:8px;padding:16px;margin-bottom:16px;color:#fca5a5;font-size:13px;line-height:1.7;text-align:center">
+      🚨 <b>ULTIMA CONFIRMARE</b> 🚨<br><br>
+      Vor fi șterse DEFINITIV:<br>
+      <b>${Object.keys(S.data.santiere||{}).length} șantiere</b> · 
+      <b>${Object.keys(S.data.comenzi||{}).length} comenzi</b><br><br>
+      Nu există cale de întoarcere!
+    </div>
+    <div style="display:flex;gap:10px">
+      <button class="btn btn-ghost" style="flex:1;justify-content:center" onclick="closeModal()">Anulează</button>
+      <button class="btn btn-red" style="flex:1;justify-content:center" onclick="confirmClearData()">🗑 ȘTERGE TOT</button>
+    </div>
+  `);
+}
+function confirmClearData(){
+  closeModal();
+  const cids=Object.keys(S.data.comenzi||{});
+  const promises=[write('/santiere',null),write('/materiale',null),...cids.map(cid=>write('/comenzi/'+cid,null))];
+  Promise.all(promises).then(()=>toast('✓ Toate datele au fost șterse. Sistemul este curat.','success',5000));
+}
+
+function modalAddUser(){
+  openModal('Utilizator Nou',`
+    <div class="ir"><div class="fld"><label>Utilizator *</label><input class="inp" id="nu-user" placeholder="ex: ion.popescu" autocapitalize="none"></div>
+    <div class="fld"><label>Parolă *</label><input class="inp" id="nu-pass" type="password" placeholder="min. 6 caractere"></div></div>
+    <div class="fld"><label>Nume Complet *</label><input class="inp" id="nu-name" placeholder="ex: Ion Popescu"></div>
+    <div class="fld"><label>Rol</label><select class="inp" id="nu-role">
+      <option value="inginer">▣ Inginer</option><option value="achizitor">▦ Achizitor</option><option value="admin">▧ Admin</option>
+    </select></div>
+    <button class="btn btn-primary" onclick="saveUser()">Salvează Utilizator</button>
+  `);
+  setTimeout(()=>document.getElementById('nu-user')?.focus(),100);
+}
+async function saveUser(){
+  const username=document.getElementById('nu-user').value.trim().toLowerCase();
+  const password=document.getElementById('nu-pass').value;
+  const name=document.getElementById('nu-name').value.trim();
+  const role=document.getElementById('nu-role').value;
+  if(!username||!password||!name){toast('Completați toate câmpurile!','error');return;}
+  if(password.length<6){toast('Parola min. 6 caractere!','error');return;}
+  if(Object.values(S.data.users||{}).some(u=>u.username===username)){toast('Utilizatorul există deja!','error');return;}
+  const btn=document.querySelector('.modal .btn-primary');if(btn){btn.disabled=true;btn.textContent='Se salvează...';}
+  push('/users',{username,passwordHash:await sha256(password),role,name,active:true,createdAt:nowISO()}).then(()=>{closeModal();toast('Utilizator creat!','success');});
+}
+function modalEditUser(id){
+  const u=S.data.users?.[id];if(!u)return;
+  openModal(`Editează: ${esc(u.name)}`,`
+    <div class="ib">Utilizator: <b>${esc(u.username)}</b></div>
+    <div class="fld"><label>Nume</label><input class="inp" id="eu-name" value="${esc(u.name)}"></div>
+    <div class="fld"><label>Rol</label><select class="inp" id="eu-role">
+      <option value="inginer"${u.role==='inginer'?' selected':''}>Inginer</option>
+      <option value="achizitor"${u.role==='achizitor'?' selected':''}>Achizitor</option>
+      <option value="admin"${u.role==='admin'?' selected':''}>Admin</option>
+    </select></div>
+    <div class="fld"><label>Status</label><select class="inp" id="eu-active">
+      <option value="1"${u.active?' selected':''}>Activ</option><option value="0"${!u.active?' selected':''}>Inactiv</option>
+    </select></div>
+    <div class="fld"><label>Parolă Nouă (lasă gol pentru a păstra)</label><input class="inp" id="eu-pass" type="password" placeholder="••••••••"></div>
+    <button class="btn btn-primary" onclick="updateUser('${id}')">Salvează</button>
+  `);
+}
+async function updateUser(id){
+  const u=S.data.users?.[id];if(!u)return;
+  const name=document.getElementById('eu-name').value.trim();
+  const role=document.getElementById('eu-role').value;
+  const active=document.getElementById('eu-active').value==='1';
+  const newPass=document.getElementById('eu-pass').value;
+  if(!name){toast('Introduceți numele!','error');return;}
+  const updated={...u,name,role,active};
+  if(newPass){if(newPass.length<6){toast('Parola min. 6 caractere!','error');return;}updated.passwordHash=await sha256(newPass);}
+  write('/users/'+id,updated).then(()=>{closeModal();toast('Utilizator actualizat!','success');});
+}
+
+/* ══════════════════════════════════════════
+   ȘANTIERE
+══════════════════════════════════════════ */
+function renderSantiere(){
+  const santiere=Object.entries(S.data.santiere||{});
+  const noiCount=Object.values(S.data.comenzi||{}).filter(c=>comandaPhase(c)===0).length;
+  let html=`<div class="ph">
+    <div><div class="pt">Toate Șantierele</div><div class="ps">${santiere.length} ${santiere.length===1?'șantier':'șantiere'} înregistrate</div></div>
+    ${canEdit()?`<button class="btn btn-primary" onclick="modalAddSantier()">+ Șantier Nou</button>`:''}
+  </div>`;
+  if(canAch()&&noiCount>0) html+=`<div class="ab">📬 <b>${noiCount} comand${noiCount>1?'e noi':'ă nouă'}</b> de preluat — click pe un șantier pentru procesare</div>`;
+  if(!santiere.length){
+    html+=`<div class="empty"><div class="empty-icon">🏗️</div><div class="empty-title">Niciun șantier</div>${canEdit()?'<p>Apasă "+ Șantier Nou" pentru a începe</p>':'<p>Așteptați ca inginerul să creeze șantiere</p>'}</div>`;
+  }else{
+    html+='<div class="g2">';
+    santiere.forEach(([id,s])=>{
+      const comenzi=Object.values(S.data.comenzi||{}).filter(c=>c.santierId===id);
+      const mats=Object.entries(S.data.materiale?.[id]||{});
+      const alerte=mats.filter(([mid,m])=>calcProgress(id,mid,m.cantitateNecesara).over).length;
+      const cNoi=comenzi.filter(c=>comandaPhase(c)===0).length;
+      const cActive=comenzi.filter(c=>comandaPhase(c)>0&&comandaPhase(c)<4).length;
+      html+=`<div class="card santier-card${alerte>0?' ac':''}" onclick="openSantier('${id}')">
+        <div class="label">▎ ȘANTIER</div>
+        <h3>${esc(s.name)}</h3>
+        <div class="meta">
+          ${s.locatie?`<span>📍 ${esc(s.locatie)}</span>`:''}
+          ${s.dataStart?`<span>📅 ${s.dataStart}</span>`:''}
+        </div>
+        ${s.observatii?`<div style="color:var(--text3);font-size:11px;font-style:italic">"${esc(s.observatii)}"</div>`:''}
+        <div class="stats">
+          <div class="stat-pill"><span>Materiale</span><b>${mats.length}</b></div>
+          <div class="stat-pill warn"><span>Comenzi</span><b>${comenzi.length}</b></div>
+          ${cNoi>0?`<div class="stat-pill" style="border-color:#1d4ed8;color:#60a5fa;background:#0c2547"><span>○ Noi</span><b>${cNoi}</b></div>`:''}
+          ${alerte>0?`<div class="stat-pill alert"><span>⚠ Depășiri</span><b>${alerte}</b></div>`:''}
+        </div>
+        <div style="margin-top:5px;font-size:10px;color:var(--text3);font-family:var(--mono);text-transform:uppercase;letter-spacing:1px;border-top:1px dashed var(--border);padding-top:6px">
+          ◷ ${esc(s.createdBy)} · ${fmtDT(s.createdAt)}
+          ${isAdmin()?`<button class="btn btn-red btn-sm" style="float:right;margin-top:-2px" onclick="event.stopPropagation();confirmDeleteSantier('${id}')">🗑</button>`:''}
+        </div>
+      </div>`;
+    });
+    html+='</div>';
+  }
+  document.getElementById('view-santiere').innerHTML=html;
+}
+function modalAddSantier(){
+  openModal('Șantier Nou',`
+    <div class="fld"><label>Denumire *</label><input class="inp" id="s-name" placeholder="ex: Bloc A, Mihai Viteazu" maxlength="80"></div>
+    <div class="fld"><label>Locație</label><input class="inp" id="s-loc" placeholder="ex: Suceava, Str. Ștefan cel Mare" maxlength="100"></div>
+    <div class="fld"><label>Data Început</label><input class="inp" type="date" id="s-data" style="color-scheme:dark"></div>
+    <div class="fld"><label>Observații</label><input class="inp" id="s-obs" placeholder="beneficiar, descriere..." maxlength="200"></div>
+    <button class="btn btn-primary" onclick="saveSantier()">Salvează Șantier</button>
+  `);
+  setTimeout(()=>document.getElementById('s-name')?.focus(),100);
+}
+function saveSantier(){
+  if(!canEdit()){toast('Acces interzis!','error');return;}
+  const name=document.getElementById('s-name').value.trim();
+  if(!name){toast('Introduceți denumirea!','error');return;}
+  const btn=document.querySelector('.modal .btn-primary');if(btn){btn.disabled=true;btn.textContent='Se salvează...';}
+  push('/santiere',{name,locatie:document.getElementById('s-loc').value.trim(),dataStart:document.getElementById('s-data').value,observatii:document.getElementById('s-obs').value.trim(),createdBy:S.user.name,createdAt:nowISO()}).then(()=>{closeModal();toast('Șantier adăugat!','success');});
+}
+
+/* ══════════════════════════════════════════
+   MATERIALE — TABELAR COMPACT + ADĂUGARE BATCH
+══════════════════════════════════════════ */
+let matBatch=[]; // materiale introduse dar neconfirmate
+
+function renderMateriale(){
+  const sid=S.activeSantier,s=S.data.santiere?.[sid];if(!s)return;
+  const mats=Object.entries(S.data.materiale?.[sid]||{});
+  let html=`<div class="ph">
+    <div><div class="pt">Necesar Materiale</div><div class="ps">${esc(s.name)} · ${mats.length} materiale</div></div>
+    <div style="display:flex;gap:8px">
+      <button class="btn ${canEdit()?'btn-primary':'btn-ghost'} btn-sm" onclick="navTo('comenzi')">▥ Comenzi Șantier</button>
+    </div>
+  </div>`;
+
+  /* Tabel materiale existente */
+  if(!mats.length){
+    html+=`<div class="empty" style="margin-bottom:16px"><div class="empty-icon">📦</div><div class="empty-title">Niciun material adăugat</div><p>Adaugă materialele necesare mai jos</p></div>`;
+  }else{
+    html+=`<div class="card" style="padding:0;overflow-x:auto;margin-bottom:16px">
+      <table class="mat-table">
+        <thead><tr>
+          <th>Material</th><th>Necesar</th><th>UM</th><th>Comandat</th><th>Livrat</th><th>Progress</th><th>Obs.</th>
+          ${canEdit()?'<th></th>':''}
+        </tr></thead><tbody>`;
+    mats.forEach(([mid,m])=>{
+      const{comandat,livrat,over}=calcProgress(sid,mid,m.cantitateNecesara);
+      const pL=Math.min(m.cantitateNecesara>0?(livrat/m.cantitateNecesara)*100:0,100);
+      html+=`<tr${over?' style="background:rgba(127,29,29,.08)"':''}>
+        <td><b style="font-size:12px">${esc(m.name)}</b></td>
+        <td style="font-family:var(--mono);color:var(--accent)">${m.cantitateNecesara}</td>
+        <td style="font-family:var(--mono);color:var(--text2)">${esc(m.unitate)}</td>
+        <td style="font-family:var(--mono);color:#60a5fa">${comandat}</td>
+        <td style="font-family:var(--mono);color:${over?'#fca5a5':'#4ade80'}">${livrat}</td>
+        <td style="min-width:80px">
+          <div style="display:flex;align-items:center;gap:5px">
+            <div style="flex:1;height:5px;background:var(--bg);border-radius:3px;overflow:hidden;border:1px solid var(--border)">
+              <div style="height:100%;width:${pL}%;background:${over?'#ef4444':'#22c55e'};border-radius:3px"></div>
+            </div>
+            <span style="font-family:var(--mono);font-size:9px;color:var(--text3);width:28px">${Math.round(pL)}%</span>
+          </div>
+          ${over?`<div style="font-family:var(--mono);font-size:9px;color:#fca5a5">⚠ +${(livrat-m.cantitateNecesara).toFixed(1)}</div>`:''}
+        </td>
+        <td style="color:var(--text3);font-size:11px">${esc(m.observatii||'')}</td>
+        ${canEdit()?`<td><div style="display:flex;gap:4px">
+          <button class="btn btn-ghost btn-sm" onclick="modalEditMat('${mid}')">✎</button>
+          <button class="btn btn-red btn-sm" onclick="confirmDeleteMat('${mid}')">✕</button>
+          <div id="cdm-${mid}" style="display:inline"></div>
+        </div></td>`:''}
+      </tr>`;
+    });
+    html+=`</tbody></table></div>`;
+  }
+
+  /* Formular adăugare batch — DOAR inginer/admin */
+  if(canEdit()){
+    html+=`<div class="card">
+      <div style="font-family:var(--mono);font-size:11px;font-weight:700;color:var(--accent);letter-spacing:1px;text-transform:uppercase;margin-bottom:12px">▎ Adaugă Materiale (batch)</div>
+      <div style="overflow-x:auto">
+      <table style="width:100%;border-collapse:collapse;font-size:12px" id="batch-table">
+        <thead><tr>
+          <th style="text-align:left;font-size:10px;color:var(--text3);font-weight:700;font-family:var(--mono);padding:6px 8px;border-bottom:1px solid var(--border);text-transform:uppercase;letter-spacing:1px;background:var(--bg3)">Denumire Material *</th>
+          <th style="text-align:left;font-size:10px;color:var(--text3);font-weight:700;font-family:var(--mono);padding:6px 8px;border-bottom:1px solid var(--border);text-transform:uppercase;letter-spacing:1px;background:var(--bg3)">Cantitate *</th>
+          <th style="text-align:left;font-size:10px;color:var(--text3);font-weight:700;font-family:var(--mono);padding:6px 8px;border-bottom:1px solid var(--border);text-transform:uppercase;letter-spacing:1px;background:var(--bg3)">UM</th>
+          <th style="text-align:left;font-size:10px;color:var(--text3);font-weight:700;font-family:var(--mono);padding:6px 8px;border-bottom:1px solid var(--border);text-transform:uppercase;letter-spacing:1px;background:var(--bg3)">Observații</th>
+          <th style="background:var(--bg3);border-bottom:1px solid var(--border);padding:6px 8px"></th>
+        </tr></thead>
+        <tbody id="batch-rows">`;
+    /* Rânduri batch */
+    const rows=matBatch.length>0?matBatch:[{name:'',cant:'',unit:'buc',obs:''}];
+    rows.forEach((r,i)=>{
+      html+=batchRow(i,r.name,r.cant,r.unit,r.obs);
+    });
+    html+=`</tbody></table></div>
+      <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
+        <button class="btn btn-ghost btn-sm" onclick="addBatchRow()">+ Rând Nou</button>
+        <button class="btn btn-primary" onclick="confirmBatch()">✓ Confirmă și Adaugă în Sistem</button>
+      </div>
+      <div style="font-family:var(--mono);font-size:10px;color:var(--text3);margin-top:8px">
+        ℹ Completează toate materialele, apoi apasă "Confirmă și Adaugă în Sistem" — toate vor fi salvate simultan.
+      </div>
+    </div>`;
+  }
+  document.getElementById('view-materiale').innerHTML=html;
+}
+
+function batchRow(i,name='',cant='',unit='buc',obs=''){
+  const unitOpts=UNITATI.map(u=>`<option${u===unit?' selected':''}>${u}</option>`).join('');
+  return `<tr id="brow-${i}" class="add-row" style="border-bottom:1px solid var(--border)">
+    <td style="padding:5px 6px"><input type="text" placeholder="ex: Beton C20/25" value="${esc(name)}" oninput="updateBatch(${i},'name',this.value)" style="width:180px"></td>
+    <td style="padding:5px 6px"><input type="number" min="0" step="any" placeholder="0" value="${cant}" oninput="updateBatch(${i},'cant',this.value)" style="width:80px"></td>
+    <td style="padding:5px 6px"><select onchange="updateBatch(${i},'unit',this.value)" style="width:70px">${unitOpts}</select></td>
+    <td style="padding:5px 6px"><input type="text" placeholder="opțional" value="${esc(obs)}" oninput="updateBatch(${i},'obs',this.value)" style="width:130px"></td>
+    <td style="padding:5px 6px"><button class="btn btn-red btn-sm" onclick="removeBatchRow(${i})">✕</button></td>
+  </tr>`;
+}
+function initBatch(){if(matBatch.length===0)matBatch=[{name:'',cant:'',unit:'buc',obs:''}];}
+function updateBatch(i,field,val){if(!matBatch[i])matBatch[i]={name:'',cant:'',unit:'buc',obs:''};matBatch[i][field]=val;}
+function addBatchRow(){
+  syncBatchFromDOM();
+  matBatch.push({name:'',cant:'',unit:'buc',obs:''});
+  renderMateriale();
+  // Focus on last new row
+  setTimeout(()=>{const rows=document.querySelectorAll('#batch-rows tr');if(rows.length)rows[rows.length-1].querySelector('input')?.focus();},50);
+}
+function removeBatchRow(i){syncBatchFromDOM();matBatch.splice(i,1);if(matBatch.length===0)matBatch=[{name:'',cant:'',unit:'buc',obs:''}];renderMateriale();}
+function syncBatchFromDOM(){
+  const tbody=document.getElementById('batch-rows');if(!tbody)return;
+  tbody.querySelectorAll('tr[id^="brow-"]').forEach((tr,i)=>{
+    const inputs=tr.querySelectorAll('input,select');
+    if(!matBatch[i])matBatch[i]={name:'',cant:'',unit:'buc',obs:''};
+    matBatch[i].name=inputs[0]?.value.trim()||'';
+    matBatch[i].cant=inputs[1]?.value||'';
+    matBatch[i].unit=inputs[2]?.value||'buc';
+    matBatch[i].obs=inputs[3]?.value.trim()||'';
+  });
+}
+async function confirmBatch(){
+  syncBatchFromDOM();
+  const valid=matBatch.filter(r=>r.name&&parseFloat(r.cant)>0);
+  if(!valid.length){toast('Introduceți cel puțin un material cu cantitate validă!','error');return;}
+  const sid=S.activeSantier;
+  const btn=document.querySelector('.card .btn-primary');if(btn){btn.disabled=true;btn.textContent='Se salvează...';}
+  const existente=Object.values(S.data.materiale?.[sid]||{}).map(m=>m.name.toLowerCase());
+  let added=0,skipped=0;
+  for(const r of valid){
+    if(existente.includes(r.name.toLowerCase())){skipped++;continue;}
+    await push('/materiale/'+sid,{name:r.name,cantitateNecesara:parseFloat(r.cant),unitate:r.unit,observatii:r.obs,addedBy:S.user.name,addedAt:nowISO()});
+    added++;
+  }
+  matBatch=[{name:'',cant:'',unit:'buc',obs:''}];
+  if(added>0)toast('✓ '+added+' material'+(added>1?'e adăugate':'adăugat')+' cu succes!'+(skipped>0?' ('+skipped+' omis, deja exista)':''), 'success');
+  else toast('Niciun material nou adăugat (toate existau deja)','info');
+  // NU re-renderăm toată pagina — doar actualizăm tabla
+  renderMateriale();
+}
+
+function modalEditMat(mid){
+  if(!canEdit()){toast('Acces interzis!','error');return;}
+  const sid=S.activeSantier,m=S.data.materiale?.[sid]?.[mid];if(!m)return;
+  openModal('Modifică Material',`
+    <div class="ib">Editare: <b>${esc(m.name)}</b></div>
+    <div class="fld"><label>Denumire</label><input class="inp" id="em-name" value="${esc(m.name)}" maxlength="100"></div>
+    <div class="ir">
+      <div class="fld"><label>Cantitate</label><input class="inp" id="em-cant" type="number" min="0" step="any" value="${m.cantitateNecesara}"></div>
+      <div class="fld"><label>Unitate</label><select class="inp" id="em-unit">${UNITATI.map(u=>`<option${u===m.unitate?' selected':''}>${u}</option>`).join('')}</select></div>
+    </div>
+    <div class="fld"><label>Observații</label><input class="inp" id="em-obs" value="${esc(m.observatii||'')}" maxlength="200"></div>
+    <button class="btn btn-primary" onclick="updateMat('${mid}')">Salvează</button>
+  `);
+}
+function updateMat(mid){
+  if(!canEdit()){toast('Acces interzis!','error');return;}
+  const sid=S.activeSantier,m=S.data.materiale?.[sid]?.[mid];if(!m)return;
+  const name=document.getElementById('em-name').value.trim();
+  const cant=parseFloat(document.getElementById('em-cant').value);
+  if(!name||isNaN(cant)||cant<=0){toast('Completați câmpurile!','error');return;}
+  write('/materiale/'+sid+'/'+mid,{...m,name,cantitateNecesara:cant,unitate:document.getElementById('em-unit').value,observatii:document.getElementById('em-obs').value.trim(),editedBy:S.user.name,editedAt:nowISO()}).then(()=>{closeModal();toast('Material actualizat!','success');});
+}
+function confirmDeleteMat(mid){
+  const sid=S.activeSantier,m=S.data.materiale?.[sid]?.[mid];
+  if(!m){toast('Materialul nu a fost gasit!','error');return;}
+  openModal('Sterge Material',`
+    <div style="background:#3a0d0d;border:1px solid #7f1d1d;border-radius:8px;padding:14px;margin-bottom:16px;color:#fca5a5;font-size:13px;line-height:1.7">
+      ⚠ Stergi materialul <b>${esc(m.name)}</b>?
+    </div>
+    <div style="display:flex;gap:10px">
+      <button class="btn btn-ghost" style="flex:1;justify-content:center" onclick="closeModal()">Anuleaza</button>
+      <button class="btn btn-red" style="flex:1;justify-content:center" onclick="doDeleteMat('${sid}','${mid}')">✕ Sterge</button>
+    </div>
+  `);
+}
+function doDeleteMat(sid,mid){
+  closeModal();
+  write('/materiale/'+sid+'/'+mid,null).then(()=>toast('Material sters!','info'));
+}
+
+
+/* ── Collapse/Expand sections ── */
+const _collapsed = {}; // key -> bool
+
+function toggleSection(key, el) {
+  // el = the collapse-body div
+  _collapsed[key] = !_collapsed[key];
+  const body = document.getElementById('cb-sec-' + key);
+  const arrow = document.getElementById('ca-' + key);
+  if (!body) return;
+  if (_collapsed[key]) {
+    body.style.maxHeight = '0';
+    body.classList.add('collapsed');
+    body.classList.remove('expanded');
+    if (arrow) arrow.classList.remove('open');
+  } else {
+    body.style.maxHeight = body.scrollHeight + 'px';
+    body.classList.remove('collapsed');
+    body.classList.add('expanded');
+    if (arrow) arrow.classList.add('open');
+    // after transition, remove max-height cap so content can grow
+    setTimeout(() => { if (!_collapsed[key]) body.style.maxHeight = 'none'; }, 300);
+  }
+}
+
+function initCollapse(key, startOpen) {
+  const body = document.getElementById('cb-sec-' + key);
+  const arrow = document.getElementById('ca-' + key);
+  if (!body) return;
+  // Dacă starea există deja (user a toggle-uit înainte), o respectăm
+  // Dacă e prima oară (key nu e în _collapsed), folosim valoarea default
+  const isOpen = (key in _collapsed) ? !_collapsed[key] : startOpen;
+  if (isOpen) {
+    _collapsed[key] = false;
+    body.style.maxHeight = 'none';
+    body.classList.remove('collapsed');
+    body.classList.add('expanded');
+    if (arrow) arrow.classList.add('open');
+  } else {
+    _collapsed[key] = true;
+    body.style.maxHeight = '0';
+    body.classList.add('collapsed');
+    body.classList.remove('expanded');
+    if (arrow) arrow.classList.remove('open');
+  }
+}
+
+/* ══════════════════════════════════════════
+   COMENZI — GRUPATE (multi-material per comanda)
+══════════════════════════════════════════ */
+let cmdBatch={}; // {materialId: {cantitate, obs}}
+
+function renderComenzi(){
+  const sid=S.activeSantier,s=S.data.santiere?.[sid];if(!s)return;
+  const mats=Object.entries(S.data.materiale?.[sid]||{});
+  // Comenzi pentru acest santier, sortate descrescator
+  const comenzi=Object.entries(S.data.comenzi||{})
+    .filter(([,c])=>c.santierId===sid)
+    .sort((a,b)=>new Date(b[1].createdAt||b[1].inginerTs||0)-new Date(a[1].createdAt||a[1].inginerTs||0));
+  // Numărul comenzii (ordinea cronologica crescator)
+  const orderedIds=Object.entries(S.data.comenzi||{})
+    .filter(([,c])=>c.santierId===sid)
+    .sort((a,b)=>new Date(a[1].createdAt||a[1].inginerTs||0)-new Date(b[1].createdAt||b[1].inginerTs||0))
+    .map(([id])=>id);
+  const orderNum=id=>(orderedIds.indexOf(id)+1)||'?';
+
+  let html=`<div class="ph">
+    <div><div class="pt">Comenzi Șantier</div><div class="ps">${esc(s.name)} · ${comenzi.length} ${comenzi.length===1?'comandă':'comenzi'}</div></div>
+    <button class="btn btn-ghost btn-sm" onclick="navTo('materiale')">◀ Materiale</button>
+  </div>`;
+
+  /* Formular comandă nouă — DOAR inginer/admin */
+  if(canEdit()&&mats.length>0){
+    html+=`<div class="card" style="margin-bottom:16px;padding:0;overflow:hidden">
+      <div class="collapse-header order-head" onclick="toggleSection('noua',this)" style="padding:11px 14px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:10px">
+        <div style="display:flex;align-items:center;gap:8px">
+          <i class="collapse-arrow open" id="ca-noua">▶</i>
+          <span style="font-family:var(--mono);font-size:11px;font-weight:700;color:var(--accent);letter-spacing:1px;text-transform:uppercase">Comandă Nouă</span>
+        </div>
+        <span style="font-family:var(--mono);font-size:10px;color:var(--text3)">${mats.length} materiale disponibile · click pentru a ${_collapsed['noua']?'extinde':'restrânge'}</span>
+      </div>
+      <div class="collapse-body expanded" id="cb-sec-noua" style="max-height:none">
+      <div style="padding:14px;overflow-x:auto">
+      <table style="width:100%;border-collapse:collapse;font-size:12px">
+        <thead><tr>
+          <th style="text-align:left;font-size:10px;color:var(--text3);font-weight:700;font-family:var(--mono);padding:7px 8px;border-bottom:1px solid var(--border);text-transform:uppercase;background:var(--bg3)">Material</th>
+          <th style="text-align:left;font-size:10px;color:var(--text3);font-weight:700;font-family:var(--mono);padding:7px 8px;border-bottom:1px solid var(--border);text-transform:uppercase;background:var(--bg3)">Necesar Rămas</th>
+          <th style="text-align:center;font-size:10px;color:var(--text3);font-weight:700;font-family:var(--mono);padding:7px 8px;border-bottom:1px solid var(--border);text-transform:uppercase;background:var(--bg3)">Comandă ✓</th>
+          <th style="text-align:left;font-size:10px;color:var(--text3);font-weight:700;font-family:var(--mono);padding:7px 8px;border-bottom:1px solid var(--border);text-transform:uppercase;background:var(--bg3)">Cantitate</th>
+          <th style="text-align:left;font-size:10px;color:var(--text3);font-weight:700;font-family:var(--mono);padding:7px 8px;border-bottom:1px solid var(--border);text-transform:uppercase;background:var(--bg3)">Observații</th>
+        </tr></thead><tbody>`;
+    mats.forEach(([mid,m])=>{
+      const{comandat,livrat}=calcProgress(sid,mid,m.cantitateNecesara);
+      const ramas=Math.max(0,(m.cantitateNecesara-livrat)).toFixed(2);
+      const checked=!!(cmdBatch[mid]&&cmdBatch[mid].sel);
+      html+=`<tr style="border-bottom:1px solid var(--border)" class="add-row">
+        <td style="padding:6px 8px"><b style="font-size:12px">${esc(m.name)}</b></td>
+        <td style="padding:6px 8px;font-family:var(--mono);color:${parseFloat(ramas)<=0?'#4ade80':'var(--accent)'}">${ramas} ${esc(m.unitate)}</td>
+        <td style="padding:6px 8px;text-align:center">
+          <input type="checkbox" id="cb-${mid}" ${checked?'checked':''} onchange="toggleCmdItem('${mid}',this.checked)" style="width:16px;height:16px;cursor:pointer;accent-color:var(--accent)">
+        </td>
+        <td style="padding:6px 8px">
+          <div style="display:flex;align-items:center;gap:5px">
+            <input type="number" id="cq-${mid}" min="0" step="any" placeholder="0" value="${cmdBatch[mid]?.cant||''}" ${!checked?'disabled':''} oninput="setCmdCant('${mid}',this.value)" style="width:80px;background:var(--bg);border:1px solid var(--border2);border-radius:5px;color:var(--text);padding:5px 7px;font-size:12px;outline:none">
+            <span style="font-family:var(--mono);color:var(--text3);font-size:11px">${esc(m.unitate)}</span>
+          </div>
+        </td>
+        <td style="padding:6px 8px">
+          <input type="text" id="co-${mid}" placeholder="opțional" value="${esc(cmdBatch[mid]?.obs||'')}" ${!checked?'disabled':''} oninput="setCmdObs('${mid}',this.value)" style="width:150px;background:var(--bg);border:1px solid var(--border2);border-radius:5px;color:var(--text);padding:5px 7px;font-size:12px;outline:none">
+        </td>
+      </tr>`;
+    });
+    html+=`</tbody></table></div>
+      <div style="display:flex;gap:10px;margin-top:12px;align-items:center;flex-wrap:wrap;padding:0 14px 14px">
+        <button class="btn btn-primary" onclick="trimiteComanda()">→ Trimite Comanda la Achiziții</button>
+        <span style="font-family:var(--mono);font-size:10px;color:var(--text3)">Bifează materialele dorite, completează cantitățile, apoi trimite</span>
+      </div>
+      </div>
+    </div>`;
+  }else if(canEdit()&&mats.length===0){
+    html+=`<div class="ab" style="margin-bottom:16px">ℹ Adaugă mai întâi materiale la <a onclick="navTo('materiale')" style="color:var(--accent);cursor:pointer">Necesar Materiale</a> pentru a putea crea comenzi.</div>`;
+  }
+
+  /* Lista comenzi existente */
+  if(!comenzi.length){
+    html+=`<div class="empty"><div class="empty-icon">▥</div><div class="empty-title">Nicio comandă</div><p>Folosiți formularul de mai sus pentru a crea prima comandă</p></div>`;
+  }else{
+    comenzi.forEach(([cid,c])=>{
+      const items=c.items||[];
+      const cPhase=Math.min(...items.map(it=>itemPhase(it,c)).concat([0]));
+      const allDone=items.length>0&&items.every(it=>it.livrareTs);
+      const nrCmd=orderNum(cid);
+      html+=`<div class="order-card${c.achizitorTs?'':' new-order'}">
+        <div class="order-head collapse-header" onclick="toggleSection('cmd-${cid}',this)" style="cursor:pointer">
+          <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+            <i class="collapse-arrow" id="ca-cmd-${cid}">▶</i>
+            <span class="order-num">COMANDA #${nrCmd}</span>
+            ${allDone?'<span class="badge b-green">● FINALIZATĂ</span>':c.achizitorTs?'<span class="badge b-purple">◐ PRELUATĂ</span>':'<span class="badge b-blue">○ NOUĂ</span>'}
+            <span style="font-family:var(--mono);font-size:10px;color:var(--text3)">${items.length} material${items.length!==1?'e':''}</span>
+          </div>
+          <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap" onclick="event.stopPropagation()">
+            ${canEdit()&&!allDone?`<button class="btn btn-ghost btn-sm" onclick="modalEditComanda('${cid}')">✎ Edit</button>`:''}
+            ${isAdmin()?`<button class="btn btn-red btn-sm" onclick="confirmDeleteComanda('${cid}',${nrCmd})">🗑</button><div id="cdc-${cid}" style="display:inline"></div>`:''}
+          </div>
+        </div>
+        <div class="collapse-body collapsed" id="cb-sec-cmd-${cid}" style="max-height:0">
+        <div style="padding:0">
+          <table class="cmd-table">
+            <thead><tr>
+              <th style="width:28px;text-align:center">#</th>
+              <th>Material</th><th>Cantitate</th><th>Status</th><th>Obs.</th>
+              ${canAch()&&!allDone?'<th>Acțiuni Achiziții</th>':''}
+              ${canLivra()&&!canAch()?'<th>Livrat</th>':''}
+            </tr></thead><tbody>`;
+      items.forEach((it,idx)=>{
+        const iPhase=itemPhase(it,c);
+        const canMarkLivrat=canLivra()&&!it.livrareTs&&iPhase===3;
+        const canUndo=canLivra()&&it.livrareTs;
+        html+=`<tr${it.livrareTs?' style="opacity:.7"':''}>
+          <td style="text-align:center;font-family:var(--mono);font-size:10px;color:var(--text3);font-weight:700;width:28px">${idx+1}</td>
+          <td><b style="font-size:12px">${esc(it.materialName)}</b></td>
+          <td style="font-family:var(--mono);color:var(--accent)">${it.cantitate} ${esc(it.unitate)}</td>
+          <td>${statusBadge(iPhase)}</td>
+          <td style="color:var(--text3);font-size:11px">${esc(it.obs||'')}</td>
+          ${canAch()&&!allDone?`<td>
+            ${iPhase===1&&!it.plasatTs?`<button class="btn btn-orange btn-sm" onclick="plasatItem('${cid}',${idx})">◆ Plasat</button>`:''}
+            ${iPhase===2&&!it.inTranzitTs?`<button class="btn btn-cyan btn-sm" onclick="tranzitItem('${cid}',${idx})">▶ Tranzit</button>`:''}
+            ${iPhase===3&&!it.livrareTs?`<span style="color:var(--text3);font-size:10px;font-family:var(--mono)">⏳ Asteaptă inginer</span>`:''}
+            ${iPhase===4?'<span class="badge b-green" style="font-size:9px">✓ Done</span>':''}
+          </td>`:''}
+          ${canLivra()&&!canAch()?`<td>
+            ${canMarkLivrat?`<button class="btn btn-green btn-sm" onclick="livratItem('${cid}',${idx})">✓ Ajuns</button>`:''}
+            ${canUndo?`<button class="btn btn-red btn-sm" onclick="undoLivratItem('${cid}',${idx})">↩ Undo</button>`:''}
+            ${!canMarkLivrat&&!canUndo&&iPhase<3?`<span style="color:var(--text3);font-size:10px;font-family:var(--mono)">⏳ La achiziții</span>`:''}
+          </td>`:''}
+        </tr>`;
+      });
+      html+=`</tbody></table>`;
+      /* Timeline comanda */
+      html+=`<div style="padding:10px 14px;border-top:1px dashed var(--border);display:flex;flex-wrap:wrap;gap:8px;align-items:center">
+        <div class="ts"><span class="tsd" style="background:#60a5fa"></span>Comandat de <b>${esc(c.inginerName)}</b> · ${fmtDT(c.createdAt||c.inginerTs)}</div>
+        ${c.achizitorTs?`<div class="ts"><span class="tsd" style="background:var(--purple)"></span>Preluat de <b>${esc(c.achizitorName)}</b> · ${fmtDT(c.achizitorTs)}</div>`:''}
+        ${canAch()&&!c.achizitorTs&&!allDone?`<button class="btn btn-purple btn-sm" onclick="preiaComanda('${cid}')">◐ Preia Comanda</button>`:''}
+      </div>
+      </div></div></div>`;
+    });
+  }
+  document.getElementById('view-comenzi').innerHTML=html;
+  // Init collapse states: Comandă Nouă starts CLOSED, orders start CLOSED
+  requestAnimationFrame(()=>{
+    initCollapse('noua', false);
+    comenzi.forEach(([cid])=>{
+      initCollapse('cmd-'+cid, false);
+    });
+  });
+}
+
+function toggleCmdItem(mid,checked){
+  if(!cmdBatch[mid])cmdBatch[mid]={sel:false,cant:'',obs:''};
+  cmdBatch[mid].sel=checked;
+  const cq=document.getElementById('cq-'+mid);
+  const co=document.getElementById('co-'+mid);
+  if(cq)cq.disabled=!checked;
+  if(co)co.disabled=!checked;
+  if(checked&&cq)setTimeout(()=>cq.focus(),50);
+}
+function setCmdCant(mid,val){if(!cmdBatch[mid])cmdBatch[mid]={sel:true,cant:'',obs:''};cmdBatch[mid].cant=val;}
+function setCmdObs(mid,val){if(!cmdBatch[mid])cmdBatch[mid]={sel:true,cant:'',obs:''};cmdBatch[mid].obs=val;}
+
+function trimiteComanda(){
+  if(!canEdit()){toast('Acces interzis!','error');return;}
+  const sid=S.activeSantier;
+  const mats=S.data.materiale?.[sid]||{};
+  // Colectare din DOM (valorile curente)
+  const items=[];
+  Object.entries(mats).forEach(([mid,m])=>{
+    const cbEl=document.getElementById('cb-'+mid);
+    const cqEl=document.getElementById('cq-'+mid);
+    const coEl=document.getElementById('co-'+mid);
+    if(cbEl&&cbEl.checked){
+      const cant=parseFloat(cqEl?.value);
+      if(!isNaN(cant)&&cant>0){
+        items.push({materialId:mid,materialName:m.name,unitate:m.unitate,cantitate:cant,obs:(coEl?.value||'').trim(),livrareTs:null,plasatTs:null,inTranzitTs:null});
+      }
+    }
+  });
+  if(!items.length){toast('Bifați cel puțin un material cu cantitate validă!','error');return;}
+  push('/comenzi',{
+    santierId:sid,santierName:S.data.santiere[sid]?.name||'',
+    items,inginerName:S.user.name,inginerTs:nowISO(),createdAt:nowISO(),
+    achizitorName:null,achizitorTs:null,status:'comandat'
+  }).then(()=>{
+    cmdBatch={};
+    toast('✓ Comanda cu '+items.length+' material'+(items.length>1?'e':'')+' trimisa la achizitii!','success');
+    const santierName = S.data.santiere[sid]?.name || 'Santier';
+    const notifTitle = 'Comanda Noua — ' + santierName;
+    const notifBody = 'Inginerul ' + S.user.name + ' a trimis o comanda cu ' + items.length + ' material' + (items.length>1?'e':'') + ': ' +
+      items.map(it=>it.cantitate+' '+it.unitate+' '+it.materialName).join(', ');
+    sendWebPush(notifTitle, notifBody);
+    sendNtfyNotification(notifTitle, notifBody);
+    renderComenzi();
+    renderSidebar();
+  });
+}
+
+/* ── Acțiuni comenzi ── */
+function preiaComanda(cid){
+  if(!canAch()){toast('Acces interzis!','error');return;}
+  const c=S.data.comenzi?.[cid];if(!c)return;
+  write('/comenzi/'+cid,{...c,achizitorName:S.user.name,achizitorTs:nowISO(),status:'preluat'}).then(()=>{
+    toast('Comanda preluată!','success');
+    // Rămânem pe pagina curentă
+  });
+}
+function plasatItem(cid,idx){
+  if(!canAch()){toast('Acces interzis!','error');return;}
+  const c=S.data.comenzi?.[cid];if(!c)return;
+  const items=[...c.items];
+  items[idx]={...items[idx],plasatTs:nowISO(),plasatBy:S.user.name};
+  write('/comenzi/'+cid,{...c,items}).then(()=>toast('Marcat plasat la furnizor!','success'));
+}
+function tranzitItem(cid,idx){
+  if(!canAch()){toast('Acces interzis!','error');return;}
+  const c=S.data.comenzi?.[cid];if(!c)return;
+  const items=[...c.items];
+  if(!items[idx].plasatTs)items[idx]={...items[idx],plasatTs:nowISO(),plasatBy:S.user.name};
+  items[idx]={...items[idx],inTranzitTs:nowISO(),inTranzitBy:S.user.name};
+  write('/comenzi/'+cid,{...c,items}).then(()=>toast('Marcat în tranzit!','success'));
+}
+function livratItem(cid,idx){
+  if(!canLivra()){toast('Doar inginerii pot confirma livrarea!','error');return;}
+  const c=S.data.comenzi?.[cid];if(!c)return;
+  const it=c.items[idx];
+  if(itemPhase(it,c)<3){toast('Materialul trebuie să fie marcat "În Tranzit" înainte!','error',4000);return;}
+  const items=[...c.items];
+  items[idx]={...items[idx],livrareTs:nowISO(),livrareBy:S.user.name};
+  const allDone=items.every(it=>it.livrareTs);
+  write('/comenzi/'+cid,{...c,items,status:allDone?'finalizat':c.status}).then(()=>{
+    updateAlerts();toast('✓ Material recepționat în șantier!','success');
+  });
+}
+function undoLivratItem(cid,idx){
+  if(!canLivra()){toast('Acces interzis!','error');return;}
+  const c=S.data.comenzi?.[cid];if(!c)return;
+  const items=[...c.items];
+  items[idx]={...items[idx],livrareTs:null,livrareBy:null};
+  write('/comenzi/'+cid,{...c,items,status:'in_tranzit'}).then(()=>{updateAlerts();toast('Livrare anulată!','info');});
+}
+
+function confirmDeleteComanda(cid,num){
+  openModal('Sterge Comanda',`
+    <div style="background:#3a0d0d;border:1px solid #7f1d1d;border-radius:8px;padding:14px;margin-bottom:16px;color:#fca5a5;font-size:13px;line-height:1.7">
+      ⚠ Stergi <b>Comanda #${num}</b>?<br>
+      Toate materialele din ea vor fi sterse.<br>
+      <b>Actiunea este ireversibila!</b>
+    </div>
+    <div style="display:flex;gap:10px">
+      <button class="btn btn-ghost" style="flex:1;justify-content:center" onclick="closeModal()">Anuleaza</button>
+      <button class="btn btn-red" style="flex:1;justify-content:center" onclick="doDeleteComanda('${cid}')">🗑 Sterge</button>
+    </div>
+  `);
+}
+function doDeleteComanda(cid){
+  closeModal();
+  write('/comenzi/'+cid,null).then(()=>toast('Comanda stearsa!','info'));
+}
+
+function modalEditComanda(cid){
+  if(!canEdit()){toast('Acces interzis!','error');return;}
+  const c=S.data.comenzi?.[cid];if(!c)return;
+  const items=c.items||[];
+  let rows=items.map((it,idx)=>`
+    <tr style="border-bottom:1px solid var(--border)">
+      <td style="padding:6px 8px;font-size:12px"><b>${esc(it.materialName)}</b></td>
+      <td style="padding:6px 8px">
+        <div style="display:flex;gap:5px;align-items:center">
+          <input type="number" id="ec-${idx}" min="0" step="any" value="${it.cantitate}" style="width:80px;background:var(--bg);border:1px solid var(--border2);border-radius:5px;color:var(--text);padding:5px 7px;font-size:12px;outline:none">
+          <span style="font-family:var(--mono);font-size:11px;color:var(--text3)">${esc(it.unitate)}</span>
+        </div>
+      </td>
+      <td style="padding:6px 8px"><input type="text" id="eo-${idx}" value="${esc(it.obs||'')}" placeholder="obs." style="width:130px;background:var(--bg);border:1px solid var(--border2);border-radius:5px;color:var(--text);padding:5px 7px;font-size:12px;outline:none"></td>
+      <td style="padding:6px 8px"><button class="btn btn-red btn-sm" onclick="removeEditItem('${cid}',${idx})">✕</button></td>
+    </tr>`).join('');
+  openModal('Modifică Comanda',`
+    <div class="ib">Comanda inginer <b>${esc(c.inginerName)}</b> · ${fmtDT(c.createdAt||c.inginerTs)}</div>
+    <div style="overflow-x:auto">
+    <table style="width:100%;border-collapse:collapse;font-size:12px">
+      <thead><tr>
+        <th style="text-align:left;font-size:10px;color:var(--text3);font-weight:700;font-family:var(--mono);padding:7px 8px;border-bottom:1px solid var(--border);text-transform:uppercase;background:var(--bg3)">Material</th>
+        <th style="text-align:left;font-size:10px;color:var(--text3);font-weight:700;font-family:var(--mono);padding:7px 8px;border-bottom:1px solid var(--border);text-transform:uppercase;background:var(--bg3)">Cantitate</th>
+        <th style="text-align:left;font-size:10px;color:var(--text3);font-weight:700;font-family:var(--mono);padding:7px 8px;border-bottom:1px solid var(--border);text-transform:uppercase;background:var(--bg3)">Obs.</th>
+        <th style="background:var(--bg3);border-bottom:1px solid var(--border)"></th>
+      </tr></thead>
+      <tbody>${rows}</tbody>
+    </table></div>
+    <button class="btn btn-primary" style="margin-top:12px" onclick="saveEditComanda('${cid}')">✓ Salvează Modificările</button>
+  `);
+}
+function removeEditItem(cid,idx){
+  const c=S.data.comenzi?.[cid];if(!c)return;
+  if(c.items.length<=1){toast('Comanda trebuie să aibă cel puțin un material!','error');return;}
+  const items=c.items.filter((_,i)=>i!==idx);
+  write('/comenzi/'+cid,{...c,items,editatDe:S.user.name,editatLa:nowISO()}).then(()=>{closeModal();toast('Material eliminat din comandă!','info');});
+}
+function saveEditComanda(cid){
+  const c=S.data.comenzi?.[cid];if(!c)return;
+  const items=c.items.map((it,idx)=>{
+    const cantEl=document.getElementById('ec-'+idx);
+    const obsEl=document.getElementById('eo-'+idx);
+    const cant=parseFloat(cantEl?.value);
+    return{...it,cantitate:isNaN(cant)||cant<=0?it.cantitate:cant,obs:(obsEl?.value||'').trim()};
+  });
+  write('/comenzi/'+cid,{...c,items,editatDe:S.user.name,editatLa:nowISO()}).then(()=>{closeModal();toast('Comanda actualizată!','success');});
+}
+
+/* ══════════════════════════════════════════
+   RAPOARTE LUNARE
+══════════════════════════════════════════ */
+let repFilter={month:null,santierId:''};
+function openRaportLunar(){navTo('rapoarte');}
+
+function renderRapoarte(){
+  if(!repFilter.month){const d=new Date();repFilter.month=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0');}
+  const[y,m]=repFilter.month.split('-').map(Number);
+  const monthStart=new Date(y,m-1,1).getTime(),monthEnd=new Date(y,m,1).getTime();
+  const santiere=Object.entries(S.data.santiere||{});
+  const allCom=Object.entries(S.data.comenzi||{});
+  const list=allCom.filter(([,c])=>{
+    const t=new Date(c.createdAt||c.inginerTs||0).getTime();
+    if(isNaN(t)||t<monthStart||t>=monthEnd)return false;
+    if(repFilter.santierId&&c.santierId!==repFilter.santierId)return false;
+    return true;
+  }).sort((a,b)=>new Date(b[1].createdAt||b[1].inginerTs||0)-new Date(a[1].createdAt||a[1].inginerTs||0));
+  const total=list.length;
+  const finalizate=list.filter(([,c])=>(c.items||[]).every(it=>it.livrareTs)).length;
+  const noi=list.filter(([,c])=>!c.achizitorTs).length;
+  const monthLabel=new Date(y,m-1,1).toLocaleDateString('ro-RO',{month:'long',year:'numeric'}).toUpperCase();
+  const grupeSant={};
+  list.forEach(([cid,c])=>{const sid=c.santierId||'_';if(!grupeSant[sid])grupeSant[sid]={name:c.santierName||'(necunoscut)',items:[]};grupeSant[sid].items.push([cid,c]);});
+  let html=`<div class="ph">
+    <div><div class="pt">Rapoarte</div><div class="ps">${monthLabel} · ${total} comenzi</div></div>
+    <div style="display:flex;gap:8px" class="no-print">
+      <button class="btn btn-cyan btn-sm" onclick="window.print()">🖨 Tipărește</button>
+      <button class="btn btn-orange btn-sm" onclick="exportRaportCSV()">⬇ CSV</button>
+    </div>
+  </div>
+  <div class="card no-print" style="margin-bottom:14px">
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <div class="fld" style="margin:0;flex:1;min-width:120px"><label>Lună</label>
+        <input class="inp" type="month" value="${repFilter.month}" onchange="repFilter.month=this.value;renderRapoarte()" style="color-scheme:dark">
+      </div>
+      <div class="fld" style="margin:0;flex:1;min-width:120px"><label>Șantier</label>
+        <select class="inp" onchange="repFilter.santierId=this.value;renderRapoarte()">
+          <option value="">Toate șantierele</option>
+          ${santiere.map(([sid,s])=>`<option value="${sid}"${repFilter.santierId===sid?' selected':''}>${esc(s.name)}</option>`).join('')}
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="rep-stat-grid">
+    <div class="rep-stat"><div class="rep-stat-label">Total comenzi</div><div class="rep-stat-value">${total}</div></div>
+    <div class="rep-stat"><div class="rep-stat-label">Finalizate</div><div class="rep-stat-value" style="color:#4ade80">${finalizate}</div><div class="rep-stat-sub">${total?Math.round(finalizate/total*100):0}%</div></div>
+    <div class="rep-stat"><div class="rep-stat-label">În procesare</div><div class="rep-stat-value" style="color:#60a5fa">${total-finalizate}</div></div>
+    <div class="rep-stat"><div class="rep-stat-label">Nepreluat</div><div class="rep-stat-value" style="color:#fca5a5">${noi}</div></div>
+  </div>`;
+  if(!total){html+=`<div class="empty"><div class="empty-icon">📊</div><div class="empty-title">Nicio comandă în luna selectată</div></div>`;}
+  else{
+    html+=`<div class="card" style="margin-bottom:14px;padding:0;overflow:hidden">
+      <div style="padding:10px 14px;background:var(--bg3);border-bottom:1px solid var(--border);font-family:var(--mono);font-size:11px;font-weight:700;color:var(--text2);letter-spacing:1px;text-transform:uppercase">DISTRIBUȚIE PE ȘANTIERE</div>
+      <table class="admin-table"><thead><tr><th>Șantier</th><th>Comenzi</th><th>Finalizate</th><th>În proces</th></tr></thead><tbody>`;
+    Object.values(grupeSant).forEach(g=>{
+      const f=g.items.filter(([,c])=>(c.items||[]).every(it=>it.livrareTs)).length;
+      html+=`<tr><td><b>${esc(g.name)}</b></td><td>${g.items.length}</td><td style="color:#4ade80">${f}</td><td style="color:#60a5fa">${g.items.length-f}</td></tr>`;
+    });
+    html+=`</tbody></table></div>`;
+    html+=`<div class="card" style="padding:0;overflow-x:auto;overflow-y:auto"><table class="admin-table">
+      <thead><tr><th>Data</th><th>#</th><th>Șantier</th><th>Materiale</th><th>Status</th><th>Inginer</th><th>Achizitor</th></tr></thead><tbody>`;
+    list.forEach(([cid,c])=>{
+      const done=(c.items||[]).every(it=>it.livrareTs);
+      html+=`<tr>
+        <td style="font-family:var(--mono);font-size:10px;color:var(--text3)">${fmtDT(c.createdAt||c.inginerTs)}</td>
+        <td style="font-family:var(--mono)">${c.items?.length||0}</td>
+        <td>${esc(c.santierName)}</td>
+        <td style="font-size:11px">${(c.items||[]).map(it=>`${esc(it.materialName)} (${it.cantitate} ${esc(it.unitate)})`).join(', ')}</td>
+        <td>${done?'<span class="badge b-green">● FINAL</span>':c.achizitorTs?'<span class="badge b-purple">◐ PRELUAT</span>':'<span class="badge b-blue">○ NOU</span>'}</td>
+        <td>${esc(c.inginerName)}</td><td>${esc(c.achizitorName||'—')}</td>
+      </tr>`;
+    });
+    html+=`</tbody></table></div>`;
+  }
+  document.getElementById('view-rapoarte').innerHTML=html;
+}
+
+function exportRaportCSV(){
+  const[y,m]=repFilter.month.split('-').map(Number);
+  const monthStart=new Date(y,m-1,1).getTime(),monthEnd=new Date(y,m,1).getTime();
+  const list=Object.values(S.data.comenzi||{}).filter(c=>{
+    const t=new Date(c.createdAt||c.inginerTs||0).getTime();
+    if(isNaN(t)||t<monthStart||t>=monthEnd)return false;
+    if(repFilter.santierId&&c.santierId!==repFilter.santierId)return false;
+    return true;
+  });
+  if(!list.length){toast('Nu există date pentru export!','error');return;}
+  const headers=['Data Comandă','Șantier','Inginer','Achizitor','Nr. Materiale','Status','Materiale (detaliu)'];
+  const rows=list.map(c=>[
+    fmtDT(c.createdAt||c.inginerTs),c.santierName||'',c.inginerName||'',c.achizitorName||'',
+    c.items?.length||0,
+    (c.items||[]).every(it=>it.livrareTs)?'Finalizată':c.achizitorTs?'Preluată':'Nouă',
+    (c.items||[]).map(it=>`${it.materialName}: ${it.cantitate} ${it.unitate}`).join(' | ')
+  ]);
+  const csv=[headers,...rows].map(r=>r.map(v=>{const s=String(v).replace(/"/g,'""');return/[",;\n]/.test(s)?`"${s}"`:s;}).join(';')).join('\n');
+  const blob=new Blob(['\uFEFF'+csv],{type:'text/csv;charset=utf-8;'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');a.href=url;a.download=`raport-${repFilter.month}.csv`;document.body.appendChild(a);a.click();
+  setTimeout(()=>{document.body.removeChild(a);URL.revokeObjectURL(url);},100);
+  toast('Raport exportat!','success');
+}
+
+/* ── Download self ── */
+function downloadSelf(){
+  const html=document.documentElement.outerHTML;
+  const blob=new Blob([html],{type:'text/html;charset=utf-8'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');a.href=url;a.download="Cornells_Floor_v4.html";document.body.appendChild(a);a.click();
+  setTimeout(()=>{document.body.removeChild(a);URL.revokeObjectURL(url);},100);
+}
+
+/* ── INIT ── */
+window.addEventListener('DOMContentLoaded', function(){
+  // Clear any stuck toasts
+  const tc = document.getElementById('toast-c');
+  if(tc) tc.innerHTML = '';
+  initApp();
+});
+document.addEventListener('keydown',e=>{
+  if(e.key==='Enter'&&document.getElementById('login-screen').style.display!=='none')doLogin();
+  if(e.key==='Escape')closeModal();
+});
+</script>
+
+
+
+<script>
+/* ── Cornell's Floor · Service Worker Registration ── */
+(function(){
+  if(!('serviceWorker' in navigator)) return;
+  
+  // Inline Service Worker as a Blob URL
+  const swCode = `
+const CACHE = 'cornells-floor-v1';
+const ASSETS = [self.location.href.replace('/sw.js','')];
+
+self.addEventListener('install', e => {
+  e.waitUntil(
+    caches.open(CACHE).then(c => {
+      // Cache the app shell
+      return fetch(self.registration.scope).then(r => {
+        return c.put(self.registration.scope, r);
+      }).catch(() => {});
+    }).then(() => self.skipWaiting())
+  );
+});
+
+self.addEventListener('activate', e => {
+  e.waitUntil(
+    caches.keys().then(keys => 
+      Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k)))
+    ).then(() => self.clients.claim())
+  );
+});
+
+self.addEventListener('fetch', e => {
+  if(e.request.method !== 'GET') return;
+  e.respondWith(
+    fetch(e.request).then(r => {
+      if(r && r.status === 200) {
+        const clone = r.clone();
+        caches.open(CACHE).then(c => c.put(e.request, clone));
+      }
+      return r;
+    }).catch(() => caches.match(e.request))
+  );
+});
+`;
+
+  navigator.serviceWorker.register('/sw.js', {scope: '/'})
+    .then(reg => {
+      console.log('[CF PWA] Service Worker înregistrat:', reg.scope);
+    })
+    .catch(err => {
+      console.warn('[CF PWA] SW eșuat:', err.message);
+    });
+})();
+
+/* ── Install Prompt (Android/Desktop) ── */
+let _deferredPrompt = null;
+window.addEventListener('beforeinstallprompt', e => {
+  e.preventDefault();
+  _deferredPrompt = e;
+  // Show install button in topbar
+  const btn = document.getElementById('pwa-install-btn');
+  if(btn) btn.style.display = 'inline-flex';
+});
+
+window.addEventListener('appinstalled', () => {
+  _deferredPrompt = null;
+  const btn = document.getElementById('pwa-install-btn');
+  if(btn) btn.style.display = 'none';
+  console.log('[CF PWA] Aplicație instalată cu succes!');
+});
+
+function pwaInstall() {
+  if(!_deferredPrompt) {
+    // Show iOS instructions
+    const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+    if(isIOS) {
+      alert('Pe iPhone/iPad:\n\n1. Apasă butonul Share (□↑) din Safari\n2. Alege "Add to Home Screen"\n3. Apasă "Add"\n\nAplicația va apărea pe ecranul principal!');
+    } else {
+      alert('Aplicația este deja instalată sau browserul tău nu suportă instalarea PWA.\nÎncearcă din Chrome pe Android sau Desktop.');
+    }
+    return;
+  }
+  _deferredPrompt.prompt();
+  _deferredPrompt.userChoice.then(r => {
+    if(r.outcome === 'accepted') {
+      console.log('[CF PWA] Utilizatorul a acceptat instalarea');
+    }
+    _deferredPrompt = null;
+  });
+}
+</script>
+</body></html>
