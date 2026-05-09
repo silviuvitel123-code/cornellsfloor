@@ -46,7 +46,8 @@ exports.handler = async (event) => {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       sent: results.filter(r => r.status === "fulfilled").length,
-      failed: results.filter(r => r.status === "rejected").length
+      failed: results.filter(r => r.status === "rejected").length,
+      errors: results.filter(r => r.status === "rejected").map(r => r.reason?.message || String(r.reason))
     })
   };
 };
