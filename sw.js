@@ -45,7 +45,7 @@ self.addEventListener("notificationclick", e => {
     clients.matchAll({ type: "window", includeUncontrolled: true }).then(cs => {
       const c = cs.find(x => x.url.includes("cornells-floor"));
       if (c) return c.focus();
-      return clients.openWindow("https://cornells-floor.netlify.app/");
+      return clients.openWindow("https://ephemeral-hotteok-af2b19.netlify.app/");
     })
   );
 });
