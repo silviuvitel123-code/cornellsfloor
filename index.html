@@ -46,7 +46,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 #app,#login-screen,#loading{position:relative;z-index:1}
 .hazard{height:4px;background:repeating-linear-gradient(45deg,var(--accent) 0 14px,#0a0d12 14px 28px);}
 #topbar{background:rgba(15,20,29,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:0 16px;min-height:60px;
-  display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200;flex-wrap:wrap;gap:6px}
+  display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200;flex-wrap:nowrap;gap:6px}
 .brand{display:flex;align-items:center;gap:12px}
 .brand-mark{width:34px;height:34px;border-radius:8px;background:var(--accent);display:flex;align-items:center;justify-content:center;
   color:#0a0d12;font-weight:800;font-family:var(--display);font-size:18px;letter-spacing:1px;
@@ -219,7 +219,7 @@ select.inp{cursor:pointer}
   .sb-toggle{display:inline-flex;align-items:center;gap:6px}
   #sb-overlay{display:none;position:fixed;inset:64px 0 0 0;background:rgba(0,0,0,.6);z-index:140}
   #sb-overlay.visible{display:block}}
-@media(max-width:600px){#main-content{padding:12px 10px}.t-site,.user-chip,#pwa-install-btn{display:none!important}.ph{flex-direction:column;align-items:flex-start}
+@media(max-width:600px){#main-content{padding:12px 10px}.t-site,.user-chip,#pwa-install-btn,.t-logo,.t-sep{display:none!important}.ph{flex-direction:column;align-items:flex-start}.ph>div{width:100%}
   .modal{max-height:95vh}.lbox{width:100%;padding:28px 18px}.step{font-size:9px;padding:3px 6px}}
 #loading{min-height:100vh;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:14px;
   color:var(--accent);font-family:var(--mono);text-transform:uppercase;letter-spacing:2px;font-size:11px}
