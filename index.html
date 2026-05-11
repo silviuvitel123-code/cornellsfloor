@@ -267,7 +267,7 @@ select.inp{cursor:pointer}
 .sort-sel{background:var(--bg3);border:1px solid var(--border2);color:var(--text2);border-radius:var(--r-sm);padding:5px 10px;font-size:10px;font-family:var(--mono);letter-spacing:1px;cursor:pointer;text-transform:uppercase;outline:none}
 .sort-sel:focus{border-color:var(--accent)}
 .search-bar{position:relative;margin-bottom:16px}
-.search-bar::before{content:'⌕';position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--text3);font-size:16px;pointer-events:none;z-index:1}
+.search-bar::before{content:'?';position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--text3);font-size:16px;pointer-events:none;z-index:1}
 .search-bar .inp{padding-left:34px;font-size:12px}
 .search-no-result{text-align:center;padding:28px;color:var(--text3);font-family:var(--mono);font-size:12px;letter-spacing:1px}
 .pt{font-size:24px;font-weight:700;font-family:var(--display);text-transform:uppercase;letter-spacing:1px;line-height:1}
@@ -1454,12 +1454,12 @@ function renderSantiere(){
       ${canEdit()?`<button class="btn btn-primary" onclick="modalAddSantier()">+ Șantier Nou</button>`:''}
     </div>
   </div>
-  <div class="search-bar"><input class="inp" placeholder="Caută șantier după nume..." oninput="setSearchSantiere(this.value)" value="${esc(S.searchSantiere||'')}"></div>`;
+  <div class="search-bar"><input class="inp" placeholder="Cauta santier dupa nume..." oninput="setSearchSantiere(this.value)" value="${esc(S.searchSantiere||'')}"></div>`;
   if(canAch()&&noiCount>0) html+=`<div class="ab">📬 <b>${noiCount} comand${noiCount>1?'e noi':'ă nouă'}</b> de preluat — click pe un șantier pentru procesare</div>`;
   if(!santiere.length){
     html+=`<div class="empty"><div class="empty-icon">🏗️</div><div class="empty-title">Niciun șantier</div>${canEdit()?'<p>Apasă "+ Șantier Nou" pentru a începe</p>':'<p>Așteptați ca inginerul să creeze șantiere</p>'}</div>`;
   }else if(!filtered.length){
-    html+=`<div class="search-no-result">⌕ Niciun șantier găsit pentru "<b>${esc(q)}</b>"</div>`;
+    html+=`<div class="search-no-result">Niciun santier gasit pentru "${esc(q)}"</div>`;
   }else{
     html+='<div class="g2">';
     filtered.forEach(([id,s])=>{
@@ -1535,13 +1535,13 @@ function renderMateriale(){
       <button class="btn ${canEdit()?'btn-primary':'btn-ghost'} btn-sm" onclick="navTo('comenzi')">▥ Comenzi Șantier</button>
     </div>
   </div>
-  <div class="search-bar"><input class="inp" placeholder="Caută material după nume..." oninput="setSearchMateriale(this.value)" value="${esc(S.searchMateriale||'')}"></div>`;
+  <div class="search-bar"><input class="inp" placeholder="Cauta material dupa nume..." oninput="setSearchMateriale(this.value)" value="${esc(S.searchMateriale||'')}"></div>`;
 
   /* Tabel materiale existente */
   if(!mats.length){
     html+=`<div class="empty" style="margin-bottom:16px"><div class="empty-icon">📦</div><div class="empty-title">Niciun material adăugat</div><p>Adaugă materialele necesare mai jos</p></div>`;
   }else if(!filteredMats.length){
-    html+=`<div class="search-no-result" style="margin-bottom:16px">⌕ Niciun material găsit pentru "<b>${esc(qm)}</b>"</div>`;
+    html+=`<div class="search-no-result" style="margin-bottom:16px">Niciun material gasit pentru "${esc(qm)}"</div>`;
   }else{
     html+=`<div class="card" style="padding:0;overflow-x:auto;margin-bottom:16px">
       <table class="mat-table">
@@ -1776,7 +1776,7 @@ function renderComenzi(){
     <div><div class="pt">Comenzi Șantier</div><div class="ps">${esc(s.name)} · ${comenzi.length} ${comenzi.length===1?'comandă':'comenzi'}</div></div>
     <button class="btn btn-ghost btn-sm" onclick="navTo('materiale')">◀ Materiale</button>
   </div>
-  <div class="search-bar"><input class="inp" placeholder="Caută după nr. comandă sau nume material..." oninput="setSearchComenzi(this.value)" value="${esc(S.searchComenzi||'')}"></div>`;
+  <div class="search-bar"><input class="inp" placeholder="Cauta dupa nr. comanda sau nume material..." oninput="setSearchComenzi(this.value)" value="${esc(S.searchComenzi||'')}"></div>`;
 
   /* Formular comandă nouă — DOAR inginer/admin */
   if(canEdit()&&mats.length>0){
@@ -1834,7 +1834,7 @@ function renderComenzi(){
   if(!comenzi.length){
     html+=`<div class="empty"><div class="empty-icon">▥</div><div class="empty-title">Nicio comandă</div><p>Folosiți formularul de mai sus pentru a crea prima comandă</p></div>`;
   }else if(!filteredComenzi.length){
-    html+=`<div class="search-no-result">⌕ Nicio comandă găsită pentru "<b>${esc(qc)}</b>"</div>`;
+    html+=`<div class="search-no-result">Nicio comanda gasita pentru "${esc(qc)}"</div>`;
   }else{
     filteredComenzi.forEach(([cid,c])=>{
       const items=c.items||[];
@@ -2157,4 +2157,127 @@ function exportRaportCSV(){
     fmtDT(c.createdAt||c.inginerTs),c.santierName||'',c.inginerName||'',c.achizitorName||'',
     c.items?.length||0,
     (c.items||[]).every(it=>it.livrareTs)?'Finalizată':c.achizitorTs?'Preluată':'Nouă',
-    (c.items||[]).map(it
+    (c.items||[]).map(it=>`${it.materialName}: ${it.cantitate} ${it.unitate}`).join(' | ')
+  ]);
+  const csv=[headers,...rows].map(r=>r.map(v=>{const s=String(v).replace(/"/g,'""');return/[",;\n]/.test(s)?`"${s}"`:s;}).join(';')).join('\n');
+  const blob=new Blob(['\uFEFF'+csv],{type:'text/csv;charset=utf-8;'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');a.href=url;a.download=`raport-${repFilter.month}.csv`;document.body.appendChild(a);a.click();
+  setTimeout(()=>{document.body.removeChild(a);URL.revokeObjectURL(url);},100);
+  toast('Raport exportat!','success');
+}
+
+/* ── Download self ── */
+function downloadSelf(){
+  const html=document.documentElement.outerHTML;
+  const blob=new Blob([html],{type:'text/html;charset=utf-8'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');a.href=url;a.download="Cornells_Floor_v4.html";document.body.appendChild(a);a.click();
+  setTimeout(()=>{document.body.removeChild(a);URL.revokeObjectURL(url);},100);
+}
+
+/* ── INIT ── */
+window.addEventListener('DOMContentLoaded', function(){
+  // Clear any stuck toasts
+  const tc = document.getElementById('toast-c');
+  if(tc) tc.innerHTML = '';
+  initApp();
+});
+document.addEventListener('keydown',e=>{
+  if(e.key==='Enter'&&document.getElementById('login-screen').style.display!=='none')doLogin();
+  if(e.key==='Escape')closeModal();
+});
+</script>
+
+
+
+<script>
+/* ── Cornell's Floor · Service Worker Registration ── */
+(function(){
+  if(!('serviceWorker' in navigator)) return;
+  
+  // Inline Service Worker as a Blob URL
+  const swCode = `
+const CACHE = 'cornells-floor-v1';
+const ASSETS = [self.location.href.replace('/sw.js','')];
+
+self.addEventListener('install', e => {
+  e.waitUntil(
+    caches.open(CACHE).then(c => {
+      // Cache the app shell
+      return fetch(self.registration.scope).then(r => {
+        return c.put(self.registration.scope, r);
+      }).catch(() => {});
+    }).then(() => self.skipWaiting())
+  );
+});
+
+self.addEventListener('activate', e => {
+  e.waitUntil(
+    caches.keys().then(keys => 
+      Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k)))
+    ).then(() => self.clients.claim())
+  );
+});
+
+self.addEventListener('fetch', e => {
+  if(e.request.method !== 'GET') return;
+  e.respondWith(
+    fetch(e.request).then(r => {
+      if(r && r.status === 200) {
+        const clone = r.clone();
+        caches.open(CACHE).then(c => c.put(e.request, clone));
+      }
+      return r;
+    }).catch(() => caches.match(e.request))
+  );
+});
+`;
+
+  navigator.serviceWorker.register('/sw.js', {scope: '/'})
+    .then(reg => {
+      console.log('[CF PWA] Service Worker înregistrat:', reg.scope);
+    })
+    .catch(err => {
+      console.warn('[CF PWA] SW eșuat:', err.message);
+    });
+})();
+
+/* ── Install Prompt (Android/Desktop) ── */
+let _deferredPrompt = null;
+window.addEventListener('beforeinstallprompt', e => {
+  e.preventDefault();
+  _deferredPrompt = e;
+  // Show install button in topbar
+  const btn = document.getElementById('pwa-install-btn');
+  if(btn) btn.style.display = 'inline-flex';
+});
+
+window.addEventListener('appinstalled', () => {
+  _deferredPrompt = null;
+  const btn = document.getElementById('pwa-install-btn');
+  if(btn) btn.style.display = 'none';
+  console.log('[CF PWA] Aplicație instalată cu succes!');
+});
+
+function pwaInstall() {
+  if(!_deferredPrompt) {
+    // Show iOS instructions
+    const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+    if(isIOS) {
+      alert('Pe iPhone/iPad:\n\n1. Apasă butonul Share (□↑) din Safari\n2. Alege "Add to Home Screen"\n3. Apasă "Add"\n\nAplicația va apărea pe ecranul principal!');
+    } else {
+      alert('Aplicația este deja instalată sau browserul tău nu suportă instalarea PWA.\nÎncearcă din Chrome pe Android sau Desktop.');
+    }
+    return;
+  }
+  _deferredPrompt.prompt();
+  _deferredPrompt.userChoice.then(r => {
+    if(r.outcome === 'accepted') {
+      console.log('[CF PWA] Utilizatorul a acceptat instalarea');
+    }
+    _deferredPrompt = null;
+  });
+}
+</script>
+</body></html>
