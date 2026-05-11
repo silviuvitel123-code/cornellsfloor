@@ -1551,14 +1551,18 @@ function renderMateriale(){
     html+=`<div class="card" style="padding:0;overflow-x:auto;margin-bottom:16px">
       <table class="mat-table">
         <thead><tr>
-          <th>Material</th><th>Necesar</th><th>UM</th><th>Comandat</th><th>Livrat</th><th>Progress</th><th>Obs.</th>
+          <th style="width:28px;text-align:center">#</th>
+          <th style="min-width:200px">Material</th><th>Necesar</th><th>UM</th><th>Comandat</th><th>Livrat</th><th>Progress</th><th>Obs.</th>
           ${canEdit()?'<th></th>':''}
         </tr></thead><tbody>`;
+    let matIdx=0;
     filteredMats.forEach(([mid,m])=>{
+      matIdx++;
       const{comandat,livrat,over}=calcProgress(sid,mid,m.cantitateNecesara);
       const pL=Math.min(m.cantitateNecesara>0?(livrat/m.cantitateNecesara)*100:0,100);
       html+=`<tr${over?' style="background:rgba(127,29,29,.08)"':''}>
-        <td><b style="font-size:12px">${esc(m.name)}</b></td>
+        <td style="text-align:center;font-family:var(--mono);font-size:10px;color:var(--text3);width:28px">${matIdx}</td>
+        <td style="min-width:200px"><b style="font-size:12px">${esc(m.name)}</b></td>
         <td style="font-family:var(--mono);color:var(--accent)">${m.cantitateNecesara}</td>
         <td style="font-family:var(--mono);color:var(--text2)">${esc(m.unitate)}</td>
         <td style="font-family:var(--mono);color:#60a5fa">${comandat}</td>
