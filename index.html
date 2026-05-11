@@ -379,8 +379,8 @@ input, select, textarea { -webkit-user-select: text; user-select: text; }
   <div id="topbar">
     <div class="brand">
       <button class="sb-toggle" onclick="toggleSidebar()">☰ MENIU</button>
-      <div class="brand-mark">CF</div>
-      <span class="t-logo">CORNELL<span class="apos">'</span>S FLOOR</span>
+      <div class="brand-mark" onclick="navTo('santiere')" style="cursor:pointer">CF</div>
+      <span class="t-logo" onclick="navTo('santiere')" style="cursor:pointer">CORNELL<span class="apos">'</span>S FLOOR</span>
       <span class="t-sep">//</span>
       <span class="t-site" id="t-site">CENTRU BATRANI CONCESTI</span>
     </div>
@@ -2190,9 +2190,4 @@ self.addEventListener('install', e => {
 self.addEventListener('activate', e => {
   e.waitUntil(
     caches.keys().then(keys => 
-      Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k)))
-    ).then(() => self.clients.claim())
-  );
-});
-
-self.addEventListener('fetch', e => {
+      Promise.all(keys.filter(k => k !== CACHE).map(k => cach
