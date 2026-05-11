@@ -1941,7 +1941,7 @@ function trimiteComanda(){
     const cbEl=document.getElementById('cb-'+mid);
     const cqEl=document.getElementById('cq-'+mid);
     const coEl=document.getElementById('co-'+mid);
-    if(cbEl&&cbEl.checked){
+    if(cmdBatch[mid]?.sel){
       const cant=parseFloat(cqEl?.value);
       if(!isNaN(cant)&&cant>0){
         items.push({materialId:mid,materialName:m.name,unitate:m.unitate,cantitate:cant,obs:(coEl?.value||'').trim(),livrareTs:null,plasatTs:null,inTranzitTs:null});
