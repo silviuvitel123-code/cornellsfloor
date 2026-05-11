@@ -264,6 +264,8 @@ select.inp{cursor:pointer}
 .order-body{padding:0}
 /* Page header */
 .ph{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:20px;flex-wrap:wrap;gap:12px;padding-bottom:16px;border-bottom:1px solid var(--border)}
+.sort-sel{background:var(--bg3);border:1px solid var(--border2);color:var(--text2);border-radius:var(--r-sm);padding:5px 10px;font-size:10px;font-family:var(--mono);letter-spacing:1px;cursor:pointer;text-transform:uppercase;outline:none}
+.sort-sel:focus{border-color:var(--accent)}
 .pt{font-size:24px;font-weight:700;font-family:var(--display);text-transform:uppercase;letter-spacing:1px;line-height:1}
 .pt::before{content:'▎';color:var(--accent);margin-right:4px}
 .ps{font-size:11px;color:var(--text3);margin-top:5px;font-family:var(--mono);text-transform:uppercase;letter-spacing:1.5px}
@@ -1422,12 +1424,26 @@ async function updateUser(id){
 /* ══════════════════════════════════════════
    ȘANTIERE
 ══════════════════════════════════════════ */
+function setSortSantiere(v){S.sortSantiere=v;renderSantiere();}
+function setSortMateriale(v){S.sortMateriale=v;renderMateriale();}
+
 function renderSantiere(){
-  const santiere=Object.entries(S.data.santiere||{});
+  const sortSant=S.sortSantiere||'newest';
+  const santiere=Object.entries(S.data.santiere||{}).sort(([,a],[,b])=>{
+    if(sortSant==='newest') return (b.createdAt||'')>(a.createdAt||'')?1:-1;
+    if(sortSant==='oldest') return (a.createdAt||'')>(b.createdAt||'')?1:-1;
+    if(sortSant==='az') return (a.name||'').localeCompare(b.name||'','ro');
+    if(sortSant==='za') return (b.name||'').localeCompare(a.name||'','ro');
+    return 0;
+  });
   const noiCount=Object.values(S.data.comenzi||{}).filter(c=>comandaPhase(c)===0).length;
+  const sortOpts=[['newest','↓ Cel mai nou'],['oldest','↑ Cel mai vechi'],['az','A → Z'],['za','Z → A']];
   let html=`<div class="ph">
     <div><div class="pt">Toate Șantierele</div><div class="ps">${santiere.length} ${santiere.length===1?'șantier':'șantiere'} înregistrate</div></div>
-    ${canEdit()?`<button class="btn btn-primary" onclick="modalAddSantier()">+ Șantier Nou</button>`:''}
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+      <select class="sort-sel" onchange="setSortSantiere(this.value)">${sortOpts.map(([v,l])=>`<option value="${v}"${sortSant===v?' selected':''}>${l}</option>`).join('')}</select>
+      ${canEdit()?`<button class="btn btn-primary" onclick="modalAddSantier()">+ Șantier Nou</button>`:''}
+    </div>
   </div>`;
   if(canAch()&&noiCount>0) html+=`<div class="ab">📬 <b>${noiCount} comand${noiCount>1?'e noi':'ă nouă'}</b> de preluat — click pe un șantier pentru procesare</div>`;
   if(!santiere.length){
@@ -1489,10 +1505,19 @@ let matBatch=[]; // materiale introduse dar neconfirmate
 
 function renderMateriale(){
   const sid=S.activeSantier,s=S.data.santiere?.[sid];if(!s)return;
-  const mats=Object.entries(S.data.materiale?.[sid]||{});
+  const sortMat=S.sortMateriale||'newest';
+  const mats=Object.entries(S.data.materiale?.[sid]||{}).sort(([,a],[,b])=>{
+    if(sortMat==='newest') return (b.addedAt||'')>(a.addedAt||'')?1:-1;
+    if(sortMat==='oldest') return (a.addedAt||'')>(b.addedAt||'')?1:-1;
+    if(sortMat==='modified'){const ta=a.editedAt||a.addedAt||'',tb=b.editedAt||b.addedAt||'';return tb>ta?1:-1;}
+    if(sortMat==='az') return (a.name||'').localeCompare(b.name||'','ro');
+    return 0;
+  });
+  const sortOpts=[['newest','↓ Adăugat nou'],['oldest','↑ Adăugat vechi'],['modified','✎ Modificat'],['az','A → Z']];
   let html=`<div class="ph">
     <div><div class="pt">Necesar Materiale</div><div class="ps">${esc(s.name)} · ${mats.length} materiale</div></div>
-    <div style="display:flex;gap:8px">
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+      <select class="sort-sel" onchange="setSortMateriale(this.value)">${sortOpts.map(([v,l])=>`<option value="${v}"${sortMat===v?' selected':''}>${l}</option>`).join('')}</select>
       <button class="btn ${canEdit()?'btn-primary':'btn-ghost'} btn-sm" onclick="navTo('comenzi')">▥ Comenzi Șantier</button>
     </div>
   </div>`;
@@ -2171,63 +2196,3 @@ self.addEventListener('activate', e => {
 });
 
 self.addEventListener('fetch', e => {
-  if(e.request.method !== 'GET') return;
-  e.respondWith(
-    fetch(e.request).then(r => {
-      if(r && r.status === 200) {
-        const clone = r.clone();
-        caches.open(CACHE).then(c => c.put(e.request, clone));
-      }
-      return r;
-    }).catch(() => caches.match(e.request))
-  );
-});
-`;
-
-  navigator.serviceWorker.register('/sw.js', {scope: '/'})
-    .then(reg => {
-      console.log('[CF PWA] Service Worker înregistrat:', reg.scope);
-    })
-    .catch(err => {
-      console.warn('[CF PWA] SW eșuat:', err.message);
-    });
-})();
-
-/* ── Install Prompt (Android/Desktop) ── */
-let _deferredPrompt = null;
-window.addEventListener('beforeinstallprompt', e => {
-  e.preventDefault();
-  _deferredPrompt = e;
-  // Show install button in topbar
-  const btn = document.getElementById('pwa-install-btn');
-  if(btn) btn.style.display = 'inline-flex';
-});
-
-window.addEventListener('appinstalled', () => {
-  _deferredPrompt = null;
-  const btn = document.getElementById('pwa-install-btn');
-  if(btn) btn.style.display = 'none';
-  console.log('[CF PWA] Aplicație instalată cu succes!');
-});
-
-function pwaInstall() {
-  if(!_deferredPrompt) {
-    // Show iOS instructions
-    const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
-    if(isIOS) {
-      alert('Pe iPhone/iPad:\n\n1. Apasă butonul Share (□↑) din Safari\n2. Alege "Add to Home Screen"\n3. Apasă "Add"\n\nAplicația va apărea pe ecranul principal!');
-    } else {
-      alert('Aplicația este deja instalată sau browserul tău nu suportă instalarea PWA.\nÎncearcă din Chrome pe Android sau Desktop.');
-    }
-    return;
-  }
-  _deferredPrompt.prompt();
-  _deferredPrompt.userChoice.then(r => {
-    if(r.outcome === 'accepted') {
-      console.log('[CF PWA] Utilizatorul a acceptat instalarea');
-    }
-    _deferredPrompt = null;
-  });
-}
-</script>
-</body></html>
