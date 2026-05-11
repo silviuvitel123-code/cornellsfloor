@@ -257,7 +257,8 @@ select.inp{cursor:pointer}
 
 .cmd-table tr:hover td{background:rgba(251,191,36,.02)}
 /* Card comanda grupata */
-.order-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:10px;overflow:hidden}
+.order-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:10px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.35);position:relative}
+.order-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),transparent);opacity:.5;z-index:1}
 .order-card.new-order{border-color:#1d4ed8}
 .order-head{padding:10px 14px;background:var(--bg3);border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
 .order-num{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--accent);letter-spacing:1px}
@@ -285,11 +286,15 @@ select.inp{cursor:pointer}
 .btn-orange{background:#3a1a07;color:#fdba74;border:1px solid #9a3412}.btn-orange:hover{background:#9a3412;color:#fff}
 .btn-ghost{background:transparent;border:1px solid var(--border2);color:var(--text2)}.btn-ghost:hover{background:var(--bg3);color:var(--text)}
 .btn-sm{padding:5px 10px;font-size:10px;border-radius:6px}
-.card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:14px;transition:border-color var(--tr);position:relative;overflow:hidden}
-.card:hover{border-color:var(--border3)}
+.card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:14px;transition:border-color .18s ease,box-shadow .18s ease,transform .18s ease;position:relative;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.35)}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),transparent);opacity:.6}
+.card:hover{border-color:var(--border3);box-shadow:0 8px 32px rgba(0,0,0,.5)}
 .card.ac{border-color:#7f1d1d;background:linear-gradient(180deg,rgba(127,29,29,.08),transparent 60%),var(--bg2)}
+.card.ac::before{background:linear-gradient(90deg,#ef4444,transparent)}
 .card.nc{border-color:#1d4ed8;background:linear-gradient(180deg,rgba(29,78,216,.08),transparent 60%),var(--bg2)}
+.card.nc::before{background:linear-gradient(90deg,#3b82f6,transparent)}
 .santier-card{cursor:pointer;display:flex;flex-direction:column;gap:8px}
+.santier-card:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(0,0,0,.6);border-color:var(--accent)!important}
 .santier-card .label{font-family:var(--mono);font-size:9px;color:var(--accent);letter-spacing:2px;font-weight:700}
 .santier-card h3{font-size:17px;font-weight:700;font-family:var(--display);text-transform:uppercase;letter-spacing:.5px;line-height:1.1}
 .santier-card .meta{color:var(--text3);font-size:12px;display:flex;flex-wrap:wrap;gap:8px}
