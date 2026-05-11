@@ -266,6 +266,10 @@ select.inp{cursor:pointer}
 .ph{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:20px;flex-wrap:wrap;gap:12px;padding-bottom:16px;border-bottom:1px solid var(--border)}
 .sort-sel{background:var(--bg3);border:1px solid var(--border2);color:var(--text2);border-radius:var(--r-sm);padding:5px 10px;font-size:10px;font-family:var(--mono);letter-spacing:1px;cursor:pointer;text-transform:uppercase;outline:none}
 .sort-sel:focus{border-color:var(--accent)}
+.search-bar{position:relative;margin-bottom:16px}
+.search-bar::before{content:'⌕';position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--text3);font-size:16px;pointer-events:none;z-index:1}
+.search-bar .inp{padding-left:34px;font-size:12px}
+.search-no-result{text-align:center;padding:28px;color:var(--text3);font-family:var(--mono);font-size:12px;letter-spacing:1px}
 .pt{font-size:24px;font-weight:700;font-family:var(--display);text-transform:uppercase;letter-spacing:1px;line-height:1}
 .pt::before{content:'▎';color:var(--accent);margin-right:4px}
 .ps{font-size:11px;color:var(--text3);margin-top:5px;font-family:var(--mono);text-transform:uppercase;letter-spacing:1.5px}
@@ -1426,6 +1430,9 @@ async function updateUser(id){
 ══════════════════════════════════════════ */
 function setSortSantiere(v){S.sortSantiere=v;renderSantiere();}
 function setSortMateriale(v){S.sortMateriale=v;renderMateriale();}
+function setSearchSantiere(v){S.searchSantiere=v;renderSantiere();}
+function setSearchMateriale(v){S.searchMateriale=v;renderMateriale();}
+function setSearchComenzi(v){S.searchComenzi=v;renderComenzi();}
 
 function renderSantiere(){
   const sortSant=S.sortSantiere||'newest';
@@ -1436,6 +1443,8 @@ function renderSantiere(){
     if(sortSant==='za') return (b.name||'').localeCompare(a.name||'','ro');
     return 0;
   });
+  const q=(S.searchSantiere||'').toLowerCase().trim();
+  const filtered=q?santiere.filter(([,s])=>s.name.toLowerCase().includes(q)):santiere;
   const noiCount=Object.values(S.data.comenzi||{}).filter(c=>comandaPhase(c)===0).length;
   const sortOpts=[['newest','↓ Cel mai nou'],['oldest','↑ Cel mai vechi'],['az','A → Z'],['za','Z → A']];
   let html=`<div class="ph">
@@ -1444,13 +1453,16 @@ function renderSantiere(){
       <select class="sort-sel" onchange="setSortSantiere(this.value)">${sortOpts.map(([v,l])=>`<option value="${v}"${sortSant===v?' selected':''}>${l}</option>`).join('')}</select>
       ${canEdit()?`<button class="btn btn-primary" onclick="modalAddSantier()">+ Șantier Nou</button>`:''}
     </div>
-  </div>`;
+  </div>
+  <div class="search-bar"><input class="inp" placeholder="Caută șantier după nume..." oninput="setSearchSantiere(this.value)" value="${esc(S.searchSantiere||'')}"></div>`;
   if(canAch()&&noiCount>0) html+=`<div class="ab">📬 <b>${noiCount} comand${noiCount>1?'e noi':'ă nouă'}</b> de preluat — click pe un șantier pentru procesare</div>`;
   if(!santiere.length){
     html+=`<div class="empty"><div class="empty-icon">🏗️</div><div class="empty-title">Niciun șantier</div>${canEdit()?'<p>Apasă "+ Șantier Nou" pentru a începe</p>':'<p>Așteptați ca inginerul să creeze șantiere</p>'}</div>`;
+  }else if(!filtered.length){
+    html+=`<div class="search-no-result">⌕ Niciun șantier găsit pentru "<b>${esc(q)}</b>"</div>`;
   }else{
     html+='<div class="g2">';
-    santiere.forEach(([id,s])=>{
+    filtered.forEach(([id,s])=>{
       const comenzi=Object.values(S.data.comenzi||{}).filter(c=>c.santierId===id);
       const mats=Object.entries(S.data.materiale?.[id]||{});
       const alerte=mats.filter(([mid,m])=>calcProgress(id,mid,m.cantitateNecesara).over).length;
@@ -1513,6 +1525,8 @@ function renderMateriale(){
     if(sortMat==='az') return (a.name||'').localeCompare(b.name||'','ro');
     return 0;
   });
+  const qm=(S.searchMateriale||'').toLowerCase().trim();
+  const filteredMats=qm?mats.filter(([,m])=>m.name.toLowerCase().includes(qm)):mats;
   const sortOpts=[['newest','↓ Adăugat nou'],['oldest','↑ Adăugat vechi'],['modified','✎ Modificat'],['az','A → Z']];
   let html=`<div class="ph">
     <div><div class="pt">Necesar Materiale</div><div class="ps">${esc(s.name)} · ${mats.length} materiale</div></div>
@@ -1520,11 +1534,14 @@ function renderMateriale(){
       <select class="sort-sel" onchange="setSortMateriale(this.value)">${sortOpts.map(([v,l])=>`<option value="${v}"${sortMat===v?' selected':''}>${l}</option>`).join('')}</select>
       <button class="btn ${canEdit()?'btn-primary':'btn-ghost'} btn-sm" onclick="navTo('comenzi')">▥ Comenzi Șantier</button>
     </div>
-  </div>`;
+  </div>
+  <div class="search-bar"><input class="inp" placeholder="Caută material după nume..." oninput="setSearchMateriale(this.value)" value="${esc(S.searchMateriale||'')}"></div>`;
 
   /* Tabel materiale existente */
   if(!mats.length){
     html+=`<div class="empty" style="margin-bottom:16px"><div class="empty-icon">📦</div><div class="empty-title">Niciun material adăugat</div><p>Adaugă materialele necesare mai jos</p></div>`;
+  }else if(!filteredMats.length){
+    html+=`<div class="search-no-result" style="margin-bottom:16px">⌕ Niciun material găsit pentru "<b>${esc(qm)}</b>"</div>`;
   }else{
     html+=`<div class="card" style="padding:0;overflow-x:auto;margin-bottom:16px">
       <table class="mat-table">
@@ -1532,7 +1549,7 @@ function renderMateriale(){
           <th>Material</th><th>Necesar</th><th>UM</th><th>Comandat</th><th>Livrat</th><th>Progress</th><th>Obs.</th>
           ${canEdit()?'<th></th>':''}
         </tr></thead><tbody>`;
-    mats.forEach(([mid,m])=>{
+    filteredMats.forEach(([mid,m])=>{
       const{comandat,livrat,over}=calcProgress(sid,mid,m.cantitateNecesara);
       const pL=Math.min(m.cantitateNecesara>0?(livrat/m.cantitateNecesara)*100:0,100);
       html+=`<tr${over?' style="background:rgba(127,29,29,.08)"':''}>
@@ -1749,11 +1766,17 @@ function renderComenzi(){
     .sort((a,b)=>new Date(a[1].createdAt||a[1].inginerTs||0)-new Date(b[1].createdAt||b[1].inginerTs||0))
     .map(([id])=>id);
   const orderNum=id=>(orderedIds.indexOf(id)+1)||'?';
+  const qc=(S.searchComenzi||'').toLowerCase().trim();
+  const filteredComenzi=qc?comenzi.filter(([cid,c])=>{
+    if(String(orderNum(cid)).includes(qc)) return true;
+    return (c.items||[]).some(it=>(it.materialName||'').toLowerCase().includes(qc));
+  }):comenzi;
 
   let html=`<div class="ph">
     <div><div class="pt">Comenzi Șantier</div><div class="ps">${esc(s.name)} · ${comenzi.length} ${comenzi.length===1?'comandă':'comenzi'}</div></div>
     <button class="btn btn-ghost btn-sm" onclick="navTo('materiale')">◀ Materiale</button>
-  </div>`;
+  </div>
+  <div class="search-bar"><input class="inp" placeholder="Caută după nr. comandă sau nume material..." oninput="setSearchComenzi(this.value)" value="${esc(S.searchComenzi||'')}"></div>`;
 
   /* Formular comandă nouă — DOAR inginer/admin */
   if(canEdit()&&mats.length>0){
@@ -1810,8 +1833,10 @@ function renderComenzi(){
   /* Lista comenzi existente */
   if(!comenzi.length){
     html+=`<div class="empty"><div class="empty-icon">▥</div><div class="empty-title">Nicio comandă</div><p>Folosiți formularul de mai sus pentru a crea prima comandă</p></div>`;
+  }else if(!filteredComenzi.length){
+    html+=`<div class="search-no-result">⌕ Nicio comandă găsită pentru "<b>${esc(qc)}</b>"</div>`;
   }else{
-    comenzi.forEach(([cid,c])=>{
+    filteredComenzi.forEach(([cid,c])=>{
       const items=c.items||[];
       const cPhase=Math.min(...items.map(it=>itemPhase(it,c)).concat([0]));
       const allDone=items.length>0&&items.every(it=>it.livrareTs);
@@ -2132,62 +2157,4 @@ function exportRaportCSV(){
     fmtDT(c.createdAt||c.inginerTs),c.santierName||'',c.inginerName||'',c.achizitorName||'',
     c.items?.length||0,
     (c.items||[]).every(it=>it.livrareTs)?'Finalizată':c.achizitorTs?'Preluată':'Nouă',
-    (c.items||[]).map(it=>`${it.materialName}: ${it.cantitate} ${it.unitate}`).join(' | ')
-  ]);
-  const csv=[headers,...rows].map(r=>r.map(v=>{const s=String(v).replace(/"/g,'""');return/[",;\n]/.test(s)?`"${s}"`:s;}).join(';')).join('\n');
-  const blob=new Blob(['\uFEFF'+csv],{type:'text/csv;charset=utf-8;'});
-  const url=URL.createObjectURL(blob);
-  const a=document.createElement('a');a.href=url;a.download=`raport-${repFilter.month}.csv`;document.body.appendChild(a);a.click();
-  setTimeout(()=>{document.body.removeChild(a);URL.revokeObjectURL(url);},100);
-  toast('Raport exportat!','success');
-}
-
-/* ── Download self ── */
-function downloadSelf(){
-  const html=document.documentElement.outerHTML;
-  const blob=new Blob([html],{type:'text/html;charset=utf-8'});
-  const url=URL.createObjectURL(blob);
-  const a=document.createElement('a');a.href=url;a.download="Cornells_Floor_v4.html";document.body.appendChild(a);a.click();
-  setTimeout(()=>{document.body.removeChild(a);URL.revokeObjectURL(url);},100);
-}
-
-/* ── INIT ── */
-window.addEventListener('DOMContentLoaded', function(){
-  // Clear any stuck toasts
-  const tc = document.getElementById('toast-c');
-  if(tc) tc.innerHTML = '';
-  initApp();
-});
-document.addEventListener('keydown',e=>{
-  if(e.key==='Enter'&&document.getElementById('login-screen').style.display!=='none')doLogin();
-  if(e.key==='Escape')closeModal();
-});
-</script>
-
-
-
-<script>
-/* ── Cornell's Floor · Service Worker Registration ── */
-(function(){
-  if(!('serviceWorker' in navigator)) return;
-  
-  // Inline Service Worker as a Blob URL
-  const swCode = `
-const CACHE = 'cornells-floor-v1';
-const ASSETS = [self.location.href.replace('/sw.js','')];
-
-self.addEventListener('install', e => {
-  e.waitUntil(
-    caches.open(CACHE).then(c => {
-      // Cache the app shell
-      return fetch(self.registration.scope).then(r => {
-        return c.put(self.registration.scope, r);
-      }).catch(() => {});
-    }).then(() => self.skipWaiting())
-  );
-});
-
-self.addEventListener('activate', e => {
-  e.waitUntil(
-    caches.keys().then(keys => 
-      Promise.all(keys.filter(k => k !== CACHE).map(k => cach
+    (c.items||[]).map(it
