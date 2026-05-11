@@ -1900,9 +1900,15 @@ function renderComenzi(){
       });
       html+=`</tbody></table>`;
       /* Timeline comanda */
-      html+=`<div style="padding:10px 14px;border-top:1px dashed var(--border);display:flex;flex-wrap:wrap;gap:8px;align-items:center">
+      const tPlasat=items.filter(it=>it.plasatTs).sort((a,b)=>a.plasatTs>b.plasatTs?1:-1)[0];
+      const tTranzit=items.filter(it=>it.inTranzitTs).sort((a,b)=>a.inTranzitTs>b.inTranzitTs?1:-1)[0];
+      const tLivrat=items.filter(it=>it.livrareTs).sort((a,b)=>b.livrareTs>a.livrareTs?1:-1)[0];
+      html+=`<div style="padding:10px 14px;border-top:1px dashed var(--border);display:flex;flex-wrap:wrap;gap:6px 16px;align-items:center">
         <div class="ts"><span class="tsd" style="background:#60a5fa"></span>Comandat de <b>${esc(c.inginerName)}</b> · ${fmtDT(c.createdAt||c.inginerTs)}</div>
-        ${c.achizitorTs?`<div class="ts"><span class="tsd" style="background:var(--purple)"></span>Preluat de <b>${esc(c.achizitorName)}</b> · ${fmtDT(c.achizitorTs)}</div>`:''}
+        ${c.achizitorTs?`<div class="ts"><span class="tsd" style="background:#c084fc"></span>Preluat de <b>${esc(c.achizitorName)}</b> · ${fmtDT(c.achizitorTs)}</div>`:''}
+        ${tPlasat?`<div class="ts"><span class="tsd" style="background:#fb923c"></span>Plasat furnizor${tPlasat.plasatBy?` de <b>${esc(tPlasat.plasatBy)}</b>`:''} · ${fmtDT(tPlasat.plasatTs)}</div>`:''}
+        ${tTranzit?`<div class="ts"><span class="tsd" style="background:#22d3ee"></span>In tranzit${tTranzit.inTranzitBy?` de <b>${esc(tTranzit.inTranzitBy)}</b>`:''} · ${fmtDT(tTranzit.inTranzitTs)}</div>`:''}
+        ${tLivrat?`<div class="ts"><span class="tsd" style="background:#4ade80"></span>Livrat pe santier${tLivrat.livrareBy?` de <b>${esc(tLivrat.livrareBy)}</b>`:''} · ${fmtDT(tLivrat.livrareTs)}</div>`:''}
         ${canAch()&&!c.achizitorTs&&!allDone?`<button class="btn btn-purple btn-sm" onclick="preiaComanda('${cid}')">◐ Preia Comanda</button>`:''}
       </div>
       </div></div></div>`;
