@@ -1430,9 +1430,9 @@ async function updateUser(id){
 ══════════════════════════════════════════ */
 function setSortSantiere(v){S.sortSantiere=v;renderSantiere();}
 function setSortMateriale(v){S.sortMateriale=v;renderMateriale();}
-function setSearchSantiere(v){S.searchSantiere=v;renderSantiere();}
-function setSearchMateriale(v){S.searchMateriale=v;renderMateriale();}
-function setSearchComenzi(v){S.searchComenzi=v;renderComenzi();}
+function setSearchSantiere(v){S.searchSantiere=v;renderSantiere();const i=document.querySelector('#view-santiere .search-bar .inp');if(i){i.focus();i.setSelectionRange(v.length,v.length);}}
+function setSearchMateriale(v){S.searchMateriale=v;renderMateriale();const i=document.querySelector('#view-materiale .search-bar .inp');if(i){i.focus();i.setSelectionRange(v.length,v.length);}}
+function setSearchComenzi(v){S.searchComenzi=v;renderComenzi();const i=document.querySelector('#view-comenzi .search-bar .inp');if(i){i.focus();i.setSelectionRange(v.length,v.length);}}
 
 function renderSantiere(){
   const sortSant=S.sortSantiere||'newest';
