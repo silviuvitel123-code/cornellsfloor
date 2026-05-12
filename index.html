@@ -772,7 +772,7 @@ function setupSync(){
   db.ref('/').on('value',snap=>{
     clearTimeout(S._fbTimeout);
     const v=snap.val()||{};
-    S.data={santiere:v.santiere||{},materiale:v.materiale||{},comenzi:v.comenzi||{},users:v.users||{},config:v.config||{},avize:v.avize||{}};
+    S.data={santiere:v.santiere||{},materiale:v.materiale||{},comenzi:v.comenzi||{},users:v.users||{},config:v.config||{},avize:v.avize||{},docCalitate:v.docCalitate||{}};
     document.getElementById('loading').style.display='none';
     if(Object.keys(S.data.users).length===0)seedUsers();
     if(firstLoad){
@@ -1573,7 +1573,7 @@ function renderMateriale(){
         <thead><tr>
           <th style="width:28px;text-align:center">#</th>
           <th style="min-width:200px">Material</th><th>Necesar</th><th>UM</th><th>Comandat</th><th>Livrat</th><th>Progress</th><th>Obs.</th>
-          ${canEdit()?'<th></th>':''}
+          <th></th>
         </tr></thead><tbody>`;
     let matIdx=0;
     filteredMats.forEach(([mid,m])=>{
@@ -1597,11 +1597,12 @@ function renderMateriale(){
           ${over?`<div style="font-family:var(--mono);font-size:9px;color:#fca5a5">⚠ +${(livrat-m.cantitateNecesara).toFixed(1)}</div>`:''}
         </td>
         <td style="color:var(--text3);font-size:11px">${esc(m.observatii||'')}</td>
-        ${canEdit()?`<td><div style="display:flex;gap:4px">
-          <button class="btn btn-ghost btn-sm" onclick="modalEditMat('${mid}')">✎</button>
+        <td><div style="display:flex;gap:4px;align-items:center">
+          ${(()=>{const dc=Object.keys(S.data.docCalitate?.[sid]?.[mid]||{}).length;return `<button class="btn btn-ghost btn-sm" onclick="modalDocCalitate('${sid}','${mid}','${esc(m.name)}')" title="Documente calitate" style="position:relative">📋${dc>0?`<span style="position:absolute;top:-4px;right:-4px;background:var(--accent);color:#0a0d12;border-radius:50%;width:14px;height:14px;font-size:8px;font-family:var(--mono);font-weight:800;display:flex;align-items:center;justify-content:center">${dc}</span>`:''}</button>`;})()}
+          ${canEdit()?`<button class="btn btn-ghost btn-sm" onclick="modalEditMat('${mid}')">✎</button>
           <button class="btn btn-red btn-sm" onclick="confirmDeleteMat('${mid}')">✕</button>
-          <div id="cdm-${mid}" style="display:inline"></div>
-        </div></td>`:''}
+          <div id="cdm-${mid}" style="display:inline"></div>`:''}
+        </div></td>
       </tr>`;
     });
     html+=`</tbody></table></div>`;
@@ -1782,6 +1783,89 @@ function initCollapse(key, startOpen) {
 ══════════════════════════════════════════ */
 let cmdBatch={}; // {materialId: {cantitate, obs}}
 
+function modalDocCalitate(sid,mid,matName){
+  const docs=Object.entries(S.data.docCalitate?.[sid]?.[mid]||{});
+  const canManage=canEdit()||isAdmin();
+  let docsHtml='';
+  if(!docs.length){
+    docsHtml=`<div style="text-align:center;padding:28px;color:var(--text3);font-family:var(--mono);font-size:11px;letter-spacing:1px">Niciun document incarcat</div>`;
+  }else{
+    docsHtml=`<div style="display:flex;flex-wrap:wrap;gap:10px;padding:4px 0">`;
+    docs.forEach(([did,d])=>{
+      const isImg=d.contentType&&d.contentType.startsWith('image/');
+      const shortName=(d.name||'').length>14?d.name.slice(0,12)+'..':d.name||'doc';
+      docsHtml+=`<div class="aviz-item">`;
+      if(isImg){
+        docsHtml+=`<div class="aviz-img"><img src="${esc(d.url)}" loading="lazy"></div>`;
+      }else{
+        docsHtml+=`<div class="aviz-pdf-icon"><span style="font-size:24px">📄</span>${esc(shortName)}</div>`;
+      }
+      docsHtml+=`<div class="aviz-overlay">
+        <button class="aviz-overlay-btn" onclick="window.open('${esc(d.url)}','_blank')">&#128065; Preview</button>
+        <button class="aviz-overlay-btn" onclick="downloadAviz('${esc(d.url)}','${esc(d.name||'doc')}',event)">&#11015; Descarca</button>
+      </div>`;
+      docsHtml+=`<div class="aviz-name">${esc(shortName)}</div>`;
+      if(canManage)docsHtml+=`<button class="aviz-del" onclick="deleteDocCalitate('${sid}','${mid}','${did}','${esc(d.publicId||'')}',event)">✕</button>`;
+      docsHtml+='</div>';
+    });
+    docsHtml+='</div>';
+  }
+  const uploadBtn=canManage?`<button class="btn btn-primary btn-sm" onclick="uploadDocCalitate('${sid}','${mid}',this)">+ Adauga Document</button>`:'';
+  document.getElementById('modal-c').innerHTML=`<div class="mo" onclick="if(event.target===this)this.remove()">
+    <div class="modal" style="max-width:560px">
+      <div class="mh">
+        <h3>Doc. Calitate — ${esc(matName)}</h3>
+        <button class="btn-x" onclick="this.closest('.mo').remove()">✕</button>
+      </div>
+      <div class="mb">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+          <span style="font-family:var(--mono);font-size:11px;color:var(--text3);letter-spacing:1px">${docs.length} document(e) incarcate</span>
+          ${uploadBtn}
+        </div>
+        <div id="doc-cal-list-${mid}">${docsHtml}</div>
+      </div>
+    </div>
+  </div>`;
+}
+function uploadDocCalitate(sid,mid,btn){
+  const input=document.createElement('input');
+  input.type='file';input.accept='image/*,.pdf';input.multiple=true;
+  input.onchange=async()=>{
+    const files=Array.from(input.files);
+    if(!files.length)return;
+    if(btn){btn.textContent='⏳ Se incarca...';btn.disabled=true;}
+    let ok=0;
+    for(const file of files){
+      try{
+        const fd=new FormData();
+        fd.append('file',file);
+        fd.append('upload_preset',CLOUDINARY_PRESET);
+        fd.append('folder',`doc_calitate/${sid}/${mid}`);
+        const res=await fetch(`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD}/auto/upload`,{method:'POST',body:fd});
+        if(!res.ok)throw new Error('Upload esuat');
+        const data=await res.json();
+        const id=Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+        await db.ref(`/docCalitate/${sid}/${mid}/${id}`).set({url:data.secure_url,name:file.name,contentType:file.type,publicId:data.public_id,uploadedAt:nowISO(),uploadedBy:S.user.name});
+        ok++;
+      }catch(e){toast('Eroare: '+e.message,'error');}
+    }
+    if(ok)toast('✓ '+ok+' document(e) incarcate!','success');
+    if(btn){btn.textContent='+ Adauga Document';btn.disabled=false;}
+    const mat=S.data.materiale?.[sid]?.[mid];
+    if(mat)modalDocCalitate(sid,mid,mat.name||'Material');
+  };
+  input.click();
+}
+async function deleteDocCalitate(sid,mid,did,publicId,e){
+  e&&e.stopPropagation();
+  if(!confirm('Stergi acest document?'))return;
+  try{
+    await db.ref(`/docCalitate/${sid}/${mid}/${did}`).remove();
+    toast('Document sters','success');
+    const mat=S.data.materiale?.[sid]?.[mid];
+    if(mat)modalDocCalitate(sid,mid,mat.name||'Material');
+  }catch(ex){toast('Eroare: '+ex.message,'error');}
+}
 function uploadAviz(cmdId){
   const input=document.createElement('input');
   input.type='file';input.accept='image/*,.pdf';input.multiple=true;
