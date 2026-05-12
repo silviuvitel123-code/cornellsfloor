@@ -263,6 +263,17 @@ select.inp{cursor:pointer}
 .order-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:10px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.35);position:relative}
 .order-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),transparent);opacity:.5;z-index:1}
 .order-card.new-order{border-color:#1d4ed8}
+.aviz-section{padding:10px 14px;border-top:1px dashed var(--border)}
+.aviz-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;align-items:flex-start}
+.aviz-item{position:relative;width:80px;cursor:pointer}
+.aviz-img{width:80px;height:80px;border-radius:7px;overflow:hidden;border:1px solid var(--border2);background:var(--bg3);display:flex;align-items:center;justify-content:center}
+.aviz-img img{width:100%;height:100%;object-fit:cover;border-radius:6px}
+.aviz-pdf-icon{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;width:80px;height:80px;border-radius:7px;border:1px solid var(--border2);background:var(--bg3);color:var(--text3);font-size:9px;font-family:var(--mono);text-align:center;padding:4px}
+.aviz-name{font-size:9px;font-family:var(--mono);color:var(--text3);margin-top:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:80px;text-align:center}
+.aviz-del{position:absolute;top:2px;right:2px;background:rgba(0,0,0,.75);border:none;color:#fca5a5;cursor:pointer;border-radius:4px;font-size:10px;padding:2px 5px;opacity:0;transition:.15s;line-height:1}
+.aviz-item:hover .aviz-del{opacity:1}
+.aviz-upload-btn{display:inline-flex;align-items:center;gap:6px;padding:5px 11px;background:var(--bg3);border:1px dashed var(--border3);border-radius:7px;color:var(--text2);font-size:11px;font-family:var(--mono);cursor:pointer;transition:var(--tr);letter-spacing:.5px}
+.aviz-upload-btn:hover{border-color:var(--accent);color:var(--accent);background:rgba(251,191,36,.06)}
 .order-head{padding:10px 14px;background:var(--bg3);border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
 .order-num{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--accent);letter-spacing:1px}
 .order-body{padding:0}
@@ -705,6 +716,8 @@ const FB_CFG = {
 const NTFY_TOPIC_DEFAULT = 'cornellifloor-matts35306';
 
 let db = null;
+const CLOUDINARY_CLOUD = 'dqsdmhfj4';
+const CLOUDINARY_PRESET = 'avize_cf';
 const S = {
   user:null, activeSantier:null, currentView:'santiere',
   data:{santiere:{},materiale:{},comenzi:{},users:{}},
@@ -755,7 +768,7 @@ function setupSync(){
   db.ref('/').on('value',snap=>{
     clearTimeout(S._fbTimeout);
     const v=snap.val()||{};
-    S.data={santiere:v.santiere||{},materiale:v.materiale||{},comenzi:v.comenzi||{},users:v.users||{},config:v.config||{}};
+    S.data={santiere:v.santiere||{},materiale:v.materiale||{},comenzi:v.comenzi||{},users:v.users||{},config:v.config||{},avize:v.avize||{}};
     document.getElementById('loading').style.display='none';
     if(Object.keys(S.data.users).length===0)seedUsers();
     if(firstLoad){
@@ -1765,6 +1778,62 @@ function initCollapse(key, startOpen) {
 ══════════════════════════════════════════ */
 let cmdBatch={}; // {materialId: {cantitate, obs}}
 
+function uploadAviz(cmdId){
+  const input=document.createElement('input');
+  input.type='file';input.accept='image/*,.pdf';input.multiple=true;
+  input.onchange=async()=>{
+    const files=Array.from(input.files);
+    if(!files.length)return;
+    const btn=document.getElementById('aviz-add-'+cmdId);
+    if(btn){btn.textContent='⏳ Se incarca...';btn.disabled=true;}
+    let ok=0;
+    for(const file of files){
+      try{
+        const fd=new FormData();
+        fd.append('file',file);
+        fd.append('upload_preset',CLOUDINARY_PRESET);
+        fd.append('folder','avize/'+cmdId);
+        const res=await fetch(`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD}/auto/upload`,{method:'POST',body:fd});
+        if(!res.ok)throw new Error('Upload esuat');
+        const data=await res.json();
+        const id=Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+        await db.ref(`/avize/${cmdId}/${id}`).set({url:data.secure_url,name:file.name,contentType:file.type,publicId:data.public_id,uploadedAt:nowISO(),uploadedBy:S.user.name});
+        ok++;
+      }catch(e){toast('Eroare upload: '+e.message,'error');}
+    }
+    if(ok)toast('✓ '+ok+' aviz'+(ok>1?'e':'')+' incarcate!','success');
+    if(btn){btn.textContent='+ Adauga Aviz';btn.disabled=false;}
+  };
+  input.click();
+}
+async function deleteAviz(cmdId,avizId,publicId,e){
+  e&&e.stopPropagation();
+  if(!confirm('Stergi acest aviz?'))return;
+  try{
+    await db.ref(`/avize/${cmdId}/${avizId}`).remove();
+    toast('Aviz sters','success');
+  }catch(ex){toast('Eroare: '+ex.message,'error');}
+}
+function renderAvize(cmdId){
+  const avize=Object.entries(S.data.avize?.[cmdId]||{});
+  const canManage=canAch()||isAdmin();
+  let html='';
+  avize.forEach(([aid,a])=>{
+    const isImg=a.contentType&&a.contentType.startsWith('image/');
+    const shortName=(a.name||'').length>12?a.name.slice(0,10)+'..':a.name||'aviz';
+    html+=`<div class="aviz-item" onclick="window.open('${esc(a.url)}','_blank')">`;
+    if(isImg){
+      html+=`<div class="aviz-img"><img src="${esc(a.url)}" loading="lazy"></div>`;
+    }else{
+      html+=`<div class="aviz-pdf-icon"><span style="font-size:24px">📄</span>${shortName}</div>`;
+    }
+    html+=`<div class="aviz-name">${esc(shortName)}</div>`;
+    if(canManage)html+=`<button class="aviz-del" onclick="deleteAviz('${cmdId}','${aid}','${esc(a.publicId||'')}',event)">✕</button>`;
+    html+='</div>';
+  });
+  return html;
+}
+
 function renderComenzi(){
   const sid=S.activeSantier,s=S.data.santiere?.[sid];if(!s)return;
   const mats=Object.entries(S.data.materiale?.[sid]||{});
@@ -1910,6 +1979,13 @@ function renderComenzi(){
         ${tTranzit?`<div class="ts"><span class="tsd" style="background:#22d3ee"></span>In tranzit${tTranzit.inTranzitBy?` de <b>${esc(tTranzit.inTranzitBy)}</b>`:''} · ${fmtDT(tTranzit.inTranzitTs)}</div>`:''}
         ${tLivrat?`<div class="ts"><span class="tsd" style="background:#4ade80"></span>Livrat pe santier${tLivrat.livrareBy?` de <b>${esc(tLivrat.livrareBy)}</b>`:''} · ${fmtDT(tLivrat.livrareTs)}</div>`:''}
         ${canAch()&&!c.achizitorTs&&!allDone?`<button class="btn btn-purple btn-sm" onclick="preiaComanda('${cid}')">◐ Preia Comanda</button>`:''}
+      </div>
+      <div class="aviz-section">
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">
+          <span style="font-family:var(--mono);font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:1px;font-weight:700">Avize de Livrare · ${Object.keys(S.data.avize?.[cid]||{}).length} fisier(e)</span>
+          ${canAch()||isAdmin()?`<button id="aviz-add-${cid}" class="aviz-upload-btn" onclick="uploadAviz('${cid}')">+ Adauga Aviz</button>`:''}
+        </div>
+        <div class="aviz-list">${renderAvize(cid)}</div>
       </div>
       </div></div></div>`;
     });
