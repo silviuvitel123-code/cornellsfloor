@@ -1,4 +1,4 @@
-﻿const CACHE = "cornells-floor-v3";
+﻿const CACHE = "cornells-floor-v4";
 
 self.addEventListener("install", e => {
   e.waitUntil(
