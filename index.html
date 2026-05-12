@@ -1068,7 +1068,7 @@ async function sendFCMNotification(title, body){
     
     if(tokens.length === 0) return;
     
-    await fetch('/.netlify/functions/send-notification', {
+    await fetch('/api/send-notification', {
       method: 'POST',
       headers: {'Content-Type':'application/json'},
       body: JSON.stringify({ tokens, title, body })
@@ -1081,7 +1081,7 @@ async function sendFCMNotification(title, body){
 /* ── WEB PUSH (notificări native în CF Floor) ── */
 async function sendWebPush(title, body){
   try{
-    await fetch('/.netlify/functions/send-push',{
+    await fetch('/api/send-push',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({title,body})

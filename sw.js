@@ -20,7 +20,10 @@ self.addEventListener("fetch", e => {
   if (e.request.method !== "GET") return;
   e.respondWith(
     fetch(e.request).then(r => {
-      if (r && r.status === 200) caches.open(CACHE).then(c => c.put(e.request, r.clone()));
+      if (r && r.status === 200) {
+        const clone = r.clone();
+        caches.open(CACHE).then(c => c.put(e.request, clone));
+      }
       return r;
     }).catch(() => caches.match(e.request))
   );
@@ -45,7 +48,7 @@ self.addEventListener("notificationclick", e => {
     clients.matchAll({ type: "window", includeUncontrolled: true }).then(cs => {
       const c = cs.find(x => x.url.includes("cornells-floor"));
       if (c) return c.focus();
-      return clients.openWindow("https://ephemeral-hotteok-af2b19.netlify.app/");
+      return clients.openWindow("https://cornellsfloor.vercel.app/");
     })
   );
 });
