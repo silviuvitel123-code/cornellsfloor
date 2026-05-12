@@ -1610,9 +1610,16 @@ function renderMateriale(){
 
   /* Formular adăugare batch — DOAR inginer/admin */
   if(canEdit()){
-    html+=`<div class="card">
-      <div style="font-family:var(--mono);font-size:11px;font-weight:700;color:var(--accent);letter-spacing:1px;text-transform:uppercase;margin-bottom:12px">▎ Adaugă Materiale (batch)</div>
-      <div style="overflow-x:auto">
+    html+=`<div class="card" style="padding:0;overflow:hidden">
+      <div class="collapse-header order-head" onclick="toggleSection('batch-mat',this)" style="padding:11px 14px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:10px">
+        <div style="display:flex;align-items:center;gap:8px">
+          <i class="collapse-arrow" id="ca-batch-mat">▶</i>
+          <span style="font-family:var(--mono);font-size:11px;font-weight:700;color:var(--accent);letter-spacing:1px;text-transform:uppercase">+ Adaugă Materiale</span>
+        </div>
+        <span style="font-family:var(--mono);font-size:10px;color:var(--text3)">click pentru a extinde</span>
+      </div>
+      <div class="collapse-body collapsed" id="cb-sec-batch-mat" style="max-height:0">
+      <div style="padding:14px;overflow-x:auto">
       <table style="width:100%;border-collapse:collapse;font-size:12px" id="batch-table">
         <thead><tr>
           <th style="text-align:left;font-size:10px;color:var(--text3);font-weight:700;font-family:var(--mono);padding:6px 8px;border-bottom:1px solid var(--border);text-transform:uppercase;letter-spacing:1px;background:var(--bg3)">Denumire Material *</th>
@@ -1635,9 +1642,11 @@ function renderMateriale(){
       <div style="font-family:var(--mono);font-size:10px;color:var(--text3);margin-top:8px">
         ℹ Completează toate materialele, apoi apasă "Confirmă și Adaugă în Sistem" — toate vor fi salvate simultan.
       </div>
+      </div></div>
     </div>`;
   }
   document.getElementById('view-materiale').innerHTML=html;
+  requestAnimationFrame(()=>{ initCollapse('batch-mat', false); });
 }
 
 function batchRow(i,name='',cant='',unit='buc',obs=''){
