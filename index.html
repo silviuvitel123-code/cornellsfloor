@@ -270,7 +270,11 @@ select.inp{cursor:pointer}
 .aviz-img img{width:100%;height:100%;object-fit:cover;border-radius:6px}
 .aviz-pdf-icon{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;width:80px;height:80px;border-radius:7px;border:1px solid var(--border2);background:var(--bg3);color:var(--text3);font-size:9px;font-family:var(--mono);text-align:center;padding:4px}
 .aviz-name{font-size:9px;font-family:var(--mono);color:var(--text3);margin-top:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:80px;text-align:center}
-.aviz-del{position:absolute;top:2px;right:2px;background:rgba(0,0,0,.75);border:none;color:#fca5a5;cursor:pointer;border-radius:4px;font-size:10px;padding:2px 5px;opacity:0;transition:.15s;line-height:1}
+.aviz-overlay{position:absolute;inset:0;background:rgba(0,0,0,.55);border-radius:7px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;opacity:0;transition:.15s;pointer-events:none}
+.aviz-item:hover .aviz-overlay{opacity:1;pointer-events:auto}
+.aviz-overlay-btn{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:#fff;cursor:pointer;border-radius:5px;font-size:10px;padding:3px 8px;font-family:var(--mono);letter-spacing:.5px;transition:.1s;white-space:nowrap}
+.aviz-overlay-btn:hover{background:rgba(255,255,255,.28)}
+.aviz-del{position:absolute;top:2px;right:2px;background:rgba(0,0,0,.75);border:none;color:#fca5a5;cursor:pointer;border-radius:4px;font-size:10px;padding:2px 5px;opacity:0;transition:.15s;line-height:1;z-index:2}
 .aviz-item:hover .aviz-del{opacity:1}
 .aviz-upload-btn{display:inline-flex;align-items:center;gap:6px;padding:5px 11px;background:var(--bg3);border:1px dashed var(--border3);border-radius:7px;color:var(--text2);font-size:11px;font-family:var(--mono);cursor:pointer;transition:var(--tr);letter-spacing:.5px}
 .aviz-upload-btn:hover{border-color:var(--accent);color:var(--accent);background:rgba(251,191,36,.06)}
@@ -1816,17 +1820,21 @@ async function deleteAviz(cmdId,avizId,publicId,e){
 }
 function renderAvize(cmdId){
   const avize=Object.entries(S.data.avize?.[cmdId]||{});
-  const canManage=canAch()||isAdmin();
+  const canManage=canEdit()||canAch();
   let html='';
   avize.forEach(([aid,a])=>{
     const isImg=a.contentType&&a.contentType.startsWith('image/');
     const shortName=(a.name||'').length>12?a.name.slice(0,10)+'..':a.name||'aviz';
-    html+=`<div class="aviz-item" onclick="window.open('${esc(a.url)}','_blank')">`;
+    html+=`<div class="aviz-item">`;
     if(isImg){
       html+=`<div class="aviz-img"><img src="${esc(a.url)}" loading="lazy"></div>`;
     }else{
       html+=`<div class="aviz-pdf-icon"><span style="font-size:24px">📄</span>${shortName}</div>`;
     }
+    html+=`<div class="aviz-overlay">
+      <button class="aviz-overlay-btn" onclick="window.open('${esc(a.url)}','_blank')">&#128065; Previzualizeaza</button>
+      <a href="${esc(a.url)}" download="${esc(a.name||'aviz')}" onclick="event.stopPropagation()" class="aviz-overlay-btn" style="text-decoration:none;text-align:center">&#11015; Descarca</a>
+    </div>`;
     html+=`<div class="aviz-name">${esc(shortName)}</div>`;
     if(canManage)html+=`<button class="aviz-del" onclick="deleteAviz('${cmdId}','${aid}','${esc(a.publicId||'')}',event)">✕</button>`;
     html+='</div>';
@@ -1983,7 +1991,7 @@ function renderComenzi(){
       <div class="aviz-section">
         <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">
           <span style="font-family:var(--mono);font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:1px;font-weight:700">Avize de Livrare · ${Object.keys(S.data.avize?.[cid]||{}).length} fisier(e)</span>
-          ${canAch()||isAdmin()?`<button id="aviz-add-${cid}" class="aviz-upload-btn" onclick="uploadAviz('${cid}')">+ Adauga Aviz</button>`:''}
+          ${canEdit()||canAch()?`<button id="aviz-add-${cid}" class="aviz-upload-btn" onclick="uploadAviz('${cid}')">+ Adauga Aviz</button>`:''}
         </div>
         <div class="aviz-list">${renderAvize(cid)}</div>
       </div>
