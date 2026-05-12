@@ -1866,6 +1866,87 @@ async function deleteDocCalitate(sid,mid,did,publicId,e){
     if(mat)modalDocCalitate(sid,mid,mat.name||'Material');
   }catch(ex){toast('Eroare: '+ex.message,'error');}
 }
+function modalAvize(cmdId,label){
+  const avize=Object.entries(S.data.avize?.[cmdId]||{});
+  const canManage=canEdit()||canAch();
+  let docsHtml='';
+  if(!avize.length){
+    docsHtml=`<div style="text-align:center;padding:28px;color:var(--text3);font-family:var(--mono);font-size:11px;letter-spacing:1px">Niciun aviz incarcat</div>`;
+  }else{
+    docsHtml=`<div style="display:flex;flex-wrap:wrap;gap:10px;padding:4px 0">`;
+    avize.forEach(([aid,a])=>{
+      const isImg=a.contentType&&a.contentType.startsWith('image/');
+      const shortName=(a.name||'').length>14?a.name.slice(0,12)+'..':a.name||'aviz';
+      docsHtml+=`<div class="aviz-item">`;
+      if(isImg){
+        docsHtml+=`<div class="aviz-img"><img src="${esc(a.url)}" loading="lazy"></div>`;
+      }else{
+        docsHtml+=`<div class="aviz-pdf-icon"><span style="font-size:24px">📄</span>${esc(shortName)}</div>`;
+      }
+      docsHtml+=`<div class="aviz-overlay">
+        <button class="aviz-overlay-btn" onclick="window.open('${esc(a.url)}','_blank')">&#128065; Preview</button>
+        <button class="aviz-overlay-btn" onclick="downloadAviz('${esc(a.url)}','${esc(a.name||'aviz')}',event)">&#11015; Descarca</button>
+      </div>`;
+      docsHtml+=`<div class="aviz-name">${esc(shortName)}</div>`;
+      if(canManage)docsHtml+=`<button class="aviz-del" onclick="deleteAvizModal('${cmdId}','${aid}','${esc(a.publicId||'')}',event)">✕</button>`;
+      docsHtml+='</div>';
+    });
+    docsHtml+='</div>';
+  }
+  const uploadBtn=canManage?`<button class="btn btn-primary btn-sm" onclick="uploadAvizModal('${cmdId}',this)">+ Adauga Aviz</button>`:'';
+  document.getElementById('modal-c').innerHTML=`<div class="mo" onclick="if(event.target===this)this.remove()">
+    <div class="modal" style="max-width:560px">
+      <div class="mh">
+        <h3>Avize de Livrare — ${esc(label)}</h3>
+        <button class="btn-x" onclick="this.closest('.mo').remove()">✕</button>
+      </div>
+      <div class="mb">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+          <span style="font-family:var(--mono);font-size:11px;color:var(--text3);letter-spacing:1px">${avize.length} aviz(e) incarcate</span>
+          ${uploadBtn}
+        </div>
+        <div id="aviz-modal-list-${cmdId}">${docsHtml}</div>
+      </div>
+    </div>
+  </div>`;
+}
+function uploadAvizModal(cmdId,btn){
+  const input=document.createElement('input');
+  input.type='file';input.accept='image/*,.pdf';input.multiple=true;
+  input.onchange=async()=>{
+    const files=Array.from(input.files);
+    if(!files.length)return;
+    if(btn){btn.textContent='⏳ Se incarca...';btn.disabled=true;}
+    let ok=0;
+    for(const file of files){
+      try{
+        const fd=new FormData();
+        fd.append('file',file);
+        fd.append('upload_preset',CLOUDINARY_PRESET);
+        fd.append('folder','avize/'+cmdId);
+        const res=await fetch(`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD}/auto/upload`,{method:'POST',body:fd});
+        if(!res.ok)throw new Error('Upload esuat');
+        const data=await res.json();
+        const id=Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+        await db.ref(`/avize/${cmdId}/${id}`).set({url:data.secure_url,name:file.name,contentType:file.type,publicId:data.public_id,uploadedAt:nowISO(),uploadedBy:S.user.name});
+        ok++;
+      }catch(e){toast('Eroare: '+e.message,'error');}
+    }
+    if(ok)toast('✓ '+ok+' aviz(e) incarcate!','success');
+    if(btn){btn.textContent='+ Adauga Aviz';btn.disabled=false;}
+    modalAvize(cmdId,'Comanda');
+  };
+  input.click();
+}
+async function deleteAvizModal(cmdId,avizId,publicId,e){
+  e&&e.stopPropagation();
+  if(!confirm('Stergi acest aviz?'))return;
+  try{
+    await db.ref(`/avize/${cmdId}/${avizId}`).remove();
+    toast('Aviz sters','success');
+    modalAvize(cmdId,'Comanda');
+  }catch(ex){toast('Eroare: '+ex.message,'error');}
+}
 function uploadAviz(cmdId){
   const input=document.createElement('input');
   input.type='file';input.accept='image/*,.pdf';input.multiple=true;
@@ -2084,12 +2165,8 @@ function renderComenzi(){
         ${tLivrat?`<div class="ts"><span class="tsd" style="background:#4ade80"></span>Livrat pe santier${tLivrat.livrareBy?` de <b>${esc(tLivrat.livrareBy)}</b>`:''} · ${fmtDT(tLivrat.livrareTs)}</div>`:''}
         ${canAch()&&!c.achizitorTs&&!allDone?`<button class="btn btn-purple btn-sm" onclick="preiaComanda('${cid}')">◐ Preia Comanda</button>`:''}
       </div>
-      <div class="aviz-section">
-        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">
-          <span style="font-family:var(--mono);font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:1px;font-weight:700">Avize de Livrare · ${Object.keys(S.data.avize?.[cid]||{}).length} fisier(e)</span>
-          ${canEdit()||canAch()?`<button id="aviz-add-${cid}" class="aviz-upload-btn" onclick="uploadAviz('${cid}')">+ Adauga Aviz</button>`:''}
-        </div>
-        <div class="aviz-list">${renderAvize(cid)}</div>
+      <div style="padding:8px 14px;border-top:1px dashed var(--border)">
+        ${(()=>{const ac=Object.keys(S.data.avize?.[cid]||{}).length;return `<button class="aviz-upload-btn" onclick="modalAvize('${cid}','Comanda #'+${JSON.stringify(String(orderNum(cid)))})">📎 Avize de Livrare${ac>0?` <span style="background:var(--accent);color:#0a0d12;border-radius:10px;padding:1px 6px;font-size:9px;font-weight:800;font-family:var(--mono)">${ac}</span>`:''}</button>`;})()}
       </div>
       </div></div></div>`;
     });
