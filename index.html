@@ -1810,6 +1810,18 @@ function uploadAviz(cmdId){
   };
   input.click();
 }
+async function downloadAviz(url,name,e){
+  e&&e.stopPropagation();
+  try{
+    const res=await fetch(url);
+    const blob=await res.blob();
+    const a=document.createElement('a');
+    a.href=URL.createObjectURL(blob);
+    a.download=name||'aviz';
+    a.click();
+    setTimeout(()=>URL.revokeObjectURL(a.href),5000);
+  }catch(ex){window.open(url,'_blank');}
+}
 async function deleteAviz(cmdId,avizId,publicId,e){
   e&&e.stopPropagation();
   if(!confirm('Stergi acest aviz?'))return;
@@ -1833,7 +1845,7 @@ function renderAvize(cmdId){
     }
     html+=`<div class="aviz-overlay">
       <button class="aviz-overlay-btn" onclick="window.open('${esc(a.url)}','_blank')">&#128065; Previzualizeaza</button>
-      <a href="${esc(a.url)}" download="${esc(a.name||'aviz')}" onclick="event.stopPropagation()" class="aviz-overlay-btn" style="text-decoration:none;text-align:center">&#11015; Descarca</a>
+      <button class="aviz-overlay-btn" onclick="downloadAviz('${esc(a.url)}','${esc(a.name||'aviz')}',event)">&#11015; Descarca</button>
     </div>`;
     html+=`<div class="aviz-name">${esc(shortName)}</div>`;
     if(canManage)html+=`<button class="aviz-del" onclick="deleteAviz('${cmdId}','${aid}','${esc(a.publicId||'')}',event)">✕</button>`;
