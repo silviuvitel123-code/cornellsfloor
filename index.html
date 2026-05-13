@@ -899,14 +899,14 @@ let _chatConvId=null,_chatMsgRef=null;
 
 function myChatUnread(){
   if(!S.user)return 0;
-  if(isInginer())return S.data.conversations?.[S.user.id]?.unreadInginer||0;
+  if(isInginer())return S.data.conversations?.[S.user.uid]?.unreadInginer||0;
   return Object.values(S.data.conversations||{}).reduce((s,c)=>s+(c.unreadAchizitor||0),0);
 }
 
 function renderChat(){
   const el=document.getElementById('view-chat');if(!el)return;
   if(isInginer()){
-    _chatConvId=S.user.id;
+    _chatConvId=S.user.uid;
     renderChatFrame(_chatConvId);
     loadChatMessages(_chatConvId);
     markChatRead(_chatConvId);
@@ -984,7 +984,7 @@ function loadChatMessages(convId){
   _chatMsgRef.on('child_added',snap=>{
     const msg=snap.val();if(!msg)return;
     const el=document.getElementById('chat-msgs-'+convId);if(!el)return;
-    const mine=msg.fromId===S.user.id;
+    const mine=msg.fromId===S.user.uid;
     const div=document.createElement('div');
     div.className='chat-msg '+(mine?'mine':'theirs');
     let content='';
@@ -1008,7 +1008,7 @@ async function sendChatMsg(convId){
   if(!text)return;
   input.value='';
   const msgId=Date.now().toString(36)+Math.random().toString(36).slice(2,6);
-  await db.ref('/messages/'+convId+'/'+msgId).set({text,fromId:S.user.id,fromName:S.user.name,role:S.user.role,ts:nowISO(),type:'text'});
+  await db.ref('/messages/'+convId+'/'+msgId).set({text,fromId:S.user.uid,fromName:S.user.name,role:S.user.role,ts:nowISO(),type:'text'});
   const isIng=S.user.role==='inginer';
   const convRef=db.ref('/conversations/'+convId);
   const snap=await convRef.once('value');
@@ -1042,7 +1042,7 @@ function uploadChatFile(convId){
       const data=await res.json();
       const isImg=file.type.startsWith('image/');
       const msgId=Date.now().toString(36)+Math.random().toString(36).slice(2,6);
-      await db.ref('/messages/'+convId+'/'+msgId).set({fromId:S.user.id,fromName:S.user.name,role:S.user.role,ts:nowISO(),type:isImg?'image':'file',fileUrl:data.secure_url,fileName:file.name,fileType:file.type});
+      await db.ref('/messages/'+convId+'/'+msgId).set({fromId:S.user.uid,fromName:S.user.name,role:S.user.role,ts:nowISO(),type:isImg?'image':'file',fileUrl:data.secure_url,fileName:file.name,fileType:file.type});
       const isIng=S.user.role==='inginer';
       const convRef=db.ref('/conversations/'+convId);
       const snap=await convRef.once('value');const cur=snap.val()||{};
