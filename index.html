@@ -280,7 +280,7 @@ select.inp{cursor:pointer}
 .aviz-upload-btn:hover{border-color:var(--accent);color:var(--accent);background:rgba(251,191,36,.06)}
 /* CHAT */
 .chat-wrap{display:flex;height:calc(100vh - 160px);background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
-.chat-list{width:110px;flex-shrink:0;border-right:1px solid var(--border);overflow-y:auto;background:var(--bg3)}
+.chat-list{width:150px;flex-shrink:0;border-right:1px solid var(--border);overflow-y:auto;background:var(--bg3)}
 .chat-list-item{padding:9px 8px;cursor:pointer;border-bottom:1px solid var(--border);transition:var(--tr);display:flex;align-items:center;gap:7px}
 .chat-list-item:hover{background:var(--bg4)}
 .chat-list-item.active{background:rgba(251,191,36,.07);border-left:3px solid var(--accent)}
@@ -305,6 +305,8 @@ select.inp{cursor:pointer}
 .chat-input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(251,191,36,.12)}
 .chat-no-sel{flex:1;display:flex;align-items:center;justify-content:center;color:var(--text3);font-family:var(--mono);font-size:12px;letter-spacing:1px;flex-direction:column;gap:8px}
 .chat-unread-badge{background:var(--accent);color:#0a0d12;border-radius:50%;width:17px;height:17px;font-size:9px;font-weight:800;font-family:var(--mono);display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;margin-left:auto}
+.chat-del-btn{position:absolute;top:4px;right:4px;background:rgba(239,68,68,.85);border:none;color:#fff;border-radius:5px;width:22px;height:22px;font-size:11px;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;transition:.15s;line-height:1}
+.chat-msg:hover .chat-del-btn{opacity:1}
 .order-head{padding:10px 14px;background:var(--bg3);border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
 .order-num{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--accent);letter-spacing:1px}
 .order-body{padding:0}
@@ -985,8 +987,10 @@ function loadChatMessages(convId){
     const msg=snap.val();if(!msg)return;
     const el=document.getElementById('chat-msgs-'+convId);if(!el)return;
     const mine=msg.fromId?msg.fromId===S.user.uid:msg.fromName===S.user.name;
+    const canDel=isAdmin()||mine;
     const div=document.createElement('div');
     div.className='chat-msg '+(mine?'mine':'theirs');
+    div.dataset.msgId=snap.key;
     let content='';
     if(msg.type==='image'){
       content=`<div style="position:relative;display:inline-block"><img src="${esc(msg.fileUrl)}" class="chat-img" onclick="window.open('${esc(msg.fileUrl)}','_blank')" style="display:block"><button onclick="downloadAviz('${esc(msg.fileUrl)}','${esc(msg.fileName||'imagine')}',event)" style="position:absolute;bottom:6px;right:6px;background:rgba(0,0,0,.6);border:none;color:#fff;border-radius:6px;padding:4px 8px;font-size:11px;cursor:pointer">⬇ Descarcă</button></div>`;
@@ -995,9 +999,15 @@ function loadChatMessages(convId){
     }else{
       content=(msg.text||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
     }
-    div.innerHTML=`<div class="chat-bubble">${content}</div><div class="chat-meta">${esc(msg.fromName)} · ${fmtDT(msg.ts)}</div>`;
+    const delBtn=canDel?`<button class="chat-del-btn" onclick="deleteChatMsg('${convId}','${snap.key}',event)" title="Șterge mesaj">🗑</button>`:'';
+    div.innerHTML=`<div style="position:relative">${delBtn}<div class="chat-bubble">${content}</div></div><div class="chat-meta">${esc(msg.fromName)} · ${fmtDT(msg.ts)}</div>`;
     el.appendChild(div);
     el.scrollTop=el.scrollHeight;
+  });
+  _chatMsgRef.on('child_removed',snap=>{
+    const el=document.getElementById('chat-msgs-'+convId);if(!el)return;
+    const div=el.querySelector(`[data-msg-id="${snap.key}"]`);
+    if(div)div.remove();
   });
 }
 
@@ -1020,6 +1030,12 @@ async function sendChatMsg(convId){
 
 function chatKeyDown(e,convId){
   if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendChatMsg(convId);}
+}
+
+async function deleteChatMsg(convId,msgId,e){
+  e&&e.stopPropagation();
+  if(!confirm('Ștergi acest mesaj?'))return;
+  await db.ref('/messages/'+convId+'/'+msgId).remove();
 }
 
 async function markChatRead(convId){
