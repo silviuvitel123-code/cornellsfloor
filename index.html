@@ -280,8 +280,8 @@ select.inp{cursor:pointer}
 .aviz-upload-btn:hover{border-color:var(--accent);color:var(--accent);background:rgba(251,191,36,.06)}
 /* CHAT */
 .chat-wrap{display:flex;height:calc(100vh - 160px);background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
-.chat-list{width:220px;flex-shrink:0;border-right:1px solid var(--border);overflow-y:auto;background:var(--bg3)}
-.chat-list-item{padding:11px 13px;cursor:pointer;border-bottom:1px solid var(--border);transition:var(--tr);display:flex;align-items:center;gap:10px}
+.chat-list{width:110px;flex-shrink:0;border-right:1px solid var(--border);overflow-y:auto;background:var(--bg3)}
+.chat-list-item{padding:9px 8px;cursor:pointer;border-bottom:1px solid var(--border);transition:var(--tr);display:flex;align-items:center;gap:7px}
 .chat-list-item:hover{background:var(--bg4)}
 .chat-list-item.active{background:rgba(251,191,36,.07);border-left:3px solid var(--accent)}
 .chat-avatar{width:34px;height:34px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;color:#0a0d12;font-weight:800;font-family:var(--display);font-size:15px;flex-shrink:0}
@@ -989,9 +989,9 @@ function loadChatMessages(convId){
     div.className='chat-msg '+(mine?'mine':'theirs');
     let content='';
     if(msg.type==='image'){
-      content=`<img src="${esc(msg.fileUrl)}" class="chat-img" onclick="window.open('${esc(msg.fileUrl)}','_blank')">`;
+      content=`<div style="position:relative;display:inline-block"><img src="${esc(msg.fileUrl)}" class="chat-img" onclick="window.open('${esc(msg.fileUrl)}','_blank')" style="display:block"><button onclick="downloadAviz('${esc(msg.fileUrl)}','${esc(msg.fileName||'imagine')}',event)" style="position:absolute;bottom:6px;right:6px;background:rgba(0,0,0,.6);border:none;color:#fff;border-radius:6px;padding:4px 8px;font-size:11px;cursor:pointer">⬇ Descarcă</button></div>`;
     }else if(msg.type==='file'){
-      content=`<div class="chat-file-msg" onclick="downloadAviz('${esc(msg.fileUrl)}','${esc(msg.fileName||'fisier')}',event)">📄 ${esc(msg.fileName||'Fisier')}</div>`;
+      content=`<div class="chat-file-msg" style="display:flex;align-items:center;gap:10px;justify-content:space-between">📄 ${esc(msg.fileName||'Fisier')}<button onclick="downloadAviz('${esc(msg.fileUrl)}','${esc(msg.fileName||'fisier')}',event)" style="background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:inherit;border-radius:6px;padding:4px 10px;font-size:11px;cursor:pointer;white-space:nowrap">⬇ Descarcă</button></div>`;
     }else{
       content=(msg.text||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
     }
