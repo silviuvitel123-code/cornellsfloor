@@ -278,6 +278,33 @@ select.inp{cursor:pointer}
 .aviz-item:hover .aviz-del{opacity:1}
 .aviz-upload-btn{display:inline-flex;align-items:center;gap:6px;padding:5px 11px;background:var(--bg3);border:1px dashed var(--border3);border-radius:7px;color:var(--text2);font-size:11px;font-family:var(--mono);cursor:pointer;transition:var(--tr);letter-spacing:.5px}
 .aviz-upload-btn:hover{border-color:var(--accent);color:var(--accent);background:rgba(251,191,36,.06)}
+/* CHAT */
+.chat-wrap{display:flex;height:calc(100vh - 160px);background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
+.chat-list{width:220px;flex-shrink:0;border-right:1px solid var(--border);overflow-y:auto;background:var(--bg3)}
+.chat-list-item{padding:11px 13px;cursor:pointer;border-bottom:1px solid var(--border);transition:var(--tr);display:flex;align-items:center;gap:10px}
+.chat-list-item:hover{background:var(--bg4)}
+.chat-list-item.active{background:rgba(251,191,36,.07);border-left:3px solid var(--accent)}
+.chat-avatar{width:34px;height:34px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;color:#0a0d12;font-weight:800;font-family:var(--display);font-size:15px;flex-shrink:0}
+.chat-avatar.ach{background:#a855f7;color:#fff}
+.chat-conv-name{font-size:12px;font-weight:600;color:var(--text)}
+.chat-conv-last{font-size:10px;color:var(--text3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:130px;font-family:var(--mono)}
+.chat-main{flex:1;display:flex;flex-direction:column;min-width:0}
+.chat-header{padding:10px 14px;border-bottom:1px solid var(--border);background:var(--bg3);display:flex;align-items:center;gap:10px}
+.chat-msgs{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:6px}
+.chat-msg{display:flex;flex-direction:column;max-width:72%}
+.chat-msg.mine{align-self:flex-end;align-items:flex-end}
+.chat-msg.theirs{align-self:flex-start;align-items:flex-start}
+.chat-bubble{padding:9px 13px;border-radius:12px;font-size:13px;line-height:1.5;word-break:break-word}
+.chat-msg.mine .chat-bubble{background:var(--accent);color:#0a0d12;border-radius:12px 12px 3px 12px;font-weight:500}
+.chat-msg.theirs .chat-bubble{background:var(--bg3);color:var(--text);border:1px solid var(--border2);border-radius:12px 12px 12px 3px}
+.chat-meta{font-family:var(--mono);font-size:9px;color:var(--text3);margin-top:2px;padding:0 3px}
+.chat-img{max-width:200px;max-height:200px;border-radius:8px;cursor:pointer;display:block;margin-top:4px}
+.chat-file-msg{display:inline-flex;align-items:center;gap:6px;padding:7px 11px;background:rgba(255,255,255,.08);border:1px solid var(--border2);border-radius:8px;font-size:11px;font-family:var(--mono);cursor:pointer;color:var(--text2)}
+.chat-input-row{border-top:1px solid var(--border);padding:10px 12px;display:flex;gap:8px;align-items:flex-end;background:var(--bg2)}
+.chat-input{flex:1;background:var(--bg3);border:1px solid var(--border2);border-radius:var(--r-sm);padding:9px 12px;color:var(--text);font-size:13px;outline:none;resize:none;font-family:var(--sans);min-height:40px;max-height:100px;line-height:1.4;overflow-y:auto}
+.chat-input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(251,191,36,.12)}
+.chat-no-sel{flex:1;display:flex;align-items:center;justify-content:center;color:var(--text3);font-family:var(--mono);font-size:12px;letter-spacing:1px;flex-direction:column;gap:8px}
+.chat-unread-badge{background:var(--accent);color:#0a0d12;border-radius:50%;width:17px;height:17px;font-size:9px;font-weight:800;font-family:var(--mono);display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;margin-left:auto}
 .order-head{padding:10px 14px;background:var(--bg3);border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
 .order-num{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--accent);letter-spacing:1px}
 .order-body{padding:0}
@@ -696,6 +723,7 @@ input, select, textarea { -webkit-user-select: text; user-select: text; }
     </tr></tbody></table></div><div style="padding:12px 14px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);font-size:12px;color:var(--text3);font-family:var(--mono);line-height:1.7">
     💡 Conturi: <b style="color:var(--accent)">admin/admin1234</b> · <b style="color:var(--blue)">inginer1/ing1234</b> · <b style="color:var(--purple)">achizitor1/ach1234</b>
   </div></div>
+      <div id="view-chat" style="display:none"></div>
     </main>
   </div>
 </div>
@@ -772,7 +800,7 @@ function setupSync(){
   db.ref('/').on('value',snap=>{
     clearTimeout(S._fbTimeout);
     const v=snap.val()||{};
-    S.data={santiere:v.santiere||{},materiale:v.materiale||{},comenzi:v.comenzi||{},users:v.users||{},config:v.config||{},avize:v.avize||{},docCalitate:v.docCalitate||{}};
+    S.data={santiere:v.santiere||{},materiale:v.materiale||{},comenzi:v.comenzi||{},users:v.users||{},config:v.config||{},avize:v.avize||{},docCalitate:v.docCalitate||{},conversations:v.conversations||{}};
     document.getElementById('loading').style.display='none';
     if(Object.keys(S.data.users).length===0)seedUsers();
     if(firstLoad){
@@ -866,6 +894,167 @@ function toggleSidebar(force){
 }
 
 /* ── SIDEBAR RENDER ── */
+/* ═══════════ CHAT ═══════════ */
+let _chatConvId=null,_chatMsgRef=null;
+
+function myChatUnread(){
+  if(!S.user)return 0;
+  if(isInginer())return S.data.conversations?.[S.user.id]?.unreadInginer||0;
+  return Object.values(S.data.conversations||{}).reduce((s,c)=>s+(c.unreadAchizitor||0),0);
+}
+
+function renderChat(){
+  const el=document.getElementById('view-chat');if(!el)return;
+  if(isInginer()){
+    _chatConvId=S.user.id;
+    renderChatFrame(_chatConvId);
+    loadChatMessages(_chatConvId);
+    markChatRead(_chatConvId);
+  }else{
+    renderChatFrame(_chatConvId);
+    if(_chatConvId){loadChatMessages(_chatConvId);markChatRead(_chatConvId);}
+  }
+}
+
+function renderChatFrame(activeConvId){
+  const el=document.getElementById('view-chat');if(!el)return;
+  const showList=!isInginer();
+  const users=S.data.users||{};
+  let listHtml='';
+  if(showList){
+    const ingineri=Object.entries(users).filter(([,u])=>u.role==='inginer'&&u.active!==false);
+    listHtml='<div class="chat-list">';
+    if(!ingineri.length)listHtml+=`<div style="padding:14px;font-family:var(--mono);font-size:11px;color:var(--text3)">Niciun inginer</div>`;
+    ingineri.forEach(([uid,u])=>{
+      const conv=S.data.conversations?.[uid]||{};
+      const unread=conv.unreadAchizitor||0;
+      listHtml+=`<div class="chat-list-item${activeConvId===uid?' active':''}" onclick="openChatConv('${uid}')">
+        <div class="chat-avatar">${esc(u.name[0]||'?').toUpperCase()}</div>
+        <div style="flex:1;min-width:0">
+          <div class="chat-conv-name">${esc(u.name)}</div>
+          <div class="chat-conv-last">${esc(conv.lastMsg||'Niciun mesaj')}</div>
+        </div>
+        ${unread>0?`<div class="chat-unread-badge">${unread}</div>`:''}
+      </div>`;
+    });
+    listHtml+='</div>';
+  }
+  let rightHtml='';
+  if(activeConvId){
+    const ingUser=users[activeConvId]||{};
+    const achUser=Object.values(users).find(u=>u.role==='achizitor')||{name:'Achizitor'};
+    const headerName=isInginer()?esc(achUser.name):esc(ingUser.name||'Inginer');
+    const headerRole=isInginer()?'ACHIZITOR':'INGINER';
+    const avatarCls=isInginer()?'chat-avatar ach':'chat-avatar';
+    rightHtml=`<div class="chat-main">
+      <div class="chat-header">
+        <div class="${avatarCls}">${(isInginer()?achUser.name:ingUser.name||'?')[0].toUpperCase()}</div>
+        <div><div style="font-weight:600;font-size:13px">${headerName}</div>
+        <div style="font-family:var(--mono);font-size:10px;color:var(--text3)">${headerRole}</div></div>
+      </div>
+      <div class="chat-msgs" id="chat-msgs-${activeConvId}"></div>
+      <div class="chat-input-row">
+        <button class="btn btn-ghost btn-sm" onclick="uploadChatFile('${activeConvId}')" title="Ataseaza fisier" style="padding:9px">📎</button>
+        <textarea class="chat-input" id="chat-input-${activeConvId}" placeholder="Scrie un mesaj... (Enter = trimite)" onkeydown="chatKeyDown(event,'${activeConvId}')"></textarea>
+        <button class="btn btn-primary" onclick="sendChatMsg('${activeConvId}')" style="padding:9px 14px">▶</button>
+      </div>
+    </div>`;
+  }else{
+    rightHtml=`<div class="chat-no-sel"><span style="font-size:32px">💬</span><span style="font-family:var(--mono);font-size:11px;letter-spacing:1px">Selecteaza o conversatie</span></div>`;
+  }
+  el.innerHTML=`<div class="ph"><div><div class="pt">Chat</div><div class="ps">Mesaje directe</div></div></div>
+    <div class="chat-wrap">${listHtml}${rightHtml}</div>`;
+}
+
+function openChatConv(uid){
+  if(_chatMsgRef){_chatMsgRef.off();_chatMsgRef=null;}
+  _chatConvId=uid;
+  renderChatFrame(uid);
+  loadChatMessages(uid);
+  markChatRead(uid);
+  renderSidebar();
+}
+
+function loadChatMessages(convId){
+  if(_chatMsgRef){_chatMsgRef.off();_chatMsgRef=null;}
+  const msgsEl=document.getElementById('chat-msgs-'+convId);
+  if(!msgsEl)return;
+  msgsEl.innerHTML='';
+  _chatMsgRef=db.ref('/messages/'+convId).limitToLast(100);
+  _chatMsgRef.on('child_added',snap=>{
+    const msg=snap.val();if(!msg)return;
+    const el=document.getElementById('chat-msgs-'+convId);if(!el)return;
+    const mine=msg.fromId===S.user.id;
+    const div=document.createElement('div');
+    div.className='chat-msg '+(mine?'mine':'theirs');
+    let content='';
+    if(msg.type==='image'){
+      content=`<img src="${esc(msg.fileUrl)}" class="chat-img" onclick="window.open('${esc(msg.fileUrl)}','_blank')">`;
+    }else if(msg.type==='file'){
+      content=`<div class="chat-file-msg" onclick="downloadAviz('${esc(msg.fileUrl)}','${esc(msg.fileName||'fisier')}',event)">📄 ${esc(msg.fileName||'Fisier')}</div>`;
+    }else{
+      content=(msg.text||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
+    }
+    div.innerHTML=`<div class="chat-bubble">${content}</div><div class="chat-meta">${esc(msg.fromName)} · ${fmtDT(msg.ts)}</div>`;
+    el.appendChild(div);
+    el.scrollTop=el.scrollHeight;
+  });
+}
+
+async function sendChatMsg(convId){
+  const input=document.getElementById('chat-input-'+convId);
+  if(!input)return;
+  const text=input.value.trim();
+  if(!text)return;
+  input.value='';
+  const msgId=Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+  await db.ref('/messages/'+convId+'/'+msgId).set({text,fromId:S.user.id,fromName:S.user.name,role:S.user.role,ts:nowISO(),type:'text'});
+  const isIng=S.user.role==='inginer';
+  const convRef=db.ref('/conversations/'+convId);
+  const snap=await convRef.once('value');
+  const cur=snap.val()||{};
+  const unreadField=isIng?'unreadAchizitor':'unreadInginer';
+  await convRef.update({lastMsg:text.slice(0,60),lastTs:nowISO(),[unreadField]:(cur[unreadField]||0)+1});
+  sendWebPush('Mesaj nou — '+S.user.name,text.slice(0,100));
+}
+
+function chatKeyDown(e,convId){
+  if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendChatMsg(convId);}
+}
+
+async function markChatRead(convId){
+  if(!convId||!S.user)return;
+  const field=S.user.role==='inginer'?'unreadInginer':'unreadAchizitor';
+  await db.ref('/conversations/'+convId+'/'+field).set(0);
+  renderSidebar();
+}
+
+function uploadChatFile(convId){
+  const input=document.createElement('input');
+  input.type='file';input.accept='image/*,.pdf,.doc,.docx,.xls,.xlsx';
+  input.onchange=async()=>{
+    const file=input.files[0];if(!file)return;
+    try{
+      const fd=new FormData();
+      fd.append('file',file);fd.append('upload_preset',CLOUDINARY_PRESET);fd.append('folder','chat/'+convId);
+      const res=await fetch(`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD}/auto/upload`,{method:'POST',body:fd});
+      if(!res.ok)throw new Error('Upload esuat');
+      const data=await res.json();
+      const isImg=file.type.startsWith('image/');
+      const msgId=Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+      await db.ref('/messages/'+convId+'/'+msgId).set({fromId:S.user.id,fromName:S.user.name,role:S.user.role,ts:nowISO(),type:isImg?'image':'file',fileUrl:data.secure_url,fileName:file.name,fileType:file.type});
+      const isIng=S.user.role==='inginer';
+      const convRef=db.ref('/conversations/'+convId);
+      const snap=await convRef.once('value');const cur=snap.val()||{};
+      const unreadField=isIng?'unreadAchizitor':'unreadInginer';
+      await convRef.update({lastMsg:'['+(isImg?'imagine':'fisier')+'] '+file.name,lastTs:nowISO(),[unreadField]:(cur[unreadField]||0)+1});
+      sendWebPush('Fisier nou — '+S.user.name,file.name);
+      toast('✓ Fisier trimis!','success');
+    }catch(e){toast('Eroare: '+e.message,'error');}
+  };
+  input.click();
+}
+
 function renderSidebar(){
   const sb=document.getElementById('sidebar');if(!sb)return;
   const santiere=Object.entries(S.data.santiere||{});
@@ -918,6 +1107,10 @@ function renderSidebar(){
 
   html+=`<div class="sb-item ${S.currentView==='rapoarte'?'active':''}" onclick="navTo('rapoarte')">
       <span class="ico">▤</span><span class="lbl">Rapoarte</span>
+    </div>
+    <div class="sb-item ${S.currentView==='chat'?'active':''}" onclick="navTo('chat')">
+      <span class="ico">💬</span><span class="lbl">Chat</span>
+      ${(()=>{const u=myChatUnread();return u>0?`<span class="chat-unread-badge">${u}</span>`:''})()}
     </div>
     ${isAdmin()?`<div class="sb-item ${S.currentView==='admin'?'active':''}" onclick="navTo('admin')">
       <span class="ico">▧</span><span class="lbl">Admin</span></div>`:''}
@@ -975,7 +1168,7 @@ function sidebarOpenSantier(id){if(window.innerWidth<=900)toggleSidebar(false);o
 /* ── NAV ── */
 function showView(view){
   S.currentView=view;
-  ['santiere','materiale','comenzi','rapoarte','admin'].forEach(v=>{
+  ['santiere','materiale','comenzi','rapoarte','admin','chat'].forEach(v=>{
     const el=document.getElementById('view-'+v);if(el)el.style.display='none';
   });
   const target=document.getElementById('view-'+view);if(target)target.style.display='block';
@@ -988,6 +1181,7 @@ function renderView(v){
   else if(v==='comenzi'&&S.activeSantier)renderComenzi();
   else if(v==='rapoarte')renderRapoarte();
   else if(v==='admin')renderAdmin();
+  else if(v==='chat')renderChat();
 }
 function openSantier(id){
   S.activeSantier=id;
