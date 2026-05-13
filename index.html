@@ -984,7 +984,7 @@ function loadChatMessages(convId){
   _chatMsgRef.on('child_added',snap=>{
     const msg=snap.val();if(!msg)return;
     const el=document.getElementById('chat-msgs-'+convId);if(!el)return;
-    const mine=msg.fromId===S.user.uid;
+    const mine=msg.fromId?msg.fromId===S.user.uid:msg.fromName===S.user.name;
     const div=document.createElement('div');
     div.className='chat-msg '+(mine?'mine':'theirs');
     let content='';
